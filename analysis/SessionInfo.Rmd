@@ -1,0 +1,37 @@
+---
+title: "SessionInfo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r packages}
+library("GenomicRanges")
+library("RColorBrewer")
+library("annotatr")
+library("caret")
+library("cowplot")
+library("data.table")
+library("devtools")
+library("dplyr")
+library("ggplot2")
+library("ggplotify")
+library("ggpubr")
+library("grid")
+library("gridExtra")
+library("here")
+library("pROC")
+library("plyr")
+library("readxl")
+library("recipes")
+library("reshape2")
+library("splitTools")
+library("tidyverse")
+```
+
+```{r info}
+sessionInfo()
+```

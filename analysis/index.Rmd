@@ -8,4 +8,28 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# Citation
+
+
+# Abstract
+
+
+# Documentation
+We have provided a README describing the structure of this workflowr, as well as READMEs within subfolders as needed. 
+
+A list of R-related dependencies for reproducing the figures in the LUCAS manuscript is available in the [SessionInfo](../docs/SessionInfo.html) document. Most of the R packages are available from Bioconductor or CRAN. 
+
+
+# Figures
+- Figure 1: [HTML](../docs/Figure1.html), [Code](../analysis/Figure1.Rmd), [JPG](../docs/figure/Fig_1.jpg) 
+- Figure 2: [HTML](../docs/Figure2.html), [Code](../analysis/Figure2.Rmd), [JPG](../docs/figure/Fig_2.jpg)
+- Figure 3: [HTML](../docs/Figure3.html), [Code](../analysis/Figure3.Rmd)
+  - A,B: [JPG](../docs/figure/Fig_3AB.jpg)
+  - C,D: [JPG](../docs/figure/Fig_3CD.jpg)
+  - E: [JPG](../docs/figure/Fig_3E_multivar.jpg)
+  - F: [JPG](../docs/figure/Fig_3F.jpg)  
+- Figure 4: 
+  - A,B,C: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
+  - C (one fold validation): [HTML](../docs/Figure4C.html), [Code](../analysis/Figure4C.Rmd), [PDF](../docs/figure/Fig_4C.pdf)
+
+# Supplementary Tables

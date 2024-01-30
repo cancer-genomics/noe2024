@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Michael Noe" />
+
+<meta name="date" content="2024-01-25" />
+
+<title>Figure3.rmd</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">noe2024</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Figure3.rmd</h1>
+<h4 class="author">Michael Noe</h4>
+<h4 class="date">2024-01-25</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-01-30
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>noe2024/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240129code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240129)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240129code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240129)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongc3db0ae">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong> c3db0ae
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongc3db0ae"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version c3db0ae.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Untracked files:
+    Untracked:  analysis/Figure1.Rmd
+    Untracked:  analysis/Figure2.Rmd
+    Untracked:  analysis/Figure3.Rmd
+    Untracked:  analysis/Figure4.Rmd
+    Untracked:  analysis/Figure4C.Rmd
+    Untracked:  analysis/SessionInfo.Rmd
+    Untracked:  data/Moss_ratios.rds
+    Untracked:  data/RNAtable.tsv.gz
+    Untracked:  data/carvalho_motifs.rds
+    Untracked:  data/cdf_multiple.rds
+    Untracked:  data/cfdna_ratio_motif.rds
+    Untracked:  data/cpgIslands.hg19.20001.rds
+    Untracked:  data/cpg_size_smallfragments.rds
+    Untracked:  data/cpg_smallfragments.rds
+    Untracked:  data/data_akshaya/
+    Untracked:  data/end_motifs_cfdna_individual.rds
+    Untracked:  data/end_motifs_cfdna_individual_200over_5perc.rds
+    Untracked:  data/end_motifs_sheared_individual.rds
+    Untracked:  data/fragments_somatic.rds
+    Untracked:  data/labels.txt
+    Untracked:  data/multivariate_model_coverage_size.rds
+    Untracked:  data/position_in_read.rds
+    Untracked:  data/positons_conserved_200over_5perc.rds
+    Untracked:  data/som_chrx.rds
+    Untracked:  data/theoretical_frequencies_hg19.rds
+    Untracked:  data/tissue_key.tsv
+    Untracked:  data/transcriptAnno-GRCh37.75.tss20001.tsv
+    Untracked:  data/tss_size_smallfragments.rds
+    Untracked:  data/tss_smallfragments.rds
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="pre-requisites" class="section level2">
+<h2>Pre-requisites</h2>
+<p>These packages are necessary to make the plots that make up Figure
+3.</p>
+<pre class="r"><code>library(&quot;reshape2&quot;)
+library(&quot;ggplot2&quot;)
+library(&quot;cowplot&quot;)
+library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()    masks stats::filter()
+✖ dplyr::lag()       masks stats::lag()
+✖ lubridate::stamp() masks cowplot::stamp()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(&quot;dplyr&quot;)
+library(&quot;GenomicRanges&quot;)</code></pre>
+<pre><code>Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: &#39;BiocGenerics&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    intersect, setdiff, union
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: &#39;S4Vectors&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    second, second&lt;-
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    first, rename
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    expand
+
+The following objects are masked from &#39;package:base&#39;:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: &#39;IRanges&#39;
+
+The following object is masked from &#39;package:lubridate&#39;:
+
+    %within%
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    collapse, desc, slice
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    reduce
+
+Loading required package: GenomeInfoDb</code></pre>
+<pre class="r"><code>library(&quot;here&quot;)</code></pre>
+<pre><code>here() starts at /Users/skoul/Documents/Projects/cfepi_wflow/noe2024</code></pre>
+</div>
+<div id="figure-3a-cpg-islands-coverage-mononucleosomal-reads"
+class="section level2">
+<h2>Figure 3A: CpG-islands coverage (mononucleosomal reads)</h2>
+<pre class="r"><code>matrix &lt;- readRDS(here(&quot;data/cpg_smallfragments.rds&quot;))
+cpg &lt;- readRDS(here(&quot;data/cpgIslands.hg19.20001.rds&quot;))
+geneid_ordered &lt;- order(cpg$beta)
+cpg &lt;- cpg[geneid_ordered]
+remove &lt;- which(cpg$amount &lt;=2)
+cpg &lt;- cpg[-remove]
+
+matrix_ordered &lt;- matrix[geneid_ordered,]
+matrix_ordered &lt;- matrix_ordered[-remove,]
+
+included_genes &lt;- which(rowSums(matrix_ordered) &gt;= 130000)
+cpg &lt;- cpg[included_genes]
+matrix_ordered &lt;- matrix_ordered[which(rowSums(matrix_ordered) &gt;= 130000),]
+matrix_ordered_long &lt;- reshape2::melt(matrix_ordered)
+colnames(matrix_ordered_long) &lt;- c(&quot;gene_index&quot;, &quot;relative_position&quot;, &quot;coverage&quot;)
+matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position - 251
+matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position - 250
+matrix_ordered_long$relative_position &lt;- matrix_ordered_long$relative_position * 10
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index * -1
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index - min(matrix_ordered_long$gene_index) +1
+m &lt;- as_tibble(matrix_ordered_long) %&gt;%
+    pivot_wider(id_cols=gene_index,
+                names_from=relative_position,
+                values_from=coverage)
+m2 &lt;- m %&gt;% 
+  dplyr::select(-gene_index) %&gt;%
+  as.matrix()
+sfun &lt;- function(x, k){
+    s &lt;- runmean(Rle(x), k, endrule=&quot;constant&quot;)
+    as.numeric(s)
+}
+m3 &lt;- apply(m2, 2, sfun, k=5)
+m[, -1] &lt;- m3
+x2 &lt;- m %&gt;%
+    pivot_longer(cols=-1, names_to=&quot;relative_position&quot;,
+                 values_to=&quot;coverage&quot;) %&gt;%
+    mutate(relative_position=as.integer(relative_position))  %&gt;%
+    mutate(method=&quot;smoothed&quot;)
+pos &lt;- sort(c(seq(-2500, 2500, 1000), -10))
+brks &lt;- match(pos, sort(unique(x2$relative_position)))
+pos[pos == -10] &lt;- 0
+downsample &lt;- sample(unique(x2$gene_index), 1000)
+downsample &lt;- unique(x2$gene_index)
+width &lt;- unit(10, &quot;cm&quot;)
+#p1 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+p1 &lt;- x2 %&gt;%
+    mutate(coverage=ifelse(coverage &gt; 600, 600, coverage),
+           coverage=ifelse(coverage &lt; 100, 100, coverage),
+           gene_index=as.integer(factor(gene_index)),
+           x=as.integer(factor(relative_position))) %&gt;%
+    ggplot(aes(x, gene_index)) +
+    geom_tile(aes(fill=coverage), size=0) +
+    scale_fill_gradientn(colours = c(&quot;#DD6627&quot;, &quot;#77C8DD&quot;, &quot;#004766&quot;)) +
+    scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+    scale_y_continuous(expand = c(0,0)) +
+    labs(x=&quot;Position relative to the middle of the CpG-island&quot;) +
+    theme_classic(base_size=20) +
+    theme(text = element_text(size=16),
+          plot.title=element_blank(),
+          panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=0.5),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position=&quot;bottom&quot;,
+          legend.box=&quot;horizontal&quot;,
+          legend.spacing.x = unit(0, &quot;cm&quot;),
+          legend.key.width = unit(0.27, &quot;snpc&quot;),
+          plot.margin = margin(0,0.7,0.7,0.7, &quot;cm&quot;)) + 
+  guides(fill = guide_colourbar(title.position=&quot;bottom&quot;, title.hjust = 0.5, title.vjust = 3, barheight = 0.5, frame.colour = &quot;black&quot;, frame.linewidth = 0.5, title=&quot;cfDNA coverage&quot;))</code></pre>
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.</code></pre>
+<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.</code></pre>
+<pre class="r"><code>values &lt;- data.frame(&quot;var_x&quot; = 1,
+                     &quot;var_y&quot; = max(matrix_ordered_long$gene_index):1,
+                     &quot;value&quot; = cpg$beta,
+                     &quot;loc&quot; = paste0(seqnames(cpg), &quot;:&quot;, start(cpg), &quot;-&quot;, end(cpg)))
+values$value &lt;- as.numeric(values$value)
+matrix_ordered_long$cpg_loc &lt;- values[match(matrix_ordered_long$gene_index, values$var_y),]$loc
+matrix_ordered_long$cpg_beta &lt;- values[match(matrix_ordered_long$gene_index, values$var_y),]$value
+#saveRDS(matrix_ordered_long, &quot;/Users/mnoe/Documents/cpg_coverage.rds&quot;)
+p2 &lt;- ggplot(values, aes(x = var_y, y = value)) +
+  geom_bar(stat=&quot;identity&quot;, fill = &quot;black&quot;) +
+  labs(x=&quot;CpG-islands in order of methylation (beta-value)&quot;, y=&quot;&quot;, title=&quot;&quot;) +
+  theme_classic(base_size=20) + 
+  theme(text = element_text(size=16),
+        axis.title.y.right =  element_text(angle=90, vjust = 2),
+        axis.line.x.bottom = element_blank(),
+        axis.line.y.right = element_blank(),
+        plot.title=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x.bottom = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        plot.margin = margin(0,0,0,0, &quot;cm&quot;)) + 
+  coord_flip() +
+  guides(x.sec = &quot;axis&quot;, y.sec = &quot;axis&quot;) +
+  scale_y_continuous(expand=c(0,0), limits = c(0, 1), breaks = seq(0, 1, by=1), labels=c(&quot;0.000000&quot; = &quot;0&quot;, &quot;1&quot; = &quot;1&quot;)) +
+  scale_x_continuous(expand=c(0,0), position = &quot;top&quot;)
+
+
+p3 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+  group_by(relative_position) %&gt;%
+  summarise(ncoverage = sum(coverage)) %&gt;%
+  ggplot(aes(relative_position, ncoverage)) +
+  labs(x=&quot;&quot;, y=&quot;&quot;, title=&quot;Cumulative cfDNA coverage&quot;) +
+  geom_line() +
+  theme_classic(base_size=20) +
+  theme(text = element_text(size=16),
+        #axis.title.x.bottom = element_text(angle=0, vjust = 10),
+        plot.title=element_text(hjust=0.5, vjust=-3, size = 16),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        legend.box=&quot;horizontal&quot;,
+        legend.spacing.x = unit(0, &quot;cm&quot;),
+        plot.margin = margin(0.2,0.7,0,0.7, &quot;cm&quot;)) +
+  scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+  ggtitle(&quot;Cumulative cfDNA coverage&quot;)
+
+
+p1_legend &lt;- get_legend(p1)
+p1 &lt;- p1 + theme(legend.position=&#39;none&#39;)
+plot_combi1 &lt;- plot_grid(p3, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi2 &lt;- plot_grid(p1, p2, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi3 &lt;- plot_grid(p1_legend, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_cpg_cov &lt;- plot_grid(plot_combi1, plot_combi2, plot_combi3, NULL, ncol=1, rel_heights = c(2,15,1,0.5))
+title &lt;- ggdraw() + 
+  draw_label(
+    &quot;Coverage over CpG-islands&quot;,
+    hjust = 0.5,
+    size = 20
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+title &lt;- plot_grid(title, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_cpg_cov_title &lt;- plot_grid(title, plot_combi_cpg_cov, ncol = 1, rel_heights = c(1,15), align = &quot;h&quot;)</code></pre>
+</div>
+<div id="figure-3b-tss-coverage-mononucleosomal-reads"
+class="section level2">
+<h2>Figure 3B: TSS coverage (mononucleosomal reads)</h2>
+<pre class="r"><code>matrix &lt;- readRDS(here(&quot;data/tss_smallfragments.rds&quot;))
+tissue_key &lt;- read.table(here(&quot;data/tissue_key.tsv&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+conv &lt;- read.table(here(&quot;data/labels.txt&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+rna &lt;- read.table(here(&quot;data/RNAtable.tsv.gz&quot;),as.is=T,header=T)
+express &lt;- conv[which(conv$Category %in% c(&quot;Myeloid&quot;)),]$RName
+express_df &lt;- rna[c(&quot;GeneID&quot;, express)]
+express_df$mean &lt;- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df &lt;- express_df[order(-express_df$mean),]
+geneid_ordered &lt;- express_df$GeneID
+
+tss &lt;- read.table(file = here(&quot;data/transcriptAnno-GRCh37.75.tss20001.tsv&quot;))
+colnames(tss) &lt;- c(&quot;transcript&quot;, &quot;seqnames&quot;, &quot;start&quot;, &quot;end&quot;, &quot;strand&quot;)
+tss$seqnames &lt;- paste0(&quot;chr&quot;, tss$seqnames)
+tss_gr &lt;- GRanges(tss)
+tss_gr &lt;- tss_gr[which(seqnames(tss_gr) %in% paste0(&quot;chr&quot;, c(1:22)))]
+seqlevels(tss_gr) &lt;- paste0(&quot;chr&quot;, c(1:22))
+
+order &lt;- match(geneid_ordered, tss_gr$transcript)
+order &lt;- order [!is.na(order)]
+matrix_ordered &lt;- matrix[order,]
+included_genes &lt;- tss_gr[order]$transcript
+included_genes &lt;- included_genes[which(rowSums(matrix_ordered) &gt;= 130000)]
+matrix_ordered &lt;- matrix_ordered[which(rowSums(matrix_ordered) &gt;= 130000),]
+matrix_ordered_long &lt;- melt(matrix_ordered)
+colnames(matrix_ordered_long) &lt;- c(&quot;gene_index&quot;, &quot;relative_position&quot;, &quot;coverage&quot;)
+matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position - 251
+matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position - 250
+matrix_ordered_long$relative_position &lt;- matrix_ordered_long$relative_position * 10
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index * -1
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index - min(matrix_ordered_long$gene_index) +1
+m &lt;- as_tibble(matrix_ordered_long) %&gt;%
+    pivot_wider(id_cols=gene_index,
+                names_from=relative_position,
+                values_from=coverage)
+m2 &lt;- m %&gt;% 
+  dplyr::select(-gene_index) %&gt;%
+  as.matrix()
+sfun &lt;- function(x, k){
+    s &lt;- runmean(Rle(x), k, endrule=&quot;constant&quot;)
+    as.numeric(s)
+}
+m3 &lt;- apply(m2, 2, sfun, k=5)
+m[, -1] &lt;- m3
+x2 &lt;- m %&gt;%
+    pivot_longer(cols=-1, names_to=&quot;relative_position&quot;,
+                 values_to=&quot;coverage&quot;) %&gt;%
+    mutate(relative_position=as.integer(relative_position))  %&gt;%
+    mutate(method=&quot;smoothed&quot;)
+pos &lt;- sort(c(seq(-2500, 2500, 1000), -10))
+brks &lt;- match(pos, sort(unique(x2$relative_position)))
+pos[pos == -10] &lt;- 0
+downsample &lt;- sample(unique(x2$gene_index), 1000)
+downsample &lt;- unique(x2$gene_index)
+width &lt;- unit(10, &quot;cm&quot;)
+#p1 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+p1 &lt;- x2 %&gt;%
+    mutate(coverage=ifelse(coverage &gt; 600, 600, coverage),
+           coverage=ifelse(coverage &lt; 100, 100, coverage),
+           gene_index=as.integer(factor(gene_index)),
+           x=as.integer(factor(relative_position))) %&gt;%
+    ggplot(aes(x, gene_index)) +
+    geom_tile(aes(fill=coverage), size=0) +
+    scale_fill_gradientn(colours = c(&quot;#DD6627&quot;, &quot;#77C8DD&quot;, &quot;#004766&quot;)) +
+    scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+    scale_y_continuous(expand = c(0,0)) +
+    labs(x=&quot;Position relative to TSS&quot;) +
+    theme_classic(base_size=20) +
+    theme(text = element_text(size=16),
+          plot.title=element_blank(),
+          panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=0.5),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position=&quot;bottom&quot;,
+          legend.box=&quot;horizontal&quot;,
+          legend.spacing.x = unit(0, &quot;cm&quot;),
+          legend.key.width = unit(0.27, &quot;snpc&quot;),
+          plot.margin = margin(0,0.7,0.7,0.7, &quot;cm&quot;)) + 
+  guides(fill = guide_colourbar(title.position=&quot;bottom&quot;, title.hjust = 0.5, title.vjust = 3, barheight = 0.5, frame.colour = &quot;black&quot;, frame.linewidth = 0.5, title=&quot;cfDNA coverage&quot;))
+values &lt;- data.frame(&quot;var_x&quot; = 1,
+                     &quot;var_y&quot; = max(matrix_ordered_long$gene_index):1,
+                     &quot;value&quot; = express_df[which(express_df$GeneID %in% included_genes),]$mean,
+                     &quot;gene&quot; = express_df[which(express_df$GeneID %in% included_genes),]$GeneID)
+matrix_ordered_long$transcript_id &lt;- values[match(matrix_ordered_long$gene_index, values$var_y),]$gene
+matrix_ordered_long$rna_expression &lt;- values[match(matrix_ordered_long$gene_index, values$var_y),]$value
+#saveRDS(matrix_ordered_long, &quot;/Users/mnoe/Documents/expression_coverage.rds&quot;)
+p2 &lt;- ggplot(values[which(values$var_y %in% downsample),], aes(x = var_y, y = log(value + 1))) +
+  geom_bar(stat=&quot;identity&quot;, fill = &quot;black&quot;) +
+  labs(x=&quot;Genes in order of expression (TPM)&quot;, y=&quot;&quot;, title=&quot;&quot;) +
+  theme_classic(base_size=20) + 
+  theme(text = element_text(size=16),
+        axis.title.y.right =  element_text(angle=90, vjust = 4),
+        axis.line.x.bottom = element_blank(),
+        axis.line.y.right = element_blank(),
+        plot.title=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x.bottom = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        plot.margin = margin(0,0,0,0, &quot;cm&quot;)) + 
+  coord_flip() +
+  guides(x.sec = &quot;axis&quot;, y.sec = &quot;axis&quot;) +
+  scale_y_continuous(expand=c(0,0), limits = c(0, 7.835816), breaks = seq(0, 7.835816, by=7.835816), labels=c(&quot;0.000000&quot; = &quot;0&quot;, &quot;7.835816&quot; = &quot;2528&quot;)) +
+  scale_x_continuous(expand=c(0,0), position = &quot;top&quot;)
+
+
+p3 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+  group_by(relative_position) %&gt;%
+  summarise(ncoverage = sum(coverage)) %&gt;%
+  ggplot(aes(relative_position, ncoverage)) +
+  labs(x=&quot;&quot;, y=&quot;&quot;, title=&quot;Cumulative cfDNA coverage&quot;) +
+  geom_line() +
+  theme_classic(base_size=20) +
+  theme(text = element_text(size=16),
+        #axis.title.x.bottom = element_text(angle=0, vjust = 10),
+        plot.title=element_text(hjust=0.5, vjust=-3, size = 16),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        legend.box=&quot;horizontal&quot;,
+        legend.spacing.x = unit(0, &quot;cm&quot;),
+        plot.margin = margin(0.2,0.7,0,0.7, &quot;cm&quot;)) +
+  scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+  ggtitle(&quot;Cumulative cfDNA coverage&quot;)
+
+
+p1_legend &lt;- get_legend(p1)
+p1 &lt;- p1 + theme(legend.position=&#39;none&#39;)
+#p2_legend &lt;- get_legend(p2)
+#p2 &lt;- p2 + theme(legend.position=&#39;none&#39;)
+#plot_combi &lt;- plot_grid(plot_grid(p1, p2, ncol=2, nrow=1,align = &quot;h&quot;, rel_widths = c(10,2)),
+#          plot_grid(NULL, p1_legend, p2_legend, NULL, ncol = 1, nrow = 4, align=&quot;v&quot;, axis=&quot;b&quot;), #rel_widths = c(10,1))
+plot_combi1 &lt;- plot_grid(p3, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi2 &lt;- plot_grid(p1, p2, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre class="r"><code>plot_combi3 &lt;- plot_grid(p1_legend, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_tss_cov &lt;- plot_grid(plot_combi1, plot_combi2, plot_combi3, NULL, ncol=1, rel_heights = c(2,15,1,0.5))
+title &lt;- ggdraw() + 
+  draw_label(
+    &quot;Coverage over transcription start sites&quot;,
+    hjust = 0.5,
+    size = 20
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+title &lt;- plot_grid(title, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_tss_cov_title &lt;- plot_grid(title, plot_combi_tss_cov, ncol = 1, rel_heights = c(1,15))</code></pre>
+</div>
+<div id="figure-3-combine-figure-3a-figure-3b" class="section level2">
+<h2>Figure 3: combine Figure 3A, Figure 3B</h2>
+<pre class="r"><code>dir.create(here(&quot;docs/figure&quot;), showWarnings=FALSE)
+small_cov &lt;- plot_grid(plot_combi_cpg_cov_title, NULL, plot_combi_tss_cov_title , rel_widths = c(1,0.1,1), labels=c(&quot;a&quot;, &quot;&quot;, &quot;b&quot;), nrow=1, label_size = 20)
+#ggsave(paste(&quot;../output_final/Fig_3AB.pdf&quot;), plot = small_cov, device = &quot;pdf&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.78)
+ggsave(here(&quot;docs/figure/Fig_3AB.jpg&quot;), plot = small_cov, device = &quot;jpg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.78)</code></pre>
+</div>
+<div
+id="figure-3c-cpg-islands-cfdna-fragment-size-mononucleosomal-reads"
+class="section level2">
+<h2>Figure 3C: CpG-islands cfDNA fragment size (mononucleosomal
+reads)</h2>
+<pre class="r"><code>colorz &lt;- c(&quot;#DD6627&quot;, &quot;#77C8DD&quot;, &quot;#004766&quot;)
+matrix &lt;- readRDS(here(&quot;data/cpg_size_smallfragments.rds&quot;))
+cpg &lt;- readRDS(here(&quot;data/cpgIslands.hg19.20001.rds&quot;))
+geneid_ordered &lt;- order(cpg$beta)
+cpg &lt;- cpg[geneid_ordered]
+remove &lt;- which(cpg$amount &lt;=2)
+cpg &lt;- cpg[-remove]
+
+matrix_ordered &lt;- matrix[geneid_ordered,]
+matrix_ordered &lt;- matrix_ordered[-remove,]
+
+included_genes &lt;- which(rowSums(is.na(matrix_ordered)) &lt;= 10)
+cpg &lt;- cpg[included_genes]
+matrix_ordered &lt;- matrix_ordered[which(rowSums(is.na(matrix_ordered)) &lt;= 10),]
+matrix_ordered_long &lt;- melt(matrix_ordered)
+colnames(matrix_ordered_long) &lt;- c(&quot;gene_index&quot;, &quot;relative_position&quot;, &quot;coverage&quot;)
+matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position - 251
+matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position - 250
+matrix_ordered_long$relative_position &lt;- matrix_ordered_long$relative_position * 10
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index * -1
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index - min(matrix_ordered_long$gene_index) +1
+m &lt;- as_tibble(matrix_ordered_long) %&gt;%
+    pivot_wider(id_cols=gene_index,
+                names_from=relative_position,
+                values_from=coverage)
+m2 &lt;- m %&gt;% 
+  dplyr::select(-gene_index) %&gt;%
+  as.matrix()
+sfun &lt;- function(x, k){
+    s &lt;- runmean(Rle(x), k, endrule=&quot;constant&quot;)
+    as.numeric(s)
+}
+m3 &lt;- apply(m2, 2, sfun, k=5)
+m[, -1] &lt;- m3
+x2 &lt;- m %&gt;%
+    pivot_longer(cols=-1, names_to=&quot;relative_position&quot;,
+                 values_to=&quot;coverage&quot;) %&gt;%
+    mutate(relative_position=as.integer(relative_position))  %&gt;%
+    mutate(method=&quot;smoothed&quot;)
+pos &lt;- sort(c(seq(-2500, 2500, 1000), -10))
+brks &lt;- match(pos, sort(unique(x2$relative_position)))
+pos[pos == -10] &lt;- 0
+downsample &lt;- sample(unique(x2$gene_index), 1000)
+downsample &lt;- unique(x2$gene_index)
+width &lt;- unit(10, &quot;cm&quot;)
+x2[which(is.na(x2$coverage)),]$coverage &lt;- mean(x2[-which(is.na(x2$coverage)),]$coverage)
+tibfinal &lt;- tibble()
+for(i in unique(x2$relative_position)) {
+  tib &lt;- tibble(&quot;diff&quot; = (mean(x2[which(x2$relative_position %in% c(i)),][c(1:1000),]$coverage) - mean(x2[which(x2$relative_position %in% c(i)),][c((length(unique(x2$gene_index))-1000):(length(unique(x2$gene_index)))),]$coverage)),
+         &quot;pos&quot; = i)
+  tibfinal &lt;- rbind(tibfinal, tib)
+}
+p1 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+    mutate(coverage=ifelse(coverage &gt; 176, 176, coverage),
+           coverage=ifelse(coverage &lt; 160, 160, coverage),
+           gene_index=as.integer(factor(gene_index)),
+           x=as.integer(factor(relative_position))) %&gt;%
+    ggplot(aes(x, gene_index)) +
+    geom_tile(aes(fill=coverage), size=0) +
+    scale_fill_gradientn(colours = colorz) +
+    scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+    scale_y_continuous(expand = c(0,0)) +
+    labs(x=&quot;Position relative to the middle of the CpG-island&quot;) +
+    theme_classic(base_size=10) +
+    theme(text = element_text(size=20),
+          plot.title=element_blank(),
+          panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=0.5),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position=&quot;bottom&quot;,
+          legend.box=&quot;horizontal&quot;,
+          legend.spacing.x = unit(0, &quot;cm&quot;),
+          legend.key.width = unit(0.27, &quot;snpc&quot;),
+          plot.margin = margin(0,0.7,0.7,0.7, &quot;cm&quot;)) + 
+  guides(fill = guide_colourbar(title.position=&quot;bottom&quot;, title.hjust = 0.5, title.vjust = 3, barheight = 0.5, frame.colour = &quot;black&quot;, frame.linewidth = 0.5, title=&quot;cfDNA-fragment size&quot;))
+values &lt;- data.frame(&quot;var_x&quot; = 1,
+                     &quot;var_y&quot; = max(matrix_ordered_long$gene_index):1,
+                     &quot;value&quot; = cpg$beta)
+
+values$value &lt;- as.numeric(values$value)
+p2 &lt;- ggplot(values, aes(x = var_y, y = value)) +
+  geom_bar(stat=&quot;identity&quot;, fill = &quot;black&quot;) +
+  labs(x=&quot;CpG-islands in order of methylation (beta-value)&quot;, y=&quot;&quot;, title=&quot;&quot;) +
+  theme_classic(base_size=10) + 
+  theme(text = element_text(size=20),
+        axis.title.y.right =  element_text(angle=90, vjust = 2),
+        axis.line.x.bottom = element_blank(),
+        axis.line.y.right = element_blank(),
+        plot.title=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x.bottom = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        plot.margin = margin(0,0,0,0, &quot;cm&quot;)) + 
+  coord_flip() +
+  guides(x.sec = &quot;axis&quot;, y.sec = &quot;axis&quot;) +
+  scale_y_continuous(expand=c(0,0), limits = c(0, 1), breaks = seq(0, 1, by=1), labels=c(&quot;0.000000&quot; = &quot;0&quot;, &quot;1&quot; = &quot;1&quot;)) +
+  scale_x_continuous(expand=c(0,0), position = &quot;top&quot;)
+
+
+p3 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+  group_by(relative_position) %&gt;%
+  summarise(ncoverage = sum(coverage)) %&gt;%
+  ggplot(aes(relative_position, ncoverage)) +
+  labs(x=&quot;&quot;, y=&quot;&quot;, title=&quot;average cfDNA-fragment size&quot;) +
+  geom_line() +
+  theme_classic(base_size=10) +
+  theme(text = element_text(size=16),
+        #axis.title.x.bottom = element_text(angle=0, vjust = 10),
+        plot.title=element_text(hjust=0.5, vjust=0),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        legend.box=&quot;horizontal&quot;,
+        legend.spacing.x = unit(0, &quot;cm&quot;),
+        plot.margin = margin(0.2,0.7,0,0.7, &quot;cm&quot;)) +
+  scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+  ggtitle(&quot;cfDNA-fragment size&quot;)
+
+
+p1_legend &lt;- get_legend(p1)
+p1 &lt;- p1 + theme(legend.position=&#39;none&#39;)
+#p2_legend &lt;- get_legend(p2)
+#p2 &lt;- p2 + theme(legend.position=&#39;none&#39;)
+#plot_combi &lt;- plot_grid(plot_grid(p1, p2, ncol=2, nrow=1,align = &quot;h&quot;, rel_widths = c(10,2)),
+#          plot_grid(NULL, p1_legend, p2_legend, NULL, ncol = 1, nrow = 4, align=&quot;v&quot;, axis=&quot;b&quot;), #rel_widths = c(10,1))
+plot_combi1 &lt;- plot_grid(p3, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi2 &lt;- plot_grid(p1, p2, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi3 &lt;- plot_grid(p1_legend, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_cpg_size &lt;- plot_grid(plot_combi1, plot_combi2, plot_combi3, NULL, ncol=1, rel_heights = c(2,15,1,0.5))
+title &lt;- ggdraw() + 
+  draw_label(
+    &quot;cfDNA-fragment size over CpG-islands&quot;,
+    hjust = 0.5,
+    size = 20
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+title &lt;- plot_grid(title, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_cpg_size_title &lt;- plot_grid(title, plot_combi_cpg_size, ncol = 1, rel_heights = c(1,15))</code></pre>
+</div>
+<div id="figure-3d-tss-cfdna-fragment-size-mononucleosomal-reads"
+class="section level2">
+<h2>Figure 3D: TSS cfDNA fragment size (mononucleosomal reads)</h2>
+<pre class="r"><code>colorz &lt;- c(&quot;#DD6627&quot;, &quot;#77C8DD&quot;, &quot;#004766&quot;)
+matrix &lt;- readRDS(here(&quot;data/tss_size_smallfragments.rds&quot;))
+tissue_key &lt;- read.table(here(&quot;data/tissue_key.tsv&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+conv &lt;- read.table(here(&quot;data/labels.txt&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+rna &lt;- read.table(here(&quot;data/RNAtable.tsv.gz&quot;),as.is=T,header=T)
+express &lt;- conv[which(conv$Category %in% c(&quot;Myeloid&quot;)),]$RName
+express_df &lt;- rna[c(&quot;GeneID&quot;, express)]
+express_df$mean &lt;- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df &lt;- express_df[order(-express_df$mean),]
+geneid_ordered &lt;- express_df$GeneID
+
+tss &lt;- read.table(file = here(&quot;data/transcriptAnno-GRCh37.75.tss20001.tsv&quot;))
+colnames(tss) &lt;- c(&quot;transcript&quot;, &quot;seqnames&quot;, &quot;start&quot;, &quot;end&quot;, &quot;strand&quot;)
+tss$seqnames &lt;- paste0(&quot;chr&quot;, tss$seqnames)
+tss_gr &lt;- GRanges(tss)
+tss_gr &lt;- tss_gr[which(seqnames(tss_gr) %in% paste0(&quot;chr&quot;, c(1:22)))]
+seqlevels(tss_gr) &lt;- paste0(&quot;chr&quot;, c(1:22))
+
+order &lt;- match(geneid_ordered, tss_gr$transcript)
+order &lt;- order [!is.na(order)]
+matrix_ordered &lt;- matrix[order,]
+included_genes &lt;- tss_gr[order]$transcript
+included_genes &lt;- included_genes[which(rowSums(is.na(matrix_ordered)) &lt;= 10)]
+matrix_ordered &lt;- matrix_ordered[which(rowSums(is.na(matrix_ordered)) &lt;= 10),]
+matrix_ordered_long &lt;- melt(matrix_ordered)
+colnames(matrix_ordered_long) &lt;- c(&quot;gene_index&quot;, &quot;relative_position&quot;, &quot;coverage&quot;)
+matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &lt;= 250),]$relative_position - 251
+matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position &lt;- matrix_ordered_long[which(matrix_ordered_long$relative_position &gt; 250),]$relative_position - 250
+matrix_ordered_long$relative_position &lt;- matrix_ordered_long$relative_position * 10
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index * -1
+matrix_ordered_long$gene_index &lt;- matrix_ordered_long$gene_index - min(matrix_ordered_long$gene_index) +1
+m &lt;- as_tibble(matrix_ordered_long) %&gt;%
+    pivot_wider(id_cols=gene_index,
+                names_from=relative_position,
+                values_from=coverage)
+m2 &lt;- m %&gt;% 
+  dplyr::select(-gene_index) %&gt;%
+  as.matrix()
+sfun &lt;- function(x, k){
+    s &lt;- runmean(Rle(x), k, endrule=&quot;constant&quot;)
+    as.numeric(s)
+}
+m3 &lt;- apply(m2, 2, sfun, k=5)
+m[, -1] &lt;- m3
+x2 &lt;- m %&gt;%
+    pivot_longer(cols=-1, names_to=&quot;relative_position&quot;,
+                 values_to=&quot;coverage&quot;) %&gt;%
+    mutate(relative_position=as.integer(relative_position))  %&gt;%
+    mutate(method=&quot;smoothed&quot;)
+pos &lt;- sort(c(seq(-2500, 2500, 1000), -10))
+brks &lt;- match(pos, sort(unique(x2$relative_position)))
+pos[pos == -10] &lt;- 0
+downsample &lt;- sample(unique(x2$gene_index), 1000)
+downsample &lt;- unique(x2$gene_index)
+width &lt;- unit(10, &quot;cm&quot;)
+x2[which(is.na(x2$coverage)),]$coverage &lt;- mean(x2[-which(is.na(x2$coverage)),]$coverage)
+
+mean(x2[which(abs(x2$relative_position) %in% c(800:1000) &amp; (x2$gene_index %in% unique(x2$gene_index)[1:1000])),]$coverage)</code></pre>
+<pre><code>[1] 165.489</code></pre>
+<pre class="r"><code>mean(x2[which(abs(x2$relative_position) %in% c(800:1000) &amp; (x2$gene_index %in% unique(x2$gene_index)[(length(unique(x2$gene_index))-999):length(unique(x2$gene_index))])),]$coverage)</code></pre>
+<pre><code>[1] 169.4709</code></pre>
+<pre class="r"><code>mean(x2[which(x2$relative_position %in% c(-800:-1000) &amp; (x2$gene_index %in% unique(x2$gene_index)[1:1000])),]$coverage)</code></pre>
+<pre><code>[1] 164.8838</code></pre>
+<pre class="r"><code>mean(x2[which(x2$relative_position %in% c(-800:-1000) &amp; (x2$gene_index %in% unique(x2$gene_index)[(length(unique(x2$gene_index))-999):length(unique(x2$gene_index))])),]$coverage)</code></pre>
+<pre><code>[1] 169.5383</code></pre>
+<pre class="r"><code>p1 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+    mutate(coverage=ifelse(coverage &gt; 176, 176, coverage),
+           coverage=ifelse(coverage &lt; 161, 161, coverage),
+           gene_index=as.integer(factor(gene_index)),
+           x=as.integer(factor(relative_position))) %&gt;%
+    ggplot(aes(x, gene_index)) +
+    geom_tile(aes(fill=coverage), size=0) +
+    scale_fill_gradientn(colours = colorz) +
+    scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+    scale_y_continuous(expand = c(0,0)) +
+    labs(x=&quot;Position relative to TSS&quot;) +
+    theme_classic(base_size=10) +
+    theme(text = element_text(size=20),
+          plot.title=element_blank(),
+          panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=0.5),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position=&quot;bottom&quot;,
+          legend.box=&quot;horizontal&quot;,
+          legend.spacing.x = unit(0, &quot;cm&quot;),
+          legend.key.width = unit(0.27, &quot;snpc&quot;),
+          plot.margin = margin(0,0.7,0.7,0.7, &quot;cm&quot;)) + 
+  guides(fill = guide_colourbar(title.position=&quot;bottom&quot;, title.hjust = 0.5, title.vjust = 3, barheight = 0.5, frame.colour = &quot;black&quot;, frame.linewidth = 0.5, title=&quot;cfDNA-fragment size&quot;))
+values &lt;- data.frame(&quot;var_x&quot; = 1,
+                     &quot;var_y&quot; = max(matrix_ordered_long$gene_index):1,
+                     &quot;value&quot; = express_df[which(express_df$GeneID %in% included_genes),]$mean)
+
+p2 &lt;- ggplot(values[which(values$var_y %in% downsample),], aes(x = var_y, y = log(value + 1))) +
+  geom_bar(stat=&quot;identity&quot;, fill = &quot;black&quot;) +
+  labs(x=&quot;Genes in order of expression (TPM)&quot;, y=&quot;&quot;, title=&quot;&quot;) +
+  theme_classic(base_size=10) + 
+  theme(text = element_text(size=20),
+        axis.title.y.right =  element_text(angle=90, vjust = 4),
+        axis.line.x.bottom = element_blank(),
+        axis.line.y.right = element_blank(),
+        plot.title=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.ticks.x.bottom = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x.bottom = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        plot.margin = margin(0,0,0,0, &quot;cm&quot;)) + 
+  coord_flip() +
+  guides(x.sec = &quot;axis&quot;, y.sec = &quot;axis&quot;) +
+  scale_y_continuous(expand=c(0,0), limits = c(0, 7.835816), breaks = seq(0, 7.835816, by=7.835816), labels=c(&quot;0.000000&quot; = &quot;0&quot;, &quot;7.835816&quot; = &quot;2528&quot;)) +
+  scale_x_continuous(expand=c(0,0), position = &quot;top&quot;)
+
+
+p3 &lt;- x2[which(x2$gene_index %in% downsample),] %&gt;%
+  group_by(relative_position) %&gt;%
+  summarise(ncoverage = sum(coverage)) %&gt;%
+  ggplot(aes(relative_position, ncoverage)) +
+  labs(x=&quot;&quot;, y=&quot;&quot;, title=&quot;average cfDNA-fragment size&quot;) +
+  geom_line() +
+  theme_classic(base_size=10) +
+  theme(text = element_text(size=16),
+        #axis.title.x.bottom = element_text(angle=0, vjust = 10),
+        plot.title=element_text(hjust=0.5, vjust=0),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position=&quot;bottom&quot;,
+        legend.box=&quot;horizontal&quot;,
+        legend.spacing.x = unit(0, &quot;cm&quot;),
+        plot.margin = margin(0.2,0.7,0,0.7, &quot;cm&quot;)) +
+  scale_x_continuous(breaks=brks,
+                       labels=pos, 
+                       expand = c(0,0)) +
+  ggtitle(&quot;cfDNA-fragment size&quot;)
+
+
+p1_legend &lt;- get_legend(p1)
+p1 &lt;- p1 + theme(legend.position=&#39;none&#39;)
+#p2_legend &lt;- get_legend(p2)
+#p2 &lt;- p2 + theme(legend.position=&#39;none&#39;)
+#plot_combi &lt;- plot_grid(plot_grid(p1, p2, ncol=2, nrow=1,align = &quot;h&quot;, rel_widths = c(10,2)),
+#          plot_grid(NULL, p1_legend, p2_legend, NULL, ncol = 1, nrow = 4, align=&quot;v&quot;, axis=&quot;b&quot;), #rel_widths = c(10,1))
+plot_combi1 &lt;- plot_grid(p3, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi2 &lt;- plot_grid(p1, p2, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre class="r"><code>plot_combi3 &lt;- plot_grid(p1_legend, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_tss_size &lt;- plot_grid(plot_combi1, plot_combi2, plot_combi3, NULL, ncol=1, rel_heights = c(2,15,1, 0.5))
+title &lt;- ggdraw() + 
+  draw_label(
+    &quot;cfDNA-fragment size over transcription start sites&quot;,
+    hjust = 0.5,
+    size = 20
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+title &lt;- plot_grid(title, NULL, ncol=2, nrow=1, rel_widths = c(10,1), align = &quot;h&quot;)
+plot_combi_tss_size_title &lt;- plot_grid(title, plot_combi_tss_size, ncol = 1, rel_heights = c(1,15))</code></pre>
+</div>
+<div id="figure-3-combine-figure-3c-figure-3d" class="section level2">
+<h2>Figure 3: combine Figure 3C, Figure 3D</h2>
+<pre class="r"><code>small_size &lt;- plot_grid(plot_combi_cpg_size_title, NULL, plot_combi_tss_size_title, rel_widths = c(1,0.1,1), labels=c(&quot;c&quot;, &quot;&quot;, &quot;d&quot;), nrow=1,label_size = 20)
+#ggsave(paste(&quot;../output_final/Fig_3CD.pdf&quot;), plot = small_size, device = &quot;pdf&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.78)
+ggsave(here(&quot;docs/figure/Fig_3CD.jpg&quot;), plot = small_size, device = &quot;jpg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.78)</code></pre>
+</div>
+<div
+id="figure-3f-cfdna-fragment-size-distributions-and-cumulative-representations"
+class="section level2">
+<h2>Figure 3F: cfDNA fragment size distributions and cumulative
+representations</h2>
+<pre class="r"><code>f &lt;- readRDS(here(&quot;data/fragments_somatic.rds&quot;))
+f &lt;- f[which((f$w &gt;= 100) &amp; (f$w &lt;= 220)),]
+f$group &lt;- substr(f$patient, 1, 5)
+f[which(f$group == &quot;CGCRC&quot;),]$group &lt;- &quot;colorectal cancer&quot;
+f[which(f$group == &quot;CGPLB&quot;),]$group &lt;- &quot;breast cancer&quot;
+f[which(f$group == &quot;CGPLL&quot;),]$group &lt;- &quot;lung cancer&quot;
+f[which(f$group == &quot;CGPLO&quot;),]$group &lt;- &quot;ovarian cancer&quot;
+f$group &lt;- factor(f$group, levels=c(&quot;lung cancer&quot;, &quot;colorectal cancer&quot;, &quot;breast cancer&quot;, &quot;ovarian cancer&quot;))
+f$mutation.stat &lt;- factor(f$mutation.stat, levels=c(TRUE, FALSE))
+
+f$n &lt;- 1
+t &lt;- f %&gt;%
+  group_by(mutation.stat, w)%&gt;%
+  summarize(n = sum(n)) </code></pre>
+<pre><code>`summarise()` has grouped output by &#39;mutation.stat&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre class="r"><code>t$rel &lt;- 0
+t$rel_mod &lt;- 0
+t[which(t$mutation.stat == TRUE),]$rel &lt;- t[which(t$mutation.stat == TRUE),]$n / sum(t[which(t$mutation.stat == TRUE),]$n)
+t[which(t$mutation.stat == FALSE),]$rel &lt;- t[which(t$mutation.stat == FALSE),]$n / sum(t[which(t$mutation.stat == FALSE),]$n)
+t[which(t$mutation.stat == TRUE),]$rel_mod &lt;- t[which(t$mutation.stat == TRUE),]$n / max(t[which(t$mutation.stat == TRUE),]$n)
+t[which(t$mutation.stat == FALSE),]$rel_mod &lt;- t[which(t$mutation.stat == FALSE),]$n / max(t[which(t$mutation.stat == FALSE),]$n)
+ weighted.mean(t[which(t$mutation.stat == FALSE),]$w, t[which(t$mutation.stat == FALSE),]$n) - weighted.mean(t[which(t$mutation.stat == TRUE),]$w, t[which(t$mutation.stat == TRUE),]$n)</code></pre>
+<pre><code>[1] 3.934806</code></pre>
+<pre class="r"><code>diff &lt;- t[which(t$mutation.stat == TRUE),]$rel - t[which(t$mutation.stat == FALSE),]$rel
+f_diff &lt;- tibble(&quot;size&quot; = c(100:220),
+                &quot;diff&quot; = diff)
+
+group &lt;- ggplot(f, aes(x=w, group=mutation.stat, colour=mutation.stat)) +
+  stat_ecdf(geom = &quot;line&quot;, pad = FALSE)+
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.70,0.12),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  scale_color_manual(values= c(&quot;red&quot;, &quot;#004766&quot;),
+                     labels=c(&quot;Mutated (tumor-derived)&quot;, &quot;Wild-type (WBC)&quot;)) +
+  ylab(&quot;Cumulative representation\nof cfDNA fragments&quot;) +
+  xlab(&quot;cfDNA fragment size&quot;)
+
+
+group2a &lt;- ggplot(t, aes(x=w, y=rel, group=mutation.stat)) +
+  geom_line(aes(colour=mutation.stat)) +
+  #geom_smooth(method = &quot;loess&quot;, se = FALSE, span = 0.5, colour=&quot;black&quot;) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.x = element_blank(),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.25,0.95),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0)),
+        ) +
+  scale_color_manual(values= c(&quot;red&quot;, &quot;#004766&quot;),
+                     labels=c(&quot;Mutated (tumor)&quot;, &quot;Wild-type (WBC)&quot;)) +
+  ylab(&quot;Prevalence of\ncfDNA fragment sizes&quot;) 
+
+
+ffinal &lt;- readRDS(here(&quot;data/cdf_multiple.rds&quot;))
+ffinal$bigroup &lt;- 0
+ffinal[which(ffinal$group == &quot;expr&quot;),]$bigroup &lt;- 1
+ffinal[which(ffinal$group == &quot;unmeth&quot;),]$bigroup &lt;- 1
+ffinal_diff &lt;- ffinal %&gt;%
+  group_by(tss, size) %&gt;%
+  summarise(diff_csum_n = rel_csum_n[bigroup == 1] - rel_csum_n[bigroup == 0],
+            diff_n = rel_n[bigroup == 1] - rel_n[bigroup == 0])</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;tss&#39;. You can override using the `.groups`
+argument.</code></pre>
+<pre class="r"><code>ffinal$all_group &lt;- paste0(ffinal$tss, &quot;_&quot;, ffinal$group)
+
+ffinal$label &lt;- &quot;NA&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_100bp-800bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;expr&quot;)),]$label &lt;- &quot;800bp - 100bp around TSS, 1000 most expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_100bp-800bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;nexpr&quot;)),]$label &lt;- &quot;800bp - 100bp around TSS, 1000 least expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_800bp-1000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;expr&quot;)),]$label &lt;- &quot;1000bp - 800bp around TSS, 1000 most expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_800bp-1000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;nexpr&quot;)),]$label &lt;- &quot;1000bp - 800bp around TSS, 1000 least expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;cpg_included_800bp-1000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;meth&quot;)),]$label &lt;- &quot;1000bp - 800bp around CpG-island, 1000 most methylated CpG-islands&quot;
+ffinal[which((ffinal$tss == &quot;cpg_included_800bp-1000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;unmeth&quot;)),]$label &lt;- &quot;1000bp - 800bp around CpG-island, 1000 least methylated CpG-islands&quot;
+
+ffinal[which((ffinal$tss == &quot;tss_included_2500bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;expr&quot;)),]$label &lt;- &quot;2500bp around TSS, 1000 most expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_2500bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;nexpr&quot;)),]$label &lt;- &quot;2500bp around TSS, 1000 least expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_500000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;expr&quot;)),]$label &lt;- &quot;500000bp around TSS, 1000 most expressed genes&quot;
+ffinal[which((ffinal$tss == &quot;tss_included_500000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;nexpr&quot;)),]$label &lt;- &quot;500000bp around TSS, 1000 least expressed genes&quot;
+
+ffinal[which((ffinal$tss == &quot;cpg_included_500000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;meth&quot;)),]$label &lt;- &quot;500000bp around CpG-island, 1000 most methylated CpG-islands&quot;
+ffinal[which((ffinal$tss == &quot;cpg_included_500000bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;unmeth&quot;)),]$label &lt;- &quot;500000bp around CpG-island, 1000 least methylated CpG-islands&quot;
+ffinal[which((ffinal$tss == &quot;cpg_included_2500bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;meth&quot;)),]$label &lt;- &quot;2500bp around CpG-island, 1000 most methylated CpG-islands&quot;
+ffinal[which((ffinal$tss == &quot;cpg_included_2500bp_top1000_bot1000.rds&quot;) &amp; (ffinal$group == &quot;unmeth&quot;)),]$label &lt;- &quot;2500bp around CpG-island, 1000 least methylated CpG-islands&quot;
+
+ffinal$label &lt;- factor(ffinal$label, level=unique(ffinal$label)[c(1,4,2,3,14,12,13,8,11,9,10,7,5,6)])
+tss_df &lt;- ffinal[which(ffinal$tss %in% c(&quot;tss_included_800bp-1000bp_top1000_bot1000.rds&quot;)),]
+tss_df$rel_mod &lt;- 0
+tss_df[which(tss_df$group == &quot;expr&quot;),]$rel_mod &lt;- tss_df[which(tss_df$group == &quot;expr&quot;),]$n / max(tss_df[which(tss_df$group == &quot;expr&quot;),]$n)
+tss_df[which(tss_df$group == &quot;nexpr&quot;),]$rel_mod &lt;- tss_df[which(tss_df$group == &quot;nexpr&quot;),]$n / max(tss_df[which(tss_df$group == &quot;nexpr&quot;),]$n)
+weighted.mean(tss_df[which(tss_df$group == &quot;nexpr&quot;),]$size, tss_df[which(tss_df$group == &quot;nexpr&quot;),]$n) - weighted.mean(tss_df[which(tss_df$group == &quot;expr&quot;),]$size, tss_df[which(tss_df$group == &quot;expr&quot;),]$n)</code></pre>
+<pre><code>[1] 4.13887</code></pre>
+<pre class="r"><code>tss_diff &lt;- tss_df[which(tss_df$group == &quot;expr&quot;),]$rel_n - tss_df[which(tss_df$group == &quot;nexpr&quot;),]$rel_n
+tss_diff &lt;- tibble(&quot;size&quot; = c(100:220),
+                &quot;diff&quot; = tss_diff)
+tss &lt;- ggplot(tss_df, aes(x=size, y=rel_csum_n, group = label, colour = label)) +
+  geom_line() +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.70,0.12),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;),
+        legend.key = element_rect(colour = NA, fill = NA),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  scale_color_manual(values= c(&quot;#1b7d0e&quot;, &quot;#52c922&quot;),
+                     labels=c(&quot;TSS high expression&quot;, &quot;TSS low expression&quot;)) +
+  ylab(&quot;&quot;) +
+  xlab(&quot;cfDNA fragment size&quot;)
+
+
+tss2a &lt;- ggplot(tss_df, aes(x=size, y=rel_n, group=group)) +
+  geom_line(aes(colour=group)) +
+  #geom_smooth(method = &quot;loess&quot;, se = FALSE, span = 0.5, colour=&quot;black&quot;) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.28,0.95),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;)) +
+  scale_color_manual(values= c(&quot;#1b7d0e&quot;, &quot;#52c922&quot;),
+                     labels=c(&quot;TSS high expression&quot;, &quot;TSS low expression&quot;))
+
+
+cpg_df &lt;- ffinal[which(ffinal$tss %in% c(&quot;cpg_included_800bp-1000bp_top1000_bot1000.rds&quot;)),]
+cpg_diff &lt;- cpg_df[which(cpg_df$group == &quot;meth&quot;),]$rel_n - cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$rel_n
+cpg_df$rel_mod &lt;- 0
+cpg_df[which(cpg_df$group == &quot;meth&quot;),]$rel_mod &lt;- cpg_df[which(cpg_df$group == &quot;meth&quot;),]$n / max(cpg_df[which(cpg_df$group == &quot;meth&quot;),]$n)
+cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$rel_mod &lt;- cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$n / max(cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$n)
+weighted.mean(cpg_df[which(cpg_df$group == &quot;meth&quot;),]$size, cpg_df[which(cpg_df$group == &quot;meth&quot;),]$n) - weighted.mean(cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$size, cpg_df[which(cpg_df$group == &quot;unmeth&quot;),]$n)</code></pre>
+<pre><code>[1] 2.158964</code></pre>
+<pre class="r"><code>cpg_diff &lt;- tibble(&quot;size&quot; = c(100:220),
+                &quot;diff&quot; = cpg_diff)
+cpg_df$group &lt;- factor(cpg_df$group, levels = c(&quot;unmeth&quot;, &quot;meth&quot;))
+cpg &lt;- ggplot(cpg_df, aes(x=size, y=rel_csum_n, group = group, colour = group)) +
+  geom_line() +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.70,0.12),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;),
+        axis.title.y = element_blank()) +
+  scale_color_manual(values= c(&quot;#004766&quot;, &quot;#77C8DD&quot;),
+                     labels=c(&quot;CpG low methylation&quot;, &quot;CpG high methylation&quot;)) +
+  ylab(&quot;&quot;) +
+  xlab(&quot;cfDNA fragment size&quot;)
+  #ggtitle(&quot;2500bp around CpG-islands&quot;)
+
+
+cpg2a &lt;- ggplot(cpg_df, aes(x=size, y=rel_n, group=group)) +
+  geom_line(aes(colour=group)) +
+  #geom_smooth(method = &quot;loess&quot;, se = FALSE, span = 0.5, colour=&quot;black&quot;) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=20),
+        axis.title.x = element_blank(),
+        legend.text = element_text(size = 12),
+        legend.position = c(0.28,0.95),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill= &quot;transparent&quot;)) +
+   scale_color_manual(values= c( &quot;#004766&quot;, &quot;#77C8DD&quot;),
+                     labels=c(&quot;CpG low methylation&quot;, &quot;CpG high methylation&quot;))
+
+av &lt;- plot_grid(group2a, group, labels=c(&quot;f&quot;, &quot;&quot;, &quot;&quot;), nrow=2, align = &quot;v&quot;, label_size = 20)
+
+av1 &lt;- plot_grid(tss2a, tss, labels=c(&quot;&quot;, &quot;&quot;, &quot;&quot;), nrow=2, align = &quot;v&quot;, label_size = 20)
+av2 &lt;- plot_grid(cpg2a, cpg, labels=c(&quot;&quot;, &quot;&quot;, &quot;&quot;), nrow=2, align = &quot;v&quot;, label_size = 20)
+
+avv &lt;- plot_grid(av, av1, av2, ncol=3, rel_widths = c(1.05, 1, 1), align = &quot;hv&quot;, axis = &quot;bt&quot;,label_size = 20)
+
+ggsave(here(&quot;docs/figure/Fig_3F.jpg&quot;), plot = avv, width = 20, height=10, units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.8)</code></pre>
+</div>
+<div id="figure-3e-multivariate-model" class="section level2">
+<h2>Figure 3E (multivariate model)</h2>
+<pre class="r"><code>t &lt;- readRDS(here(&quot;data/multivariate_model_coverage_size.rds&quot;))
+plot_coverage &lt;- ggplot(t$Coverage, aes(y=Variable, color=Variable)) +
+  geom_point(aes(x=mean), size=2) +
+  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
+  geom_vline(xintercept=0, linetype=&#39;dashed&#39;) +
+  theme_classic(base_size = 20) +
+  theme(#element_text(size=16),
+        legend.position=&#39;none&#39;,
+        axis.text.y = element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  scale_color_manual(values = c(&quot;#ff0000&quot;, &quot;#2700FF&quot;)) +
+  ylab(&#39;&#39;) +
+  xlab(&#39;&#39;) +
+  xlim(-0.3, 0.2) +
+  ggtitle(&quot;Coverage&quot;)
+plot_size &lt;- ggplot(t$Size, aes(y=Variable, color=Variable)) +
+  geom_point(aes(x=mean), size=2) +
+  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
+  geom_vline(xintercept=0, linetype=&#39;dashed&#39;) +
+  theme_classic(base_size = 20) +
+  theme(#element_text(size=16),
+        legend.position=&#39;none&#39;,
+        axis.text.y= element_text(size = 20),
+        axis.text.x = element_text(size = 20),
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  scale_color_manual(values = c(&quot;#ff0000&quot;, &quot;#2700FF&quot;)) +
+  ylab(&#39;&#39;) +
+  xlab(&#39;relative contribution&#39;) +
+  xlim(-0.3, 0.2) +
+  ggtitle(&quot;cfDNA fragment size&quot;)
+fig3e_multivar &lt;- plot_grid(plot_coverage, plot_size, nrow=2, align = &quot;v&quot;)
+ggsave(here(&quot;docs/figure/Fig_3E_multivar.jpg&quot;), plot = fig3e_multivar, device = &quot;jpeg&quot;, width = 40, height=30,units = &quot;mm&quot;, dpi=600, scale = 6)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.5.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] here_1.0.1           GenomicRanges_1.50.2 GenomeInfoDb_1.34.9 
+ [4] IRanges_2.32.0       S4Vectors_0.36.2     BiocGenerics_0.44.0 
+ [7] lubridate_1.9.3      forcats_1.0.0        stringr_1.5.1       
+[10] dplyr_1.1.4          purrr_1.0.2          readr_2.1.5         
+[13] tidyr_1.3.0          tibble_3.2.1         tidyverse_2.0.0     
+[16] cowplot_1.1.3        ggplot2_3.4.4        reshape2_1.4.4      
+[19] workflowr_1.7.1     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.12            getPass_0.2-4          ps_1.7.6              
+ [4] rprojroot_2.0.4        digest_0.6.34          utf8_1.2.4            
+ [7] R6_2.5.1               plyr_1.8.9             evaluate_0.23         
+[10] httr_1.4.7             pillar_1.9.0           zlibbioc_1.44.0       
+[13] rlang_1.1.3            rstudioapi_0.15.0      whisker_0.4.1         
+[16] callr_3.7.3            jquerylib_0.1.4        rmarkdown_2.25        
+[19] textshaping_0.3.7      labeling_0.4.3         RCurl_1.98-1.14       
+[22] munsell_0.5.0          compiler_4.2.3         httpuv_1.6.13         
+[25] xfun_0.41              systemfonts_1.0.5      pkgconfig_2.0.3       
+[28] htmltools_0.5.7        tidyselect_1.2.0       GenomeInfoDbData_1.2.9
+[31] fansi_1.0.6            crayon_1.5.2           tzdb_0.4.0            
+[34] withr_3.0.0            later_1.3.2            bitops_1.0-7          
+[37] grid_4.2.3             jsonlite_1.8.8         gtable_0.3.4          
+[40] lifecycle_1.0.4        git2r_0.33.0           magrittr_2.0.3        
+[43] scales_1.3.0           cli_3.6.2              stringi_1.8.3         
+[46] cachem_1.0.8           farver_2.1.1           XVector_0.38.0        
+[49] fs_1.6.3               promises_1.2.1         bslib_0.6.1           
+[52] ragg_1.2.7             generics_0.1.3         vctrs_0.6.5           
+[55] tools_4.2.3            glue_1.7.0             hms_1.1.3             
+[58] processx_3.8.3         fastmap_1.1.1          yaml_2.3.8            
+[61] timechange_0.3.0       colorspace_2.1-0       knitr_1.45            
+[64] sass_0.4.8            </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
