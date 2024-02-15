@@ -2,7 +2,11 @@
 title: "Cristiano_Replicate"
 author: "Akshaya Annapragada"
 date: "2024-01-26"
-output: html_document
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console    
 ---
 
 Read in Libraries
@@ -234,10 +238,8 @@ B <- res %>%
           legend.title=element_text(size=16)) +
     xlab("Specificity") + ylab("Sensitivity") +
     guides(color=guide_legend(title="AUC: (95% CI)", hjust=1))+ggtitle("Cristiano Data")
-B
 
-
-pdf(here("docs/figure/Fig_4C.pdf"))
+jpeg(here("docs/figure/Fig_4C.jpg"))
 B
 dev.off()
 ```
@@ -247,9 +249,4 @@ healthies<- meth %>% filter(!sample %in% delfi$id) %>% select(type,sample)
 
 write.csv(healthies,here("output/needtodrop.csv"))
 ```
-
-
-
-
-
 

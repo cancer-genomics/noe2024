@@ -1,8 +1,12 @@
 ---
-title: "Figure4.rmd"
+title: "Figure4.Rmd"
 author: "Michael Noe"
 date: "2024-01-26"
-output: html_document
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ## Pre-requisites
@@ -104,7 +108,7 @@ plot1 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(n
                             "CGPLLU" = "lung cancer", 
                             "CGPLBR" = "breast cancer")) +
   scale_y_continuous(labels = scales::percent)
-#ggsave("/Users/mnoe/Documents/carvalho_comparison_12cycles_ratio.jpg", plot = plot1, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figures/carvalho_comparison_12cycles_ratio.jpg"), plot = plot1, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 plot2 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(new$motif)) == 6) & (new$label == "healthy unmethylated - pancreatic cancer methylated")) ,], aes(x = group, y=ratio)) +
   geom_boxplot(outlier.shape = NA, aes(fill=-log(pvalue, 10))) +
@@ -124,7 +128,7 @@ plot2 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(n
                             "CGPLLU" = "lung cancer", 
                             "CGPLBR" = "breast cancer")) +
   scale_y_continuous(labels = scales::percent)
-#ggsave("/Users/mnoe/Documents/carvalho_comparison_12cycles_extra.jpg", plot = plot2, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figures/carvalho_comparison_12cycles_extra.jpg"), plot = plot2, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 
 y.grob <- textGrob("Fraction of cfDNA fragments starting or ending at motif", gp=gpar(fontsize=16), rot=90)

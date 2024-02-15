@@ -1,0 +1,14 @@
+How are the following data produced?
+
+matrix <- readRDS(here("data/cpg_smallfragments.rds"))
+cpg <- readRDS(here("data/cpgIslands.hg19.20001.rds"))
+matrix <- readRDS(here("data/tss_smallfragments.rds"))
+tissue_key <- read.table(here("data/tissue_key.tsv"),as.is=T,header=T,sep="\t",quote="\"")
+conv <- read.table(here("data/labels.txt"),as.is=T,header=T,sep="\t",quote="\"")
+rna <- read.table(here("data/RNAtable.tsv.gz"),as.is=T,header=T)
+tss <- read.table(file = here("data/transcriptAnno-GRCh37.75.tss20001.tsv"))
+matrix <- readRDS(here("data/cpg_size_smallfragments.rds"))
+matrix <- readRDS(here("data/tss_size_smallfragments.rds"))
+f <- readRDS(here("data/fragments_somatic.rds"))
+ffinal <- readRDS(here("data/cdf_multiple.rds"))
+t <- readRDS(here("data/multivariate_model_coverage_size.rds"))

@@ -12,7 +12,7 @@
 <meta name="author" content="Michael Noe" />
 
 
-<title>Figure1.rmd</title>
+<title>Figure1.Rmd</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -30,9 +30,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -233,69 +230,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -303,16 +237,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -350,7 +274,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Figure1.rmd</h1>
+<h1 class="title toc-ignore">Figure1.Rmd</h1>
 <h4 class="author">Michael Noe</h4>
 <h4 class="date">1/18/2024</h4>
 
@@ -381,7 +305,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-30
+<strong>Last updated:</strong> 2024-02-13
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -419,10 +343,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -515,13 +439,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongc3db0ae">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> c3db0ae
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongc3db0ae"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -530,7 +456,8 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version c3db0ae.
+The results in this page were generated with repository version
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -544,38 +471,55 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
+Ignored files:
+    Ignored:    data/results/
+
 Untracked files:
-    Untracked:  analysis/Figure1.Rmd
-    Untracked:  analysis/Figure2.Rmd
-    Untracked:  analysis/Figure3.Rmd
-    Untracked:  analysis/Figure4.Rmd
-    Untracked:  analysis/Figure4C.Rmd
-    Untracked:  analysis/SessionInfo.Rmd
-    Untracked:  data/Moss_ratios.rds
-    Untracked:  data/RNAtable.tsv.gz
-    Untracked:  data/carvalho_motifs.rds
-    Untracked:  data/cdf_multiple.rds
-    Untracked:  data/cfdna_ratio_motif.rds
-    Untracked:  data/cpgIslands.hg19.20001.rds
-    Untracked:  data/cpg_size_smallfragments.rds
-    Untracked:  data/cpg_smallfragments.rds
-    Untracked:  data/data_akshaya/
-    Untracked:  data/end_motifs_cfdna_individual.rds
-    Untracked:  data/end_motifs_cfdna_individual_200over_5perc.rds
-    Untracked:  data/end_motifs_sheared_individual.rds
-    Untracked:  data/fragments_somatic.rds
-    Untracked:  data/labels.txt
-    Untracked:  data/multivariate_model_coverage_size.rds
-    Untracked:  data/position_in_read.rds
-    Untracked:  data/positons_conserved_200over_5perc.rds
-    Untracked:  data/som_chrx.rds
-    Untracked:  data/theoretical_frequencies_hg19.rds
-    Untracked:  data/tissue_key.tsv
-    Untracked:  data/transcriptAnno-GRCh37.75.tsv
-    Untracked:  data/tss_smallfragments.rds
+    Untracked:  analysis/.index.Rmd.swp
+    Untracked:  analysis/Supplementary_Figure1.Rmd
+    Untracked:  analysis/Supplementary_Figure2.Rmd
+    Untracked:  analysis/Supplementary_Figure3.Rmd
+    Untracked:  analysis/Supplementary_Figure4.Rmd
+    Untracked:  code/Expand_Fig4C_Rmd.R
+    Untracked:  code/Pre_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure4.rmd
+    Untracked:  code/SuppTable1.Rmd
+    Untracked:  code/SuppTable2.Rmd
+    Untracked:  code/SuppTable4.Rmd
+    Untracked:  code/SuppTable5.Rmd
+    Untracked:  code/SuppTable6.Rmd
+    Untracked:  code/get_Moss_et_al.R
+    Untracked:  code/todos/
+    Untracked:  data/Moss_et_al-NatComm-2018/
+    Untracked:  data/diff_startfrags_3bp.rds
+    Untracked:  data/diff_startfrags_4bp.rds
+    Untracked:  data/healthy_cpggroups.rds
+    Untracked:  data/motifs_cfdna_144_167.rds
+    Untracked:  data/selected_lucas_files.rds
+    Untracked:  data/selected_validation_files.rds
+    Untracked:  output/Fig_4C_all_folds.pdf
+    Untracked:  output/fold01_ens.csv
+    Untracked:  output/fold02_ens.csv
+    Untracked:  output/fold03_ens.csv
+    Untracked:  output/fold04_ens.csv
+    Untracked:  output/fold05_ens.csv
+    Untracked:  output/fold06_ens.csv
+    Untracked:  output/fold07_ens.csv
+    Untracked:  output/fold08_ens.csv
+    Untracked:  output/fold09_ens.csv
 
 Unstaged changes:
+    Modified:   analysis/Figure1.Rmd
+    Modified:   analysis/Figure2.Rmd
+    Modified:   analysis/Figure3.Rmd
+    Modified:   analysis/Figure4.Rmd
+    Modified:   analysis/Figure4C.Rmd
+    Modified:   analysis/SessionInfo.Rmd
+    Modified:   analysis/about.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+    Modified:   output/All_Scores.csv
 
 </code></pre>
 <p>
@@ -590,10 +534,74 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/Figure1.Rmd</code>) and HTML
+(<code>docs/Figure1.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/cancer-genomics/noe2024/blob/de3561665de4eb4a67334ac71cee69954c0f14f5/analysis/Figure1.Rmd" target="_blank">de35616</a>
+</td>
+<td>
+Shashikant Koul
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+Initial commit
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/cancer-genomics/noe2024/de3561665de4eb4a67334ac71cee69954c0f14f5/docs/Figure1.html" target="_blank">de35616</a>
+</td>
+<td>
+Shashikant Koul
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+Initial commit
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -607,7 +615,7 @@ There are no past versions. Publish this analysis with
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -878,7 +886,7 @@ plot1A_axis &lt;- ggplot(nucleotide_table, aes(x=position_column, y=position_row
   scale_y_discrete(expand=c(0,0))+
   scale_fill_manual(values= c(&quot;#77dd77&quot;, &quot;#00660a&quot;, &quot;#0288D1&quot;, &quot;#0D47A1&quot;))
 plot1A &lt;- plot_grid(plot1A_plot, plot1A_axis, nrow=2, rel_heights = c(1,0.2), label_size = 20, align = &quot;v&quot;)
-#ggsave(paste(&quot;../output_final/temp_preferredcfDNA_cfDNA_sheared.jpg&quot;), plot = plot1A, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300, scale = 0.8)</code></pre>
+#ggsave(here(&quot;docs/figure/temp_preferredcfDNA_cfDNA_sheared.jpg&quot;), plot = plot1A, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300, scale = 0.8)</code></pre>
 </div>
 <div id="figure-1b" class="section level2">
 <h2>Figure 1B</h2>
@@ -1007,7 +1015,7 @@ plot1B &lt;- dat7 %&gt;%
      scale_y_continuous(limits=c(0, 1)) +
      scale_x_continuous(labels = scales::percent, limits = c(0,0.15), expand = c(0, 0.005))
 
-#ggsave(paste(&quot;../output_final/temp_cfdna_ratio_motif.jpg&quot;), plot = plot1B, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300, scale = .8)</code></pre>
+#ggsave(here(&quot;docs/figure/temp_cfdna_ratio_motif.jpg&quot;), plot = plot1B, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300, scale = .8)</code></pre>
 </div>
 <div id="figure-1c" class="section level2">
 <h2>Figure 1C</h2>
@@ -1033,10 +1041,16 @@ aoi &lt;- aoi[-c(grep(&quot;Nhlf&quot;, aoi), grep(&quot;Nhek&quot;, aoi), grep(
 aoi &lt;- aoi[-which(aoi == &quot;hg19_lncrna_gencode&quot;)]
 annotations = build_annotations(genome = &#39;hg19&#39;, annotations = aoi)</code></pre>
 <pre><code>Building enhancers...</code></pre>
-<pre><code>&#39;getOption(&quot;repos&quot;)&#39; replaces Bioconductor standard repositories, see
-&#39;help(&quot;repositories&quot;, package = &quot;BiocManager&quot;)&#39; for details.
-Replacement repositories:
-    CRAN: https://cloud.r-project.org</code></pre>
+<pre><code>
+Attaching package: &#39;XVector&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    compact</code></pre>
+<pre><code>
+Attaching package: &#39;Biostrings&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    strsplit</code></pre>
 <pre><code>Building hmms...</code></pre>
 <pre><code>Downloading chromHMM track for K562</code></pre>
 <pre><code>Loading required package: GenomicFeatures</code></pre>
@@ -1256,7 +1270,7 @@ annotations$group3 &lt;- factor(annotations$group3, levels = c(annot_sum$group3)
   scale_fill_gradient(low =  &quot;#004766&quot;, high = &quot;#77c8dd&quot;) + 
   scale_y_continuous(labels = scales::percent)
 
-#ggsave(paste(&quot;../output_final/recurrent_pos_groups2.jpg&quot;), plot = plot1C, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
+#ggsave(here(&quot;docs/figure/recurrent_pos_groups2.jpg&quot;), plot = plot1C, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
 </div>
 <div id="figure-1-combine-figure-1a-figure-1b-figure-1c"
 class="section level2">
@@ -1295,83 +1309,86 @@ other attached packages:
  [3] GenomicFeatures_1.50.4                 
  [4] AnnotationDbi_1.60.2                   
  [5] Biobase_2.58.0                         
- [6] here_1.0.1                             
- [7] GenomicRanges_1.50.2                   
- [8] GenomeInfoDb_1.34.9                    
- [9] IRanges_2.32.0                         
-[10] S4Vectors_0.36.2                       
-[11] BiocGenerics_0.44.0                    
-[12] data.table_1.14.10                     
-[13] cowplot_1.1.3                          
-[14] annotatr_1.24.0                        
-[15] lubridate_1.9.3                        
-[16] forcats_1.0.0                          
-[17] stringr_1.5.1                          
-[18] dplyr_1.1.4                            
-[19] purrr_1.0.2                            
-[20] readr_2.1.5                            
-[21] tidyr_1.3.0                            
-[22] tibble_3.2.1                           
-[23] ggplot2_3.4.4                          
-[24] tidyverse_2.0.0                        
-[25] workflowr_1.7.1                        
+ [6] BSgenome.Hsapiens.UCSC.hg19_1.4.3      
+ [7] BSgenome_1.66.3                        
+ [8] rtracklayer_1.58.0                     
+ [9] Biostrings_2.66.0                      
+[10] XVector_0.38.0                         
+[11] here_1.0.1                             
+[12] GenomicRanges_1.50.2                   
+[13] GenomeInfoDb_1.34.9                    
+[14] IRanges_2.32.0                         
+[15] S4Vectors_0.36.2                       
+[16] BiocGenerics_0.44.0                    
+[17] data.table_1.15.0                      
+[18] cowplot_1.1.3                          
+[19] annotatr_1.24.0                        
+[20] lubridate_1.9.3                        
+[21] forcats_1.0.0                          
+[22] stringr_1.5.1                          
+[23] dplyr_1.1.4                            
+[24] purrr_1.0.2                            
+[25] readr_2.1.5                            
+[26] tidyr_1.3.1                            
+[27] tibble_3.2.1                           
+[28] ggplot2_3.4.4                          
+[29] tidyverse_2.0.0                        
+[30] workflowr_1.7.1                        
 
 loaded via a namespace (and not attached):
-  [1] colorspace_2.1-0              rjson_0.2.21                 
-  [3] ellipsis_0.3.2                rprojroot_2.0.4              
-  [5] XVector_0.38.0                fs_1.6.3                     
-  [7] rstudioapi_0.15.0             farver_2.1.1                 
-  [9] bit64_4.0.5                   interactiveDisplayBase_1.36.0
- [11] fansi_1.0.6                   xml2_1.3.6                   
- [13] codetools_0.2-19              cachem_1.0.8                 
- [15] knitr_1.45                    jsonlite_1.8.8               
- [17] Rsamtools_2.14.0              dbplyr_2.4.0                 
- [19] png_0.1-8                     shiny_1.8.0                  
- [21] BiocManager_1.30.22           compiler_4.2.3               
- [23] httr_1.4.7                    Matrix_1.6-5                 
- [25] fastmap_1.1.1                 cli_3.6.2                    
- [27] later_1.3.2                   htmltools_0.5.7              
- [29] prettyunits_1.2.0             tools_4.2.3                  
- [31] gtable_0.3.4                  glue_1.7.0                   
- [33] GenomeInfoDbData_1.2.9        reshape2_1.4.4               
- [35] rappdirs_0.3.3                Rcpp_1.0.12                  
- [37] jquerylib_0.1.4               vctrs_0.6.5                  
- [39] Biostrings_2.66.0             rtracklayer_1.58.0           
- [41] xfun_0.41                     ps_1.7.6                     
- [43] timechange_0.3.0              mime_0.12                    
- [45] lifecycle_1.0.4               restfulr_0.0.15              
- [47] XML_3.99-0.16.1               AnnotationHub_3.6.0          
- [49] getPass_0.2-4                 zlibbioc_1.44.0              
- [51] scales_1.3.0                  vroom_1.6.5                  
- [53] BSgenome_1.66.3               ragg_1.2.7                   
- [55] hms_1.1.3                     promises_1.2.1               
- [57] MatrixGenerics_1.10.0         parallel_4.2.3               
- [59] SummarizedExperiment_1.28.0   yaml_2.3.8                   
- [61] curl_5.2.0                    memoise_2.0.1                
- [63] sass_0.4.8                    biomaRt_2.54.1               
- [65] stringi_1.8.3                 RSQLite_2.3.5                
- [67] BiocVersion_3.16.0            BiocIO_1.8.0                 
- [69] filelock_1.0.3                BiocParallel_1.32.6          
- [71] systemfonts_1.0.5             rlang_1.1.3                  
- [73] pkgconfig_2.0.3               bitops_1.0-7                 
- [75] matrixStats_1.2.0             lattice_0.22-5               
- [77] evaluate_0.23                 labeling_0.4.3               
- [79] GenomicAlignments_1.34.1      bit_4.0.5                    
- [81] processx_3.8.3                tidyselect_1.2.0             
- [83] plyr_1.8.9                    magrittr_2.0.3               
- [85] R6_2.5.1                      generics_0.1.3               
- [87] DelayedArray_0.24.0           DBI_1.2.1                    
- [89] pillar_1.9.0                  whisker_0.4.1                
- [91] withr_3.0.0                   KEGGREST_1.38.0              
- [93] RCurl_1.98-1.14               crayon_1.5.2                 
- [95] utf8_1.2.4                    BiocFileCache_2.11.1         
- [97] tzdb_0.4.0                    rmarkdown_2.25               
- [99] progress_1.2.3                grid_4.2.3                   
-[101] blob_1.2.4                    callr_3.7.3                  
-[103] git2r_0.33.0                  digest_0.6.34                
-[105] xtable_1.8-4                  regioneR_1.30.0              
-[107] httpuv_1.6.13                 textshaping_0.3.7            
-[109] munsell_0.5.0                 bslib_0.6.1                  </code></pre>
+  [1] AnnotationHub_3.6.0           BiocFileCache_2.11.1         
+  [3] systemfonts_1.0.5             plyr_1.8.9                   
+  [5] BiocParallel_1.32.6           digest_0.6.34                
+  [7] htmltools_0.5.7               fansi_1.0.6                  
+  [9] magrittr_2.0.3                memoise_2.0.1                
+ [11] tzdb_0.4.0                    matrixStats_1.1.0            
+ [13] vroom_1.6.5                   timechange_0.3.0             
+ [15] prettyunits_1.2.0             colorspace_2.1-0             
+ [17] blob_1.2.4                    rappdirs_0.3.3               
+ [19] textshaping_0.3.7             xfun_0.42                    
+ [21] callr_3.7.3                   crayon_1.5.2                 
+ [23] RCurl_1.98-1.14               jsonlite_1.8.8               
+ [25] glue_1.7.0                    gtable_0.3.4                 
+ [27] zlibbioc_1.44.0               DelayedArray_0.24.0          
+ [29] scales_1.3.0                  DBI_1.2.1                    
+ [31] Rcpp_1.0.12                   xtable_1.8-4                 
+ [33] progress_1.2.3                bit_4.0.5                    
+ [35] httr_1.4.7                    ellipsis_0.3.2               
+ [37] pkgconfig_2.0.3               XML_3.99-0.16.1              
+ [39] farver_2.1.1                  sass_0.4.8                   
+ [41] dbplyr_2.4.0                  utf8_1.2.4                   
+ [43] tidyselect_1.2.0              labeling_0.4.3               
+ [45] rlang_1.1.3                   reshape2_1.4.4               
+ [47] later_1.3.2                   munsell_0.5.0                
+ [49] BiocVersion_3.16.0            tools_4.2.3                  
+ [51] cachem_1.0.8                  cli_3.6.2                    
+ [53] generics_0.1.3                RSQLite_2.3.5                
+ [55] evaluate_0.23                 fastmap_1.1.1                
+ [57] yaml_2.3.8                    ragg_1.2.7                   
+ [59] processx_3.8.3                knitr_1.45                   
+ [61] bit64_4.0.5                   fs_1.6.3                     
+ [63] KEGGREST_1.38.0               whisker_0.4.1                
+ [65] mime_0.12                     xml2_1.3.6                   
+ [67] biomaRt_2.54.1                compiler_4.2.3               
+ [69] rstudioapi_0.15.0             filelock_1.0.3               
+ [71] curl_5.2.0                    png_0.1-8                    
+ [73] interactiveDisplayBase_1.36.0 bslib_0.6.1                  
+ [75] stringi_1.8.3                 ps_1.7.6                     
+ [77] lattice_0.22-5                Matrix_1.6-5                 
+ [79] vctrs_0.6.5                   pillar_1.9.0                 
+ [81] lifecycle_1.0.4               BiocManager_1.30.22          
+ [83] jquerylib_0.1.4               bitops_1.0-7                 
+ [85] httpuv_1.6.14                 R6_2.5.1                     
+ [87] BiocIO_1.8.0                  promises_1.2.1               
+ [89] codetools_0.2-19              SummarizedExperiment_1.28.0  
+ [91] rprojroot_2.0.4               rjson_0.2.21                 
+ [93] withr_3.0.0                   regioneR_1.30.0              
+ [95] GenomicAlignments_1.34.1      Rsamtools_2.14.0             
+ [97] GenomeInfoDbData_1.2.9        parallel_4.2.3               
+ [99] hms_1.1.3                     grid_4.2.3                   
+[101] rmarkdown_2.25                MatrixGenerics_1.10.0        
+[103] git2r_0.33.0                  getPass_0.2-4                
+[105] shiny_1.8.0                   restfulr_0.0.15              </code></pre>
 </div>
 </div>
 
@@ -1391,8 +1408,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -1425,35 +1440,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

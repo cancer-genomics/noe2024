@@ -1,8 +1,12 @@
 ---
-title: "Figure1.rmd"
+title: "Figure1.Rmd"
 author: "Michael Noe"
 date: "1/18/2024"
-output: html_document
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ## Pre-requisites
@@ -127,7 +131,7 @@ plot1A_axis <- ggplot(nucleotide_table, aes(x=position_column, y=position_row)) 
   scale_y_discrete(expand=c(0,0))+
   scale_fill_manual(values= c("#77dd77", "#00660a", "#0288D1", "#0D47A1"))
 plot1A <- plot_grid(plot1A_plot, plot1A_axis, nrow=2, rel_heights = c(1,0.2), label_size = 20, align = "v")
-#ggsave(paste("../output_final/temp_preferredcfDNA_cfDNA_sheared.jpg"), plot = plot1A, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = 0.8)
+#ggsave(here("docs/figure/temp_preferredcfDNA_cfDNA_sheared.jpg"), plot = plot1A, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = 0.8)
 ```
 
 ## Figure 1B
@@ -244,7 +248,7 @@ plot1B <- dat7 %>%
      scale_y_continuous(limits=c(0, 1)) +
      scale_x_continuous(labels = scales::percent, limits = c(0,0.15), expand = c(0, 0.005))
 
-#ggsave(paste("../output_final/temp_cfdna_ratio_motif.jpg"), plot = plot1B, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = .8)
+#ggsave(here("docs/figure/temp_cfdna_ratio_motif.jpg"), plot = plot1B, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = .8)
 ```
 
 ## Figure 1C
@@ -332,7 +336,7 @@ plot1C <- ggplot(annot_sum[which(annot_sum$group3 %in% c("First exon", "CpG - is
   scale_fill_gradient(low =  "#004766", high = "#77c8dd") + 
   scale_y_continuous(labels = scales::percent)
 
-#ggsave(paste("../output_final/recurrent_pos_groups2.jpg"), plot = plot1C, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figure/recurrent_pos_groups2.jpg"), plot = plot1C, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 ```
 
 

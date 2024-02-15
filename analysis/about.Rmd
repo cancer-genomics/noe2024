@@ -7,4 +7,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+This GitHub repository contains the code to construct the figures and to reproduce the findings of the paper: 'DNA methylation and gene expression as factors of genome-wide cell-free DNA fragmentation'.

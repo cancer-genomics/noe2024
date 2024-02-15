@@ -1,7 +1,11 @@
 ---
-title: "Figure2.rmd"
-output: html_document
+title: "Figure2.Rmd"
 date: "1/18/2024"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ## Pre-requisites
@@ -101,7 +105,7 @@ plot_cg <- ggplot(t_b[which((t_b$diff >= 1) & (t_b$diff <= 40) & (t_b$motif == "
   #ggtitle("Position of \"CG\" in the fragment, based on methylation-status of that \"CG\".") +
   ggtitle("")
 
-#ggsave("../output_final/Supplementary_Fig_2.jpg", plot = plot_cg, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figure/Supplementary_Fig_2.jpg"), plot = plot_cg, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 plot_ccg <- ggplot(t_b[which((t_b$diff >= 1) & (t_b$diff <= 40) & (t_b$motif == "CCG")),], aes(x=diff, y=n, colour=group_beta, fill=group_beta)) +
   geom_point(position=position_jitter(h=0.01, w=0.4), alpha = 1, size = 0.1) +
@@ -129,7 +133,7 @@ plot_ccg <- ggplot(t_b[which((t_b$diff >= 1) & (t_b$diff <= 40) & (t_b$motif == 
   xlab("Position in fragment") +
   ggtitle("Position of \"CCG\" in the fragment, based on methylation-status of that \"CCG\".")
 
-#ggsave("../output_final/reviewer1_plot1_ccg.jpg", plot = plot_ccg, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figure/reviewer1_plot1_ccg.jpg"), plot = plot_ccg, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 plot2A <- ggplot(t_b[which((t_b$diff >= 1) & (t_b$diff <= 40) & (t_b$motif == "CG") & (t_b$beta == "methylated: beta >= 0.7;\nunmethylated: beta <= 0.3")),], aes(x=diff, y=n, colour=group_beta, fill=group_beta)) +
   geom_point(position=position_jitter(h=0.01, w=0.4), alpha = 1, size = 0.1) +
@@ -284,7 +288,7 @@ plot2c <- all10bars %>%
 title <- textGrob("window: +/- 50 bps (total: 101 bps)", gp = gpar(col = "black", fontsize = 19))
 #plot2bc_50 <- plot_grid(title, plot2b, plot2c, ncol = 1, align="v", axis="bt", rel_heights = c(1, 5, 5), labels = c("a", "", ""), label_size = 20)
 #plot2BC <- plot_grid(plot2b, plot2c, ncol = 1, align="v", axis="bt", rel_heights = c(5, 5), labels = c("b", "c"), label_size = 20)
-#ggsave("../output_final/figure2bc_window50bp.jpg", plot = plot2bc_50, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figure/figure2bc_window50bp.jpg"), plot = plot2bc_50, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 ```
 
 ## Figure 2D and 2E

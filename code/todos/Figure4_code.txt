@@ -1,0 +1,4 @@
+How are the following data produced?
+
+all <- readRDS(here("data/carvalho_motifs.rds")) 
+data <- read.csv(here("data/data_akshaya/All_Scores.csv"))

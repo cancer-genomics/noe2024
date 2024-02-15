@@ -3,35 +3,35 @@ title: "SessionInfo"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
 ```{r packages}
-library("GenomicRanges")
-library("RColorBrewer")
-library("annotatr")
-library("caret")
-library("cowplot")
-library("data.table")
-library("devtools")
-library("dplyr")
-library("ggplot2")
-library("ggplotify")
-library("ggpubr")
-library("grid")
-library("gridExtra")
-library("here")
-library("pROC")
-library("plyr")
-library("readxl")
-library("recipes")
-library("reshape2")
-library("splitTools")
-library("tidyverse")
+suppressMessages(library("GenomicRanges"))
+suppressMessages(library("RColorBrewer"))
+suppressMessages(library("annotatr"))
+suppressMessages(library("caret"))
+suppressMessages(library("cowplot"))
+suppressMessages(library("data.table"))
+suppressMessages(library("devtools"))
+suppressMessages(library("dplyr"))
+suppressMessages(library("ggplot2"))
+suppressMessages(library("ggplotify"))
+suppressMessages(library("ggpubr"))
+suppressMessages(library("grid"))
+suppressMessages(library("gridExtra"))
+suppressMessages(library("here"))
+suppressMessages(library("pROC"))
+suppressMessages(library("plyr"))
+suppressMessages(library("readxl"))
+suppressMessages(library("recipes"))
+suppressMessages(library("reshape2"))
+suppressMessages(library("splitTools"))
+suppressMessages(library("tidyverse"))
 ```
 
-```{r info}
-sessionInfo()
+```{r info, echo=FALSE}
+devtools::session_info()
 ```

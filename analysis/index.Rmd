@@ -9,16 +9,19 @@ editor_options:
 ---
 
 # Citation
-
+Michaël Noë, Akshaya V. Annapragada, Zacharia H. Foda, Jamie Medina, Dimitrios Mathios, Stephen Cristiano, Christopher Cherry, Daniel C. Bruhm, Noushin Niknafs, Vilmos Adleff, Leonardo Ferreira, Hari Easwaran, Stephen Baylin, Jillian Phallen, Robert B. Scharpf, Victor E. Velculescu,
+DNA methylation and gene expression as factors of genome-wide cell-free DNA fragmentation.
 
 # Abstract
+Circulating cell-free DNA (cfDNA) is emerging as a diagnostic avenue for cancer detection, but the characteristics and origins of cfDNA fragmentation in the blood are poorly understood. We evaluated the effect of DNA methylation and gene expression on naturally occurring genome- wide cfDNA fragmentation through analysis of plasma from 969 individuals, including 182 with cancer. cfDNA fragment ends occurring at preferred locations genome-wide more frequently contained CCs or CGs, and fragments ending with CGs or CCGs were enriched or depleted, respectively, at methylated CpG positions, consistent with structural models showing increased interaction of CG fragment ends with nucleosomes. CpG methylation and reduced gene expression were independently associated with higher levels and larger sizes of cfDNA fragments, and reflected differences in cfDNA fragmentation in tissue-specific pathways. Tumor-related hypomethylation and increased gene expression were associated with global decrease in cfDNA fragment size that may explain the overall smaller cfDNA fragments observed in human cancers. Cancer-specific methylation at CpGs of pancreatic cancer patients was associated with genome-wide changes in cfDNA fragment ends in patients with cancers. These results provide a connection between epigenetic changes and cfDNA fragmentation that may have implications for disease detection.
 
+# Introduction
+The analyses in this repository use data from previous studies (Christiano et al., Nature, 2019 and Mathios et al., Nature Communications, 2021). The data for the samples analyzed in these studies was deposited at the European Genome-Phenome Archive (EGA). The GitHub-repositories for these studies explain how the data was analysed until a GenomicRanges (GRanges) object was made with the fragment start- and end-positions.
 
-# Documentation
-We have provided a README describing the structure of this workflowr, as well as READMEs within subfolders as needed. 
+For the analyses in this repository, we start with the GRanges files, which contain cell-free DNA fragment information.
 
-A list of R-related dependencies for reproducing the figures in the LUCAS manuscript is available in the [SessionInfo](../docs/SessionInfo.html) document. Most of the R packages are available from Bioconductor or CRAN. 
-
+# Requirements
+The R-packages used to process the samples and to construct the figures are provided [here](../docs/SessionInfo.html). These are available on Bioconductor or CRAN.
 
 # Figures
 - Figure 1: [HTML](../docs/Figure1.html), [Code](../analysis/Figure1.Rmd), [JPG](../docs/figure/Fig_1.jpg) 
@@ -26,10 +29,32 @@ A list of R-related dependencies for reproducing the figures in the LUCAS manusc
 - Figure 3: [HTML](../docs/Figure3.html), [Code](../analysis/Figure3.Rmd)
   - A,B: [JPG](../docs/figure/Fig_3AB.jpg)
   - C,D: [JPG](../docs/figure/Fig_3CD.jpg)
-  - E: [JPG](../docs/figure/Fig_3E_multivar.jpg)
+  - E: [HTML](../docs/Figure3E.html), [Code](../analysis/Figure3E.Rmd), [JPG](../docs/figure/Fig_3E_multivar.jpg)
   - F: [JPG](../docs/figure/Fig_3F.jpg)  
 - Figure 4: 
   - A,B,C: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
-  - C (one fold validation): [HTML](../docs/Figure4C.html), [Code](../analysis/Figure4C.Rmd), [PDF](../docs/figure/Fig_4C.pdf)
+  - C: [HTML](../docs/Figure4C.html), [Code](../analysis/Figure4C.Rmd), [JPG](../docs/figure/Fig_4C.jpg)
+
+# Supplementary Figures
+- Supp. Fig. 1: [HTML](../docs/Supplementary_Figure1.html), [Code](../analysis/Supplementary_Figure1.Rmd), [JPG](../docs/figure/Supplementary_Fig_1.jpg)
+- Supp. Fig. 2: [HTML](../docs/Supplementary_Figure2.html), [Code](../analysis/Supplementary_Figure2.Rmd), [JPG](../docs/figure/Supplementary_Fig_2.jpg)
+- Supp. Fig. 3: [HTML](../docs/Supplementary_Figure3.html), [Code](../analysis/Supplementary_Figure3.Rmd), [JPG](../docs/figure/Supplementary_Fig_3.jpg)
+- Supp. Fig. 4: [HTML](../docs/Supplementary_Figure4.html), [Code](../analysis/Supplementary_Figure4.Rmd), [JPG](../docs/figure/Supplementary_Fig_4.jpg)
+- Supp. Fig. 5: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 6: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd)
+- Supp. Fig. 8: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 9: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd)
 
 # Supplementary Tables
+- Supp. Table 1: Refer to supplementary data in Christiano et al., Nature, 2019 and Mathios et al., Nature Communications, 2021 
+- Supp. Table 2: [Code](../code/SuppTable2.Rmd)
+- Supp. Table 3: This table was created manually. Refer to the Methods section of this paper. 
+- Supp. Table 4: [Code](../code/SuppTable4.Rmd) Need GRanges to run.
+- Supp. Table 5: [Code](../code/SuppTable5.Rmd) Need Rds files from the previous step to run.
+- Supp. Table 6: [Code](../code/SuppTable6.Rmd) Need chrX fragments data to run.
+- Supp. Table 7: [Code]() Empty
+- Supp. Table 8: [Code]() Empty
+- Supp. Table 9: [Code]() Empty
+

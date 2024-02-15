@@ -1,8 +1,12 @@
 ---
-title: "Figure3.rmd"
+title: "Figure3.Rmd"
 author: "Michael Noe"
 date: "2024-01-25"
-output: html_document
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ## Pre-requisites
@@ -336,7 +340,7 @@ plot_combi_tss_cov_title <- plot_grid(title, plot_combi_tss_cov, ncol = 1, rel_h
 ```{r}
 dir.create(here("docs/figure"), showWarnings=FALSE)
 small_cov <- plot_grid(plot_combi_cpg_cov_title, NULL, plot_combi_tss_cov_title , rel_widths = c(1,0.1,1), labels=c("a", "", "b"), nrow=1, label_size = 20)
-#ggsave(paste("../output_final/Fig_3AB.pdf"), plot = small_cov, device = "pdf",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
+#ggsave(paste(here("docs/figure/Fig_3AB.pdf"), plot = small_cov, device = "pdf",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
 ggsave(here("docs/figure/Fig_3AB.jpg"), plot = small_cov, device = "jpg",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
 ```
 
@@ -669,7 +673,7 @@ plot_combi_tss_size_title <- plot_grid(title, plot_combi_tss_size, ncol = 1, rel
 
 ```{r}
 small_size <- plot_grid(plot_combi_cpg_size_title, NULL, plot_combi_tss_size_title, rel_widths = c(1,0.1,1), labels=c("c", "", "d"), nrow=1,label_size = 20)
-#ggsave(paste("../output_final/Fig_3CD.pdf"), plot = small_size, device = "pdf",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
+#ggsave(paste(here("docs/figure/Fig_3CD.pdf"), plot = small_size, device = "pdf",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
 ggsave(here("docs/figure/Fig_3CD.jpg"), plot = small_size, device = "jpg",width = 20, height=12,units = "in", dpi=600, bg = "white", scale = 0.78)
 ```
 

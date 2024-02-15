@@ -1,0 +1,4 @@
+How are the following data produced?
+
+delfi<- read_csv(here(aa_data,"Cristiano-training-set-full.csv")) 
+meth<-readRDS(here(aa_data,"output_ML.rds"))

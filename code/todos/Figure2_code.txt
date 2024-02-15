@@ -1,0 +1,6 @@
+How are the following data produced?
+
+t <- readRDS(here("data/position_in_read.rds"))
+t <- readRDS(here("data/Moss_ratios.rds"))
+sum2 <- readRDS(here("data/som_chrx.rds"))
+

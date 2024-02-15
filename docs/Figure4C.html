@@ -31,9 +31,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -234,69 +231,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -304,16 +238,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -382,7 +306,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-30
+<strong>Last updated:</strong> 2024-02-13
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -420,10 +344,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -516,13 +440,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongc3db0ae">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> c3db0ae
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongc3db0ae"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -531,7 +457,8 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version c3db0ae.
+The results in this page were generated with repository version
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,42 +472,54 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
+Ignored files:
+    Ignored:    data/results/
+
 Untracked files:
-    Untracked:  analysis/Figure1.Rmd
-    Untracked:  analysis/Figure2.Rmd
-    Untracked:  analysis/Figure3.Rmd
-    Untracked:  analysis/Figure4.Rmd
-    Untracked:  analysis/Figure4C.Rmd
-    Untracked:  analysis/SessionInfo.Rmd
-    Untracked:  data/Moss_ratios.rds
-    Untracked:  data/RNAtable.tsv.gz
-    Untracked:  data/carvalho_motifs.rds
-    Untracked:  data/cdf_multiple.rds
-    Untracked:  data/cfdna_ratio_motif.rds
-    Untracked:  data/cpgIslands.hg19.20001.rds
-    Untracked:  data/cpg_size_smallfragments.rds
-    Untracked:  data/cpg_smallfragments.rds
-    Untracked:  data/data_akshaya/
-    Untracked:  data/end_motifs_cfdna_individual.rds
-    Untracked:  data/end_motifs_cfdna_individual_200over_5perc.rds
-    Untracked:  data/end_motifs_sheared_individual.rds
-    Untracked:  data/fragments_somatic.rds
-    Untracked:  data/labels.txt
-    Untracked:  data/multivariate_model_coverage_size.rds
-    Untracked:  data/position_in_read.rds
-    Untracked:  data/positons_conserved_200over_5perc.rds
-    Untracked:  data/som_chrx.rds
-    Untracked:  data/theoretical_frequencies_hg19.rds
-    Untracked:  data/tissue_key.tsv
-    Untracked:  data/transcriptAnno-GRCh37.75.tss20001.tsv
-    Untracked:  data/tss_size_smallfragments.rds
-    Untracked:  data/tss_smallfragments.rds
-    Untracked:  output/All_Scores.csv
-    Untracked:  output/fold10_ens.csv
-    Untracked:  output/needtodrop.csv
+    Untracked:  analysis/Supplementary_Figure1.Rmd
+    Untracked:  analysis/Supplementary_Figure2.Rmd
+    Untracked:  analysis/Supplementary_Figure3.Rmd
+    Untracked:  analysis/Supplementary_Figure4.Rmd
+    Untracked:  code/Expand_Fig4C_Rmd.R
+    Untracked:  code/Pre_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure4.rmd
+    Untracked:  code/SuppTable1.Rmd
+    Untracked:  code/SuppTable2.Rmd
+    Untracked:  code/SuppTable4.Rmd
+    Untracked:  code/SuppTable5.Rmd
+    Untracked:  code/SuppTable6.Rmd
+    Untracked:  code/get_Moss_et_al.R
+    Untracked:  code/todos/
+    Untracked:  data/Moss_et_al-NatComm-2018/
+    Untracked:  data/diff_startfrags_3bp.rds
+    Untracked:  data/diff_startfrags_4bp.rds
+    Untracked:  data/healthy_cpggroups.rds
+    Untracked:  data/motifs_cfdna_144_167.rds
+    Untracked:  data/selected_lucas_files.rds
+    Untracked:  data/selected_validation_files.rds
+    Untracked:  output/Fig_4C_all_folds.pdf
+    Untracked:  output/fold01_ens.csv
+    Untracked:  output/fold02_ens.csv
+    Untracked:  output/fold03_ens.csv
+    Untracked:  output/fold04_ens.csv
+    Untracked:  output/fold05_ens.csv
+    Untracked:  output/fold06_ens.csv
+    Untracked:  output/fold07_ens.csv
+    Untracked:  output/fold08_ens.csv
+    Untracked:  output/fold09_ens.csv
 
 Unstaged changes:
+    Modified:   analysis/Figure1.Rmd
+    Modified:   analysis/Figure2.Rmd
+    Modified:   analysis/Figure3.Rmd
+    Modified:   analysis/Figure4.Rmd
+    Modified:   analysis/Figure4C.Rmd
+    Modified:   analysis/SessionInfo.Rmd
+    Modified:   analysis/about.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+    Modified:   output/All_Scores.csv
 
 </code></pre>
 <p>
@@ -595,10 +534,74 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/Figure4C.Rmd</code>) and HTML
+(<code>docs/Figure4C.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/cancer-genomics/noe2024/blob/de3561665de4eb4a67334ac71cee69954c0f14f5/analysis/Figure4C.Rmd" target="_blank">de35616</a>
+</td>
+<td>
+Shashikant Koul
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+Initial commit
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/cancer-genomics/noe2024/de3561665de4eb4a67334ac71cee69954c0f14f5/docs/Figure4C.html" target="_blank">de35616</a>
+</td>
+<td>
+Shashikant Koul
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+Initial commit
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -1150,14 +1153,107 @@ results</p>
 <pre class="r"><code>data &lt;- list.files(path=here(&quot;output&quot;),pattern=&quot;fold*&quot;, full.names = TRUE) %&gt;% 
   lapply(read_csv) %&gt;% 
   bind_rows </code></pre>
-<pre><code>New names:
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+<pre><code>Rows: 93 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (1): %PDF-1.4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 26 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 27 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 26 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 27 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 27 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
 Rows: 28 Columns: 6
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-(2): sample, type dbl (4): ...1, score.meth, score.delfi, ens_preds
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...1`</code></pre>
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 29 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 25 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 27 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+Rows: 28 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): sample, type
+dbl (4): ...1, score.meth, score.delfi, ens_preds
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>write.csv(data,here(&quot;output/All_Scores.csv&quot;))
 
 delfi_roc&lt;-pROC::roc(data$type,data$score.delfi,ci=TRUE,levels=c(&quot;healthy&quot;,&quot;cancer&quot;))</code></pre>
@@ -1214,9 +1310,7 @@ B &lt;- res %&gt;%
 This warning is displayed once every 8 hours.
 Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 generated.</code></pre>
-<pre class="r"><code>B</code></pre>
-<p><img src="figure/Figure4C.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>pdf(here(&quot;docs/figure/Fig_4C.pdf&quot;))
+<pre class="r"><code>jpeg(here(&quot;docs/figure/Fig_4C.jpg&quot;))
 B
 dev.off()</code></pre>
 <pre><code>quartz_off_screen 
@@ -1252,14 +1346,14 @@ other attached packages:
  [5] splitTools_1.0.1   pROC_1.18.5        recipes_1.0.9      caret_6.0-94      
  [9] lattice_0.22-5     here_1.0.1         devtools_2.4.5     usethis_2.2.2     
 [13] readxl_1.4.3       lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1     
-[17] purrr_1.0.2        readr_2.1.5        tidyr_1.3.0        tibble_3.2.1      
+[17] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
 [21] ggplot2_3.4.4      tidyverse_2.0.0    dplyr_1.1.4        plyr_1.8.9        
 [25] workflowr_1.7.1   
 
 loaded via a namespace (and not attached):
  [1] colorspace_2.1-0     ellipsis_0.3.2       class_7.3-22        
  [4] rprojroot_2.0.4      fs_1.6.3             rstudioapi_0.15.0   
- [7] farver_2.1.1         listenv_0.9.0        remotes_2.4.2.1     
+ [7] farver_2.1.1         listenv_0.9.1        remotes_2.4.2.1     
 [10] bit64_4.0.5          prodlim_2023.08.28   fansi_1.0.6         
 [13] codetools_0.2-19     splines_4.2.3        cachem_1.0.8        
 [16] knitr_1.45           pkgload_1.3.4        jsonlite_1.8.8      
@@ -1269,27 +1363,27 @@ loaded via a namespace (and not attached):
 [28] glue_1.7.0           reshape2_1.4.4       Rcpp_1.0.12         
 [31] cellranger_1.1.0     jquerylib_0.1.4      vctrs_0.6.5         
 [34] nlme_3.1-164         iterators_1.0.14     timeDate_4032.109   
-[37] gower_1.0.1          xfun_0.41            globals_0.16.2      
+[37] gower_1.0.1          xfun_0.42            globals_0.16.2      
 [40] ps_1.7.6             timechange_0.3.0     mime_0.12           
 [43] miniUI_0.1.1.1       lifecycle_1.0.4      future_1.33.1       
 [46] getPass_0.2-4        MASS_7.3-60.0.1      scales_1.3.0        
 [49] ipred_0.9-14         vroom_1.6.5          hms_1.1.3           
 [52] promises_1.2.1       parallel_4.2.3       yaml_2.3.8          
 [55] memoise_2.0.1        sass_0.4.8           rpart_4.1.23        
-[58] stringi_1.8.3        highr_0.10           foreach_1.5.2       
-[61] hardhat_1.3.0        pkgbuild_1.4.3       shape_1.4.6         
-[64] lava_1.7.3           rlang_1.1.3          pkgconfig_2.0.3     
-[67] evaluate_0.23        htmlwidgets_1.6.4    bit_4.0.5           
-[70] processx_3.8.3       tidyselect_1.2.0     parallelly_1.36.0   
-[73] magrittr_2.0.3       R6_2.5.1             generics_0.1.3      
-[76] profvis_0.3.8        pillar_1.9.0         whisker_0.4.1       
-[79] withr_3.0.0          survival_3.5-7       nnet_7.3-19         
-[82] future.apply_1.11.1  crayon_1.5.2         utf8_1.2.4          
-[85] tzdb_0.4.0           rmarkdown_2.25       urlchecker_1.0.1    
-[88] grid_4.2.3           data.table_1.14.10   callr_3.7.3         
-[91] git2r_0.33.0         ModelMetrics_1.2.2.2 digest_0.6.34       
-[94] xtable_1.8-4         httpuv_1.6.13        stats4_4.2.3        
-[97] munsell_0.5.0        bslib_0.6.1          sessioninfo_1.2.2   </code></pre>
+[58] stringi_1.8.3        foreach_1.5.2        hardhat_1.3.1       
+[61] pkgbuild_1.4.3       shape_1.4.6          lava_1.7.3          
+[64] rlang_1.1.3          pkgconfig_2.0.3      evaluate_0.23       
+[67] htmlwidgets_1.6.4    bit_4.0.5            processx_3.8.3      
+[70] tidyselect_1.2.0     parallelly_1.36.0    magrittr_2.0.3      
+[73] R6_2.5.1             generics_0.1.3       profvis_0.3.8       
+[76] pillar_1.9.0         whisker_0.4.1        withr_3.0.0         
+[79] survival_3.5-7       nnet_7.3-19          future.apply_1.11.1 
+[82] crayon_1.5.2         utf8_1.2.4           tzdb_0.4.0          
+[85] rmarkdown_2.25       urlchecker_1.0.1     grid_4.2.3          
+[88] data.table_1.15.0    callr_3.7.3          git2r_0.33.0        
+[91] ModelMetrics_1.2.2.2 digest_0.6.34        xtable_1.8-4        
+[94] httpuv_1.6.14        stats4_4.2.3         munsell_0.5.0       
+[97] bslib_0.6.1          sessioninfo_1.2.2   </code></pre>
 </div>
 
 
@@ -1308,8 +1402,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -1342,35 +1434,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

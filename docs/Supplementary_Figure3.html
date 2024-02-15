@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Michael Noe" />
+
+<meta name="date" content="2024-01-26" />
+
+<title>Supplementary_Figure3.Rmd</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">noe2024</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Supplementary_Figure3.Rmd</h1>
+<h4 class="author">Michael Noe</h4>
+<h4 class="date">2024-01-26</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-13
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>noe2024/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240129code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240129)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240129code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240129)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treede3561665de4eb4a67334ac71cee69954c0f14f5targetblankde35616a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/cancer-genomics/noe2024/tree/de3561665de4eb4a67334ac71cee69954c0f14f5" target="_blank">de35616</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    data/results/
+
+Untracked files:
+    Untracked:  analysis/Supplementary_Figure1.Rmd
+    Untracked:  analysis/Supplementary_Figure2.Rmd
+    Untracked:  analysis/Supplementary_Figure3.Rmd
+    Untracked:  analysis/Supplementary_Figure4.Rmd
+    Untracked:  code/Expand_Fig4C_Rmd.R
+    Untracked:  code/Pre_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure3.rmd
+    Untracked:  code/Pre_Supplementary_Figure4.rmd
+    Untracked:  code/SuppTable1.Rmd
+    Untracked:  code/SuppTable2.Rmd
+    Untracked:  code/SuppTable4.Rmd
+    Untracked:  code/SuppTable5.Rmd
+    Untracked:  code/SuppTable6.Rmd
+    Untracked:  code/get_Moss_et_al.R
+    Untracked:  code/todos/
+    Untracked:  data/Moss_et_al-NatComm-2018/
+    Untracked:  data/diff_startfrags_3bp.rds
+    Untracked:  data/diff_startfrags_4bp.rds
+    Untracked:  data/healthy_cpggroups.rds
+    Untracked:  data/motifs_cfdna_144_167.rds
+    Untracked:  data/selected_lucas_files.rds
+    Untracked:  data/selected_validation_files.rds
+    Untracked:  output/Fig_4C_all_folds.pdf
+    Untracked:  output/fold01_ens.csv
+    Untracked:  output/fold02_ens.csv
+    Untracked:  output/fold03_ens.csv
+    Untracked:  output/fold04_ens.csv
+    Untracked:  output/fold05_ens.csv
+    Untracked:  output/fold06_ens.csv
+    Untracked:  output/fold07_ens.csv
+    Untracked:  output/fold08_ens.csv
+    Untracked:  output/fold09_ens.csv
+
+Unstaged changes:
+    Modified:   analysis/Figure1.Rmd
+    Modified:   analysis/Figure2.Rmd
+    Modified:   analysis/Figure3.Rmd
+    Modified:   analysis/Figure4.Rmd
+    Modified:   analysis/Figure4C.Rmd
+    Modified:   analysis/SessionInfo.Rmd
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+    Modified:   output/All_Scores.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="pre-requisites" class="section level2">
+<h2>Pre-requisites</h2>
+<p>These packages are necessary to make the plots that make up
+Supplementary Figure 3.</p>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(&quot;cowplot&quot;)</code></pre>
+<pre><code>
+Attaching package: &#39;cowplot&#39;
+
+The following object is masked from &#39;package:lubridate&#39;:
+
+    stamp</code></pre>
+<pre class="r"><code>library(&quot;lemon&quot;)</code></pre>
+<pre><code>
+Attaching package: &#39;lemon&#39;
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    %||%</code></pre>
+<pre class="r"><code>library(&quot;here&quot;)</code></pre>
+<pre><code>here() starts at /Users/skoul/Documents/Projects/cfepi_wflow/noe2024</code></pre>
+</div>
+<div id="supplementary-figure-3a" class="section level2">
+<h2>Supplementary Figure 3A:</h2>
+<pre class="r"><code>m &lt;- readRDS(here(&quot;data&quot;, &quot;diff_startfrags_3bp.rds&quot;))
+acg_m &lt;- data.frame(&quot;motif&quot; = &quot;ACG&quot;,
+                     &quot;counts&quot; = m[1,] + m[2,],
+                     &quot;rel_counts&quot; = ((m[1,] + m[2,]) / sum((m[1,] + m[2,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+ccg_m &lt;- data.frame(&quot;motif&quot; = &quot;CCG&quot;,
+                     &quot;counts&quot; = m[3,] + m[4,],
+                     &quot;rel_counts&quot; = ((m[3,] + m[4,]) / sum((m[3,] + m[4,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+gcg_m &lt;- data.frame(&quot;motif&quot; = &quot;GCG&quot;,
+                     &quot;counts&quot; = m[5,] + m[6,],
+                     &quot;rel_counts&quot; = ((m[5,] + m[6,]) / sum((m[5,] + m[6,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+tcg_m &lt;- data.frame(&quot;motif&quot; = &quot;TCG&quot;,
+                     &quot;counts&quot; = m[7,] + m[8,],
+                     &quot;rel_counts&quot; = ((m[7,] + m[8,]) / sum((m[7,] + m[8,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+acg_u &lt;- data.frame(&quot;motif&quot; = &quot;ACG&quot;,
+                     &quot;counts&quot; = m[9,] + m[10,],
+                     &quot;rel_counts&quot; = ((m[9,] + m[10,]) / sum((m[9,] + m[10,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+ccg_u &lt;- data.frame(&quot;motif&quot; = &quot;CCG&quot;,
+                     &quot;counts&quot; = m[11,] + m[12,],
+                     &quot;rel_counts&quot; = ((m[11,] + m[12,]) / sum((m[11,] + m[12,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+gcg_u &lt;- data.frame(&quot;motif&quot; = &quot;GCG&quot;,
+                     &quot;counts&quot; = m[13,] + m[14,],
+                     &quot;rel_counts&quot; = ((m[13,] + m[14,]) / sum((m[13,] + m[14,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+tcg_u &lt;- data.frame(&quot;motif&quot; = &quot;TCG&quot;,
+                     &quot;counts&quot; = m[15,] + m[16,],
+                     &quot;rel_counts&quot; = ((m[15,] + m[16,]) / sum((m[15,] + m[16,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+acg_d &lt;- data.frame(&quot;motif&quot; = &quot;ACG&quot;,
+                     &quot;counts&quot; = (m[9,] + m[10,]) - (m[1,] + m[2,]),
+                     &quot;rel_counts&quot; = - (((m[9,] + m[10,]) / sum((m[9,] + m[10,]))) * 51) + (((m[1,] + m[2,]) / sum((m[1,] + m[2,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+ccg_d &lt;- data.frame(&quot;motif&quot; = &quot;CCG&quot;,
+                     &quot;counts&quot; = (m[11,] + m[12,]) - (m[3,] + m[4,]),
+                     &quot;rel_counts&quot; = - (((m[11,] + m[12,]) / sum((m[11,] + m[12,]))) * 51) + (((m[3,] + m[4,]) / sum((m[3,] + m[4,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+gcg_d &lt;- data.frame(&quot;motif&quot; = &quot;GCG&quot;,
+                     &quot;counts&quot; = (m[13,] + m[14,]) - (m[5,] + m[6,]),
+                     &quot;rel_counts&quot; = - (((m[13,] + m[14,]) / sum((m[13,] + m[14,]))) * 51) + (((m[5,] + m[6,]) / sum((m[5,] + m[6,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+tcg_d &lt;- data.frame(&quot;motif&quot; = &quot;TCG&quot;,
+                     &quot;counts&quot; = (m[15,] + m[16,]) - (m[7,] + m[8,]),
+                     &quot;rel_counts&quot; = - (((m[15,] + m[16,]) / sum((m[15,] + m[16,]))) * 51) + (((m[7,] + m[8,]) / sum((m[7,] + m[8,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+
+all &lt;- rbind(acg_m, acg_u, acg_d,
+             ccg_m, ccg_u, ccg_d,
+             gcg_m, gcg_u, gcg_d,
+             tcg_m, tcg_u, tcg_d)
+
+all$meth &lt;- factor(all$meth, levels=c(&quot;Unmethylated&quot;, &quot;Methylated&quot;, &quot;Difference&quot;))
+all$scale &lt;- all$pos
+all[which(all$scale %in% c(0,1)),]$scale &lt;- &quot;C&quot;
+all[which(all$scale == 2),]$scale &lt;- &quot;G&quot;
+all[which((all$motif == &quot;ACG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;A&quot;
+all[which((all$motif == &quot;CCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;C&quot;
+all[which((all$motif == &quot;GCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;G&quot;
+all[which((all$motif == &quot;TCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;T&quot;
+all &lt;- all[which(all$pos %in% c(-19:21)),]
+all$pos &lt;- factor(all$pos, levels = c(-19:21))
+all$motif &lt;- factor(all$motif, levels = c(&quot;CCG&quot;, &quot;GCG&quot;,&quot;ACG&quot;, &quot;TCG&quot;))
+
+p &lt;- ggplot(all, aes(x=pos, y=rel_counts, fill=meth)) +
+  geom_bar(stat=&quot;identity&quot;) +
+  scale_fill_manual(values=c(&quot;#77C8DD&quot;, &quot;#004766&quot;, &quot;#c3775d&quot;)) +
+  facet_grid(meth~motif, scales = &quot;free_y&quot;) + 
+  coord_capped_cart(bottom=&#39;both&#39;) +
+  theme_classic(base_size = 20) +
+  theme(#axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        text = element_text(size=16),
+        axis.text.x = element_text(size=11),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20)),
+        strip.text.x = element_text(size = 11, hjust = 0.5)) +
+  scale_y_continuous(name = &quot;Amount of cfDNA fragments starting (normalized)&quot;) +
+  scale_x_discrete(name =&quot;Position around motif&quot;,
+                  breaks=c(-19,-9,0,1,2,11,21),
+                  labels=c(&quot;-20&quot;, &quot;-10&quot;, &quot;A&quot;, &quot;C&quot;, &quot;G&quot;, &quot;10&quot;, &quot;20&quot;)
+                  ) +
+  geom_vline(aes(xintercept=19.5), linetype=2) +
+  geom_vline(aes(xintercept=22.5), linetype=2)
+
+gt &lt;- ggplotGrob(p)
+gt$grobs[[18]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- 
+  c(&quot;-20&quot;,&quot;-10&quot;,&quot;C&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[19]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- 
+  c(&quot;-20&quot;,&quot;-10&quot;,&quot;G&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[20]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- 
+  c(&quot;-20&quot;,&quot;-10&quot;,&quot;A&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[21]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- 
+  c(&quot;-20&quot;,&quot;-10&quot;,&quot;T&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+
+ga &lt;- ggplotify::as.ggplot(gt)
+
+ggsave(here(&quot;docs/figure/Supplementary_Fig_3_3bp.jpg&quot;), plot =ga, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
+</div>
+<div id="supplementary-figure-3b" class="section level2">
+<h2>Supplementary Figure 3B:</h2>
+<pre class="r"><code>m &lt;- readRDS(here(&quot;data&quot;, &quot;diff_startfrags_4bp.rds&quot;))
+accg_m &lt;- data.frame(&quot;motif&quot; = &quot;ACCG&quot;,
+                     &quot;counts&quot; = m[1,] + m[2,],
+                     &quot;rel_counts&quot; = ((m[1,] + m[2,]) / sum((m[1,] + m[2,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+cccg_m &lt;- data.frame(&quot;motif&quot; = &quot;CCCG&quot;,
+                     &quot;counts&quot; = m[3,] + m[4,],
+                     &quot;rel_counts&quot; = ((m[3,] + m[4,]) / sum((m[3,] + m[4,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+gccg_m &lt;- data.frame(&quot;motif&quot; = &quot;GCCG&quot;,
+                     &quot;counts&quot; = m[5,] + m[6,],
+                     &quot;rel_counts&quot; = ((m[5,] + m[6,]) / sum((m[5,] + m[6,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+tccg_m &lt;- data.frame(&quot;motif&quot; = &quot;TCCG&quot;,
+                     &quot;counts&quot; = m[7,] + m[8,],
+                     &quot;rel_counts&quot; = ((m[7,] + m[8,]) / sum((m[7,] + m[8,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Methylated&quot;)
+accg_u &lt;- data.frame(&quot;motif&quot; = &quot;ACCG&quot;,
+                     &quot;counts&quot; = m[9,] + m[10,],
+                     &quot;rel_counts&quot; = ((m[9,] + m[10,]) / sum((m[9,] + m[10,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+cccg_u &lt;- data.frame(&quot;motif&quot; = &quot;CCCG&quot;,
+                     &quot;counts&quot; = m[11,] + m[12,],
+                     &quot;rel_counts&quot; = ((m[11,] + m[12,]) / sum((m[11,] + m[12,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+gccg_u &lt;- data.frame(&quot;motif&quot; = &quot;GCCG&quot;,
+                     &quot;counts&quot; = m[13,] + m[14,],
+                     &quot;rel_counts&quot; = ((m[13,] + m[14,]) / sum((m[13,] + m[14,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+tccg_u &lt;- data.frame(&quot;motif&quot; = &quot;TCCG&quot;,
+                     &quot;counts&quot; = m[15,] + m[16,],
+                     &quot;rel_counts&quot; = ((m[15,] + m[16,]) / sum((m[15,] + m[16,]))) * 51,
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Unmethylated&quot;)
+accg_d &lt;- data.frame(&quot;motif&quot; = &quot;ACCG&quot;,
+                     &quot;counts&quot; = (m[9,] + m[10,]) - (m[1,] + m[2,]),
+                     &quot;rel_counts&quot; = - (((m[9,] + m[10,]) / sum((m[9,] + m[10,]))) * 51) + (((m[1,] + m[2,]) / sum((m[1,] + m[2,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+cccg_d &lt;- data.frame(&quot;motif&quot; = &quot;CCCG&quot;,
+                     &quot;counts&quot; = (m[11,] + m[12,]) - (m[3,] + m[4,]),
+                     &quot;rel_counts&quot; = - (((m[11,] + m[12,]) / sum((m[11,] + m[12,]))) * 51) + (((m[3,] + m[4,]) / sum((m[3,] + m[4,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+gccg_d &lt;- data.frame(&quot;motif&quot; = &quot;GCCG&quot;,
+                     &quot;counts&quot; = (m[13,] + m[14,]) - (m[5,] + m[6,]),
+                     &quot;rel_counts&quot; = - (((m[13,] + m[14,]) / sum((m[13,] + m[14,]))) * 51) + (((m[5,] + m[6,]) / sum((m[5,] + m[6,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+tccg_d &lt;- data.frame(&quot;motif&quot; = &quot;TCCG&quot;,
+                     &quot;counts&quot; = (m[15,] + m[16,]) - (m[7,] + m[8,]),
+                     &quot;rel_counts&quot; = - (((m[15,] + m[16,]) / sum((m[15,] + m[16,]))) * 51) + (((m[7,] + m[8,]) / sum((m[7,] + m[8,]))) * 51),
+                     &quot;pos&quot; = c(-25:25),
+                     &quot;meth&quot; = &quot;Difference&quot;)
+
+all &lt;- rbind(accg_m, accg_u, accg_d,
+             cccg_m, cccg_u, cccg_d,
+             gccg_m, gccg_u, gccg_d,
+             tccg_m, tccg_u, tccg_d)
+
+all$meth &lt;- factor(all$meth, levels=c(&quot;Unmethylated&quot;, &quot;Methylated&quot;, &quot;Difference&quot;))
+all$scale &lt;- all$pos
+all[which(all$scale %in% c(-25:-21, -19:-11, -9:-2, 3:9, 11:19, 21:25)),]$scale &lt;- &quot;&quot;
+all[which(all$scale %in% c(0,1)),]$scale &lt;- &quot;C&quot;
+all[which(all$scale == 2),]$scale &lt;- &quot;G&quot;
+all[which((all$motif == &quot;ACCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;A&quot;
+all[which((all$motif == &quot;CCCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;C&quot;
+all[which((all$motif == &quot;GCCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;G&quot;
+all[which((all$motif == &quot;TCCG&quot;) &amp; (all$scale == -1)),]$scale &lt;- &quot;T&quot;
+all &lt;- all[which(all$pos %in% c(-20:20)),]
+all$pos &lt;- factor(all$pos, levels = c(-20:20))
+all$motif &lt;- factor(all$motif, levels = c(&quot;CCCG&quot;, &quot;GCCG&quot;,&quot;ACCG&quot;, &quot;TCCG&quot;))
+
+p &lt;- ggplot(all, aes(x=pos, y=rel_counts, fill=meth)) +
+  geom_bar(stat=&quot;identity&quot;) +
+  scale_fill_manual(values=c(&quot;#77C8DD&quot;, &quot;#004766&quot;, &quot;#c3775d&quot;)) +
+  facet_grid(meth~motif, scales = &quot;free_y&quot;) + 
+  coord_capped_cart(bottom=&#39;both&#39;) +
+  theme_classic(base_size = 20) +
+  theme(#axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        text = element_text(size=16),
+        axis.text.x = element_text(size=11),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20)),
+        strip.text.x = element_text(size = 11, hjust = 0.513)) +
+  scale_y_continuous(name = &quot;Amount of cfDNA fragments starting (normalized)&quot;) +
+  scale_x_discrete(name =&quot;Position around motif&quot;,
+                  breaks=c(-20,-10,-1,0,1,2,10,20),
+                  labels=c(&quot;-20&quot;, &quot;-10&quot;, &quot;A&quot;, &quot;C&quot;, &quot;C&quot;, &quot;G&quot;, &quot;10&quot;, &quot;20&quot;)
+                  ) +
+  geom_vline(aes(xintercept=19.5), linetype=2) +
+  geom_vline(aes(xintercept=23.5), linetype=2)
+
+gt &lt;- ggplotGrob(p)
+gt$grobs[[18]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- c(&quot;-20&quot;,&quot;-10&quot;,&quot;C&quot;,&quot;C&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[19]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- c(&quot;-20&quot;,&quot;-10&quot;,&quot;G&quot;,&quot;C&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[20]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- c(&quot;-20&quot;,&quot;-10&quot;,&quot;A&quot;,&quot;C&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+gt$grobs[[21]]$children[[2]]$grobs[[2]]$children[[1]]$label &lt;- c(&quot;-20&quot;,&quot;-10&quot;,&quot;T&quot;,&quot;C&quot;,&quot;C&quot;,&quot;G&quot;,&quot;10&quot;,&quot;20&quot;)
+
+gb &lt;- ggplotify::as.ggplot(gt)
+
+ggsave(here(&quot;docs/figure/Supplementary_Fig_3_4bp.jpg&quot;), plot =gb, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
+</div>
+<div
+id="supplementary-figure-3-combine-supplementary-figure-3a-supplementary-figure-3b"
+class="section level2">
+<h2>Supplementary Figure 3: combine Supplementary Figure 3A,
+Supplementary Figure 3B</h2>
+<pre class="r"><code>g &lt;- plot_grid(ga, gb, rel_widths = c(1,1), labels=c(&quot;a&quot;, &quot;b&quot;), ncol=1,label_size = 20)
+#ggsave(paste(&quot;../output_final/Fig_3EF.pdf&quot;), plot = small_size, device = &quot;pdf&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 0.78)
+ggsave(here(&quot;docs/figure/Supplementary_Fig_3.jpg&quot;), plot = g, device = &quot;jpg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=600, bg = &quot;white&quot;, scale = 1)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.5.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] here_1.0.1      lemon_0.4.9     cowplot_1.1.3   lubridate_1.9.3
+ [5] forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2    
+ [9] readr_2.1.5     tidyr_1.3.1     tibble_3.2.1    ggplot2_3.4.4  
+[13] tidyverse_2.0.0 workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.12        lattice_0.22-5     getPass_0.2-4      ps_1.7.6          
+ [5] rprojroot_2.0.4    digest_0.6.34      utf8_1.2.4         R6_2.5.1          
+ [9] plyr_1.8.9         evaluate_0.23      httr_1.4.7         pillar_1.9.0      
+[13] yulab.utils_0.1.4  rlang_1.1.3        rstudioapi_0.15.0  whisker_0.4.1     
+[17] callr_3.7.3        jquerylib_0.1.4    rmarkdown_2.25     textshaping_0.3.7 
+[21] labeling_0.4.3     munsell_0.5.0      compiler_4.2.3     httpuv_1.6.14     
+[25] xfun_0.42          systemfonts_1.0.5  pkgconfig_2.0.3    gridGraphics_0.5-1
+[29] htmltools_0.5.7    tidyselect_1.2.0   gridExtra_2.3      fansi_1.0.6       
+[33] tzdb_0.4.0         withr_3.0.0        later_1.3.2        grid_4.2.3        
+[37] jsonlite_1.8.8     gtable_0.3.4       lifecycle_1.0.4    git2r_0.33.0      
+[41] magrittr_2.0.3     scales_1.3.0       cli_3.6.2          stringi_1.8.3     
+[45] cachem_1.0.8       farver_2.1.1       fs_1.6.3           promises_1.2.1    
+[49] bslib_0.6.1        ragg_1.2.7         generics_0.1.3     vctrs_0.6.5       
+[53] tools_4.2.3        ggplotify_0.1.2    glue_1.7.0         hms_1.1.3         
+[57] processx_3.8.3     fastmap_1.1.1      yaml_2.3.8         timechange_0.3.0  
+[61] colorspace_2.1-0   memoise_2.0.1      knitr_1.45         sass_0.4.8        </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

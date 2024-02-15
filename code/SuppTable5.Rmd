@@ -1,0 +1,82 @@
+---
+title: "SuppTable5.Rmd"
+author: "Michael Noe"
+date: "2/4/2022"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r packages}
+library("tidyverse")
+library("GenomicRanges")
+library("BSgenome.Hsapiens.UCSC.hg19")
+library("here")
+```
+
+```{r}
+# Load the files located in Moss_et_al-NatComm-2018/results
+# These rds files are generated in SuppTable4.Rmd
+ls <- list.files(here("data", "Moss_et_al-NatComm-2018", "results"), full.names = T)
+ls <- ls[-match("healthy.rds", basename(ls))]
+
+# Combine results except healthy into one data frame 
+t <- tibble()
+for (file in ls) {
+  print(paste0(match(file, ls), " / ", length(ls)))
+  temp <- readRDS(file)
+  ttemp <- as.tibble(temp)[,c(9:16)]
+  if (nrow(t) == 0) {
+    t <- ttemp
+  } else {
+    t <- as.tibble(t + ttemp)
+  }
+}
+
+t$loc <- paste0(seqnames(temp), ":", start(temp)+2, "-", start(temp) +3)
+t$chr <- as.character(seqnames(temp))
+t$pos <- as.numeric(start(temp))
+t$probe <- temp$probes
+t$seq_table <- temp$seq
+t$beta <- temp$beta
+t$seq_gen <- as.character(getSeq(Hsapiens, GRanges(t$loc)))
+table(t$seq_gen == substr(t$seq_table, 3,4))
+t$preceding_motif <- substr(t$seq_table, 1, 4)
+t_plus <- t[which(t$preceding_motif %in% c("ACCG", "CCCG", "GCCG", "TCCG")),]
+t_plus <- t_plus[which(t_plus$chr %in% paste0("chr", c(1:22))),]
+t_plus$start_ratio <- t_plus$start_4motif / t_plus$start_4motif_over
+t_plus$strand <- "+"
+t_plus <- t_plus[order(t_plus$pos),]
+t_plus$chr <- as.numeric(sub("chr", "", t_plus$chr))
+t_plus <- t_plus[order(t_plus$chr),]
+t_plus <- t_plus[-which(is.na(t_plus$start_ratio)),]
+t_plus <- t_plus[,c(12,9,18,16,14,17,10,11)]
+t_plus[,5] <- round(t_plus[,5], digits = 4)
+t_plus[,6] <- round(t_plus[,6], digits = 4)
+t_plus$preceding_motif <- paste0(substr(t_plus$preceding_motif, 1, 1), " | ", substr(t_plus$preceding_motif, 2, 4))
+
+t$preceding_motif <- as.character(reverseComplement(DNAStringSet(substr(t$seq_table, 3, 6))))
+t_min <- t[which(t$preceding_motif %in% c("ACCG", "CCCG", "GCCG", "TCCG")),]
+t_min <- t_min[which(t_min$chr %in% paste0("chr", c(1:22))),]
+t_min$start_ratio <- t_min$end_4motif / t_min$end_4motif_over
+t_min$strand <- "-"
+t_min <- t_min[order(t_min$pos),]
+t_min$chr <- as.numeric(sub("chr", "", t_min$chr))
+t_min <- t_min[order(t_min$chr),]
+t_min <- t_min[-which(is.na(t_min$start_ratio)),]
+t_min <- t_min[,c(12,9,18,16,14,17,10,11)]
+t_min[,5] <- round(t_min[,5], digits = 4)
+t_min[,6] <- round(t_min[,6], digits = 4)
+t_min$preceding_motif <- paste0(substr(t_min$preceding_motif, 1, 1), " | ", substr(t_min$preceding_motif, 2, 4))
+
+t <- rbind(t_plus, t_min)
+t <- t[order(t$pos),]
+t <- t[order(t$chr),]
+
+dir.create(here("output", "supplementary_tables"), showWarnings=FALSE)
+write_csv(t[,c(1:6)], here("output", "supplementary_tables", "tab5.csv")) 
+```
+
+

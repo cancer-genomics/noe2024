@@ -1,0 +1,61 @@
+---
+title: "Supplementary_Figure4.Rmd"
+author: "Michael Noe"
+date: "2024-01-26"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+## Pre-requisites
+
+These packages are necessary to make the plots that make up Supplementary Figure 4.
+
+```{r}
+library("tidyverse")
+library("here")
+```
+
+## Supplementary Figure 4: 
+
+```{r}
+t <- readRDS(here("data", "healthy_cpggroups.rds"))
+t$nchar <- nchar(t$motif)
+t <- t %>%
+  group_by(group, beta, nchar) %>%
+  summarise(nstart = sum(start_all), nover = sum(over_all))
+colnames(t) <- c("group", "beta", "nchar", "start_all", "over_all")
+t$group <- sub("hg19_cpg_", "", t$group)
+t[which(t$group == "inter"),]$group <- "open sea"
+t$group <- factor(t$group, levels = c("islands", "shores", "shelves", "open sea"))
+#t[which(nchar(t$motif) == 3),]$motif <- paste0(substr(t[which(nchar(t$motif) == 3),]$motif, 1,1), " | ", substr(t[which(nchar(t$motif) == 3),]$motif, 2,3))
+#t[which(nchar(t$motif) == 4),]$motif <- paste0(substr(t[which(nchar(t$motif) == 4),]$motif, 1,1), " | ", substr(t[which(nchar(t$motif) == 4),]$motif, 2,4))
+t$motif <- "cg"
+t[which(t$nchar == 3),]$motif <- "A/T/C/G | CG"
+t[which(t$nchar == 4),]$motif <- "A/T/C/G | CCG"
+t$motif <- factor(t$motif, levels = c("A/T/C/G | CG", "A/T/C/G | CCG"))
+t$ratio <- t$start_all / t$over_all
+plot <- ggplot(t, aes(x=beta, y=ratio)) +
+  geom_bar(stat="identity", aes(fill=beta)) +
+  facet_grid(motif~group) +
+  theme_classic(base_size = 20) + 
+  theme(text = element_text(size=16),
+        axis.text.x = element_text(angle = 0, hjust=0.5),
+        axis.title.y = element_text(margin = margin(r = 20, l=20)),
+        axis.title.x = element_text(margin = margin(t = 20, b=20)),
+        strip.background=element_rect(color = NA),
+        panel.spacing=unit(2, "lines"),
+        strip.placement = "outside",
+        legend.position = "none") +
+  scale_fill_gradient(low="#77C8DD", high="#004766") + 
+  scale_y_continuous(labels = scales::percent, breaks = c(0,0.01), limits = c(0,0.01)) +
+  xlab("Methylation (beta-value)") +
+  ylab("Fraction of cfDNA fragments starting or ending at motif")
+ggsave(here("docs/figure/Supplementary_Fig_4.jpg"), plot = plot, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+
+t[which(t$motif == "A/T/C/G | CG"),] %>%
+  group_by(group) %>%
+  summarise(min = min(ratio), max = max(ratio), ratio = max(ratio)/min(ratio))
+```
