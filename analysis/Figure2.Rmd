@@ -1,6 +1,7 @@
 ---
 title: "Figure2.Rmd"
-date: "1/18/2024"
+author: "Michael Noe" 
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
@@ -8,9 +9,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 ## Pre-requisites
 
-These packages are necessary to make the plots that make up Figure 2. 
+These packages are necessary to process the data to make these figures 
 
 ```{r}
 library("tidyverse")
@@ -23,6 +25,7 @@ library("grid")
 library("ggpubr")
 library("here")
 ```
+
 
 ## Figure 2A
 
@@ -159,6 +162,7 @@ plot2A <- ggplot(t_b[which((t_b$diff >= 1) & (t_b$diff <= 40) & (t_b$motif == "C
   xlab("Position in fragment")
 ```
 
+
 ## Figure 2B and 2C
 
 ```{r}
@@ -290,6 +294,7 @@ title <- textGrob("window: +/- 50 bps (total: 101 bps)", gp = gpar(col = "black"
 #plot2BC <- plot_grid(plot2b, plot2c, ncol = 1, align="v", axis="bt", rel_heights = c(5, 5), labels = c("b", "c"), label_size = 20)
 #ggsave(here("docs/figure/figure2bc_window50bp.jpg"), plot = plot2bc_50, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 ```
+
 
 ## Figure 2D and 2E
 

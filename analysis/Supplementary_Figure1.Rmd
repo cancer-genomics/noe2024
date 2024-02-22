@@ -1,13 +1,14 @@
 ---
 title: "Supplementary_Figure1.Rmd"
 author: "Michael Noe"
-date: "2024-01-26"
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
 editor_options:
   chunk_output_type: console
 ---
+
 
 ## Pre-requisites
 

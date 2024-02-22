@@ -29,23 +29,23 @@ The R-packages used to process the samples and to construct the figures are prov
 - Figure 3: [HTML](../docs/Figure3.html), [Code](../analysis/Figure3.Rmd)
   - A,B: [JPG](../docs/figure/Fig_3AB.jpg)
   - C,D: [JPG](../docs/figure/Fig_3CD.jpg)
-  - E: [HTML](../docs/Figure3E.html), [Code](../analysis/Figure3E.Rmd), [JPG](../docs/figure/Fig_3E_multivar.jpg)
-  - F: [JPG](../docs/figure/Fig_3F.jpg)  
-- Figure 4: 
-  - A,B,C: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
-  - C: [HTML](../docs/Figure4C.html), [Code](../analysis/Figure4C.Rmd), [JPG](../docs/figure/Fig_4C.jpg)
+  - E,F: [HTML](../docs/Figure3E.html), [Code](../analysis/Figure3E.Rmd), [JPG](../docs/figure/Fig_3EF.jpg)
+  - G: [JPG](../docs/figure/Fig_3G.jpg)
+  - H: [JPG](../docs/figure/Fig_3H_multivar.jpg)
+  - I: [JPG](../docs/figure/Fig_3I.jpg) 
+- Figure 4: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
 
 # Supplementary Figures
 - Supp. Fig. 1: [HTML](../docs/Supplementary_Figure1.html), [Code](../analysis/Supplementary_Figure1.Rmd), [JPG](../docs/figure/Supplementary_Fig_1.jpg)
 - Supp. Fig. 2: [HTML](../docs/Supplementary_Figure2.html), [Code](../analysis/Supplementary_Figure2.Rmd), [JPG](../docs/figure/Supplementary_Fig_2.jpg)
 - Supp. Fig. 3: [HTML](../docs/Supplementary_Figure3.html), [Code](../analysis/Supplementary_Figure3.Rmd), [JPG](../docs/figure/Supplementary_Fig_3.jpg)
 - Supp. Fig. 4: [HTML](../docs/Supplementary_Figure4.html), [Code](../analysis/Supplementary_Figure4.Rmd), [JPG](../docs/figure/Supplementary_Fig_4.jpg)
-- Supp. Fig. 5: [HTML](), [Code](), [JPG]() Empty
-- Supp. Fig. 6: [HTML](), [Code](), [JPG]() Empty
-- Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd)
-- Supp. Fig. 8: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 5: [HTML](../docs/Supplementary_Figure5.html), [Code](../analysis/Supplementary_Figure5.Rmd), [JPG](../docs/figure/Supplementary_Fig_5.jpg)
+- Supp. Fig. 6: [HTML](../docs/Supplementary_Figure6.html), [Code](../analysis/Supplementary_Figure6.Rmd), [JPG](../docs/figure/Supplementary_Fig_6.jpg)
+- Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd), figures in HTML
+- Supp. Fig. 8: [HTML](../docs/Supplementary_Figure8.html), [Code](../analysis/Supplementary_Figure8.Rmd), [JPG](../docs/figure/Supplementary_Fig_8.jpg)
 - Supp. Fig. 9: [HTML](), [Code](), [JPG]() Empty
-- Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd)
+- Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd), figures in HTML
 
 # Supplementary Tables
 - Supp. Table 1: Refer to supplementary data in Christiano et al., Nature, 2019 and Mathios et al., Nature Communications, 2021 

@@ -1,7 +1,7 @@
 ---
 title: "Figure1.Rmd"
 author: "Michael Noe"
-date: "1/18/2024"
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
@@ -9,9 +9,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 ## Pre-requisites
 
-These packages are necessary to make the plots that make up Figure 1. 
+These packages are necessary to process the data to make these figures 
 
 ```{r}
 library("tidyverse")
@@ -22,6 +23,7 @@ library("data.table")
 library("GenomicRanges")
 library("here")
 ```
+
 
 ## Figure 1A
 
@@ -133,6 +135,7 @@ plot1A_axis <- ggplot(nucleotide_table, aes(x=position_column, y=position_row)) 
 plot1A <- plot_grid(plot1A_plot, plot1A_axis, nrow=2, rel_heights = c(1,0.2), label_size = 20, align = "v")
 #ggsave(here("docs/figure/temp_preferredcfDNA_cfDNA_sheared.jpg"), plot = plot1A, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = 0.8)
 ```
+
 
 ## Figure 1B
 
@@ -250,6 +253,7 @@ plot1B <- dat7 %>%
 
 #ggsave(here("docs/figure/temp_cfdna_ratio_motif.jpg"), plot = plot1B, device = "jpeg",width = 20, height=12,units = "in", dpi=300, scale = .8)
 ```
+
 
 ## Figure 1C
 

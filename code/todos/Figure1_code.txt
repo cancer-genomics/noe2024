@@ -1,9 +1,0 @@
-How are the following data produced?
-
-total <- readRDS(here("data/end_motifs_cfdna_individual.rds"))
-enri <- readRDS(here("data/end_motifs_cfdna_individual_200over_5perc.rds"))
-shea <- readRDS(here("data/end_motifs_sheared_individual.rds"))
-theo <- readRDS(here("data/theoretical_frequencies_hg19.rds"))
-combination_all <- readRDS(here("data/cfdna_ratio_motif.rds"))
-file <- "data/positons_conserved_200over_5perc.rds"; t <- readRDS(here(file))
-meth_file <- "data/Moss_ratios.rds"; m <- readRDS(here(meth_file))

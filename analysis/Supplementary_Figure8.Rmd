@@ -1,0 +1,105 @@
+---
+title: "Supplementary_Figure8.Rmd"
+author: "Michael Noe"
+date: "`r Sys.Date()`" 
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+## Pre-requisites
+
+These packages are necessary to make the plots that make up Supplementary Figure 8.
+
+```{r}
+library("ggplot2")
+library("tidyverse")
+library("cowplot")
+library("gridExtra")
+library("ggpubr")
+library("here")
+```
+
+
+## Supplementary Figure 6
+
+```{r}
+t <- readRDS(here("data/cpg_500000_topbot1000.rds"))
+t$beta <- sub("cpg_highmet", "High methylation", t$beta)
+t$beta <- sub("cpg_lowmet", "Low methylation", t$beta)
+cpg_cov <- ggplot(t, aes(x=relpos_500,y=cov)) +
+  geom_line(aes(group = beta, color = beta), alpha = 0.2) +
+  geom_smooth(method = "loess", se = FALSE, span = 0.5, aes(group= beta, color = beta)) +
+  scale_x_continuous(breaks = c(1,251,501), labels=format(c(-500000, 0, 500000), scientific = FALSE)) +
+  ggtitle("Coverage around CpG-islands") +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.position = c(0.75,0.25),
+        legend.title = element_blank(),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  xlab("") +
+  ylab("Cumulative coverage") +
+  ylim(400, 1000) +
+  scale_color_manual(values= c("#004766", "#77C8DD"))
+
+cpg_size <- ggplot(t, aes(x=relpos_500,y=size)) +
+  geom_line(aes(group = beta, color = beta), alpha = 0.2) +
+  geom_smooth(method = "loess", se = FALSE, span = 0.5, aes(group=beta, color = beta)) +
+  scale_x_continuous(breaks = c(1,251,501), labels=format(c(-500000, 0, 500000), scientific = FALSE)) +
+  ggtitle("cfDNA fragment size around CpG-islands") +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.position = c(0.75,0.25),
+        legend.title = element_blank(),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  ylim(166, 171) +
+  xlab("Position relative to CpG-island") +
+  ylab("Average cfDNA-size")  +
+  scale_color_manual(values= c("#004766", "#77C8DD"))
+
+t <- readRDS(here("data/tss_500000_topbot1000.rds"))
+t$group <- sub("expressed", "High expression", t$group)
+t$group <- sub("cpg_lowmet", "Low expression", t$group)
+tss_cov <- ggplot(t, aes(x=relpos_500,y=cov)) +
+  geom_line(aes(group = group, color = group), alpha = 0.2) +
+  geom_smooth(method = "loess", se = FALSE, span = 0.5, aes(group=group, color = group)) +
+  scale_x_continuous(breaks = c(1,251,501), labels=format(c(-500000, 0, 500000), scientific = FALSE)) +
+  ggtitle("Coverage around transcription start sites") +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.position = c(0.75,0.25),
+        legend.title = element_blank(),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  xlab("") +
+  ylab("") +
+  ylim(400, 1000) +
+  scale_color_manual(values= c("#52c922","#1b7d0e"))
+
+tss_size <- ggplot(t, aes(x=relpos_500,y=size)) +
+  geom_line(aes(group = group, color = group), alpha=0.2) +
+  geom_smooth(method = "loess", se = FALSE, span = 0.5, aes(group=group, color = group)) +
+  scale_x_continuous(breaks = c(1,251,501), labels=format(c(-500000, 0, 500000), scientific = FALSE)) +
+  ggtitle("cfDNA fragment size around transcription start sites") +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.title.x = element_text(margin = margin(t = 20, b = 0)),
+        legend.position = c(0.75,0.25),
+        legend.title = element_blank(),
+        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
+  ylim(166, 171) +
+  xlab("Position relative to TSS") +
+  ylab("") +
+  scale_color_manual(values= c("#52c922","#1b7d0e"))
+
+up <- plot_grid(cpg_cov, tss_cov, nrow = 1, rel_heights = c(1,1), align = "v", labels = c('a', 'b'))
+down <- plot_grid(cpg_size, tss_size, nrow = 1, rel_heights = c(1,1), align = "v", labels = c('c', 'd'))
+all <- plot_grid(up, down, ncol=1, rel_heights = c(1,1), align="h")
+ggsave(here("docs/figure/Supplementary_Fig_8.jpg"), plot = all, device = "jpg",width = 180, height=108,units = "mm", dpi=600, bg = "white", scale = 3)
+```
+
