@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Michael Noe" />
+
+<meta name="date" content="2024-02-24" />
+
+<title>Supplementary_Figure9.Rmd</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">noe2024</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Supplementary_Figure9.Rmd</h1>
+<h4 class="author">Michael Noe</h4>
+<h4 class="date">2024-02-24</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-24
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>noe2024/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240129code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240129)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240129code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240129)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treedc39d3fb10aa7b5335c6182588b4ef4a906fb458targetblankdc39d3fa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/cancer-genomics/noe2024/tree/dc39d3fb10aa7b5335c6182588b4ef4a906fb458" target="_blank">dc39d3f</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treedc39d3fb10aa7b5335c6182588b4ef4a906fb458targetblankdc39d3fa"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/cancer-genomics/noe2024/tree/dc39d3fb10aa7b5335c6182588b4ef4a906fb458" target="_blank">dc39d3f</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    code/.DS_Store
+    Ignored:    data/results/
+
+Untracked files:
+    Untracked:  analysis/Supplementary_Figure9.Rmd
+    Untracked:  data/TSS_grow.rds
+    Untracked:  data/expression_coverage.rds
+    Untracked:  data/start_over_epic.rds
+
+Unstaged changes:
+    Modified:   analysis/Figure3.Rmd
+    Modified:   analysis/index.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="pre-requisites" class="section level2">
+<h2>Pre-requisites</h2>
+<p>These packages are necessary to make the plots that make up
+Supplementary Figure 9.</p>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(&quot;cowplot&quot;)</code></pre>
+<pre><code>
+Attaching package: &#39;cowplot&#39;
+
+The following object is masked from &#39;package:lubridate&#39;:
+
+    stamp</code></pre>
+<pre class="r"><code>library(&quot;annotatr&quot;)
+library(&quot;biomaRt&quot;)
+library(&quot;GenomicRanges&quot;)</code></pre>
+<pre><code>Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: &#39;BiocGenerics&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    intersect, setdiff, union
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: &#39;S4Vectors&#39;
+
+The following objects are masked from &#39;package:lubridate&#39;:
+
+    second, second&lt;-
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    first, rename
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    expand
+
+The following objects are masked from &#39;package:base&#39;:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+
+Attaching package: &#39;IRanges&#39;
+
+The following object is masked from &#39;package:lubridate&#39;:
+
+    %within%
+
+The following objects are masked from &#39;package:dplyr&#39;:
+
+    collapse, desc, slice
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    reduce
+
+Loading required package: GenomeInfoDb</code></pre>
+<pre class="r"><code>library(&quot;BSgenome.Hsapiens.UCSC.hg19&quot;)</code></pre>
+<pre><code>Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: &#39;XVector&#39;
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    compact
+
+
+Attaching package: &#39;Biostrings&#39;
+
+The following object is masked from &#39;package:base&#39;:
+
+    strsplit
+
+Loading required package: rtracklayer</code></pre>
+<pre class="r"><code>library(&quot;here&quot;)</code></pre>
+<pre><code>here() starts at /Users/skoul/Documents/Projects/cfepi_wflow/noe2024</code></pre>
+</div>
+<div id="supplementary-figure-9a" class="section level2">
+<h2>Supplementary Figure 9A:</h2>
+<pre class="r"><code>df &lt;- readRDS(here(&quot;data/TSS_grow.rds&quot;))
+cov &lt;- readRDS(here(&quot;data/expression_coverage.rds&quot;))
+cov &lt;- cov[which(cov$relative_position %in% c(-200:200)),]
+cov &lt;- cov %&gt;%
+  group_by(transcript_id, rna_expression) %&gt;%
+  summarize(coverage = sum(coverage))</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;transcript_id&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre class="r"><code>f &lt;- readRDS(here(&quot;data/start_over_epic.rds&quot;))
+fgr &lt;- GRanges(paste0(f$chr, &quot;:&quot;, f$pos))
+fgr$cpg_id &lt;- f$Row.names
+annots &lt;- c(#&#39;hg19_enhancers_fantom&#39;,
+            &#39;hg19_cpgs&#39;, 
+            &#39;hg19_genes_1to5kb&#39;,
+            &#39;hg19_genes_promoters&#39;, 
+            &#39;hg19_genes_5UTRs&#39;,
+            &#39;hg19_genes_exons&#39;,
+            &#39;hg19_genes_intronexonboundaries&#39;,
+            &#39;hg19_genes_introns&#39;,
+            &#39;hg19_genes_3UTRs&#39;,
+            &#39;hg19_genes_intergenic&#39;)
+annots &lt;- build_annotations(genome = &#39;hg19&#39;, annotations = annots)</code></pre>
+<pre><code>Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+
+
+Attaching package: &#39;AnnotationDbi&#39;
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    select
+
+
+&#39;select()&#39; returned 1:1 mapping between keys and columns
+Building promoters...
+Building 1to5kb upstream of TSS...
+Building intergenic...
+Building 5UTRs...
+Building 3UTRs...
+Building exons...
+Building introns...
+Building intron exon boundaries...
+snapshotDate(): 2022-10-31
+Building CpG islands...
+loading from cache
+Building CpG shores...
+Building CpG shelves...
+Building inter-CpG-islands...</code></pre>
+<pre class="r"><code>annotated &lt;- annotate_regions(regions = fgr, annotations = annots, ignore.strand = T) %&gt;% 
+  as_tibble()</code></pre>
+<pre><code>Annotating...</code></pre>
+<pre class="r"><code>annotated &lt;- annotated[-which(is.na(annotated$annot.gene_id)),]
+x &lt;- annotated[,c(6,15)] %&gt;%
+  group_by(cpg_id) %&gt;%
+  summarize(
+    symbol = paste(unique(annot.symbol), collapse = &quot;, &quot;))
+symbols &lt;- str_split(x$symbol, &quot;, &quot;)
+x2 &lt;- tibble(&quot;cpg_id&quot; = rep(x$cpg_id, unlist(lapply(symbols,length))),
+             &quot;symbol&quot; = unlist(symbols))
+
+ensembl = useEnsembl(biomart=&quot;ensembl&quot;)
+mart &lt;- useDataset(&quot;hsapiens_gene_ensembl&quot;, useMart(&quot;ensembl&quot;))
+searchDatasets(mart = mart, pattern = &quot;hsapiens&quot;)</code></pre>
+<pre><code>                 dataset              description    version
+80 hsapiens_gene_ensembl Human genes (GRCh38.p14) GRCh38.p14</code></pre>
+<pre class="r"><code>x3 &lt;- as.tibble(getBM(attributes = c(&#39;ensembl_gene_id&#39;, &#39;hgnc_symbol&#39;),
+      mart = mart))</code></pre>
+<pre><code>Warning: `as.tibble()` was deprecated in tibble 2.0.0.
+ℹ Please use `as_tibble()` instead.
+ℹ The signature and semantics have changed, see `?as_tibble`.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.</code></pre>
+<pre class="r"><code>colnames(x3) &lt;- c(&quot;ensembl&quot;, &quot;symbol&quot;)
+x4 &lt;- full_join(x=x2, y=x3, by=&quot;symbol&quot;)</code></pre>
+<pre><code>Warning in full_join(x = x2, y = x3, by = &quot;symbol&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 4 of `x` matches multiple rows in `y`.
+ℹ Row 19296 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>tissue_key &lt;- read.table(here(&quot;data/tissue_key.tsv&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+conv &lt;- read.table(here(&#39;data/labels.txt&#39;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+rna &lt;- read.table(here(&#39;data/RNAtable.tsv.gz&#39;),as.is=T,header=T)
+express &lt;- conv[which(conv$Category %in% c(&quot;Myeloid&quot;)),]$RName
+express_df &lt;- rna[c(&quot;GeneID&quot;, express)]
+express_df$mean &lt;- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df &lt;- express_df[order(-express_df$mean),]
+express_df &lt;- express_df[,c(1,8)]
+colnames(express_df) &lt;- c(&quot;ensembl&quot;, &quot;rna&quot;)
+x5 &lt;- full_join(x=x4, y=express_df, by=&quot;ensembl&quot;)
+start(fgr) &lt;- start(fgr) - 2
+end(fgr) &lt;- start(fgr) + 5
+seq &lt;- getSeq(Hsapiens, fgr)
+f$seq &lt;- as.character(seq)
+f_acg &lt;- f[which(substr(f$seq, 2,4) == &quot;ACG&quot;),]
+f_cgt &lt;- f[which(substr(f$seq, 3,5) == &quot;CGT&quot;),]
+f_tcg &lt;- f[which(substr(f$seq, 2,4) == &quot;TCG&quot;),]
+f_cga &lt;- f[which(substr(f$seq, 3,5) == &quot;CGA&quot;),]
+f_atcg &lt;- rbind(f_acg, f_tcg)
+f_cgat &lt;- rbind(f_cga, f_cga)
+f_atcg$ratio &lt;- f_atcg$start / f_atcg$over
+f_cgat$ratio &lt;- f_cgat$start / f_cgat$over
+f &lt;- rbind(f_atcg, f_cgat)
+#f$ratio &lt;- (f$start + f$end) / (2 * f$over)
+f$beta &lt;- rowMeans(f[,(4:11)])
+f &lt;- f[,c(1,16,17)]
+colnames(f) &lt;- c(&quot;cpg_id&quot;, &quot;ratio&quot;, &quot;beta&quot;)
+x6 &lt;- full_join(x=x5, y=f, by=&quot;cpg_id&quot;)</code></pre>
+<pre><code>Warning in full_join(x = x5, y = f, by = &quot;cpg_id&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 6 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>x6 &lt;- drop_na(x6)
+x6 &lt;- x6[which(!duplicated(x6)),]
+
+x7 &lt;- x6 %&gt;%
+  group_by(ensembl) %&gt;%
+  summarize(beta = mean(beta))
+
+cov$beta &lt;- NA
+cov$beta &lt;- x7[match(cov$transcript_id, x7$ensembl),]$beta
+colnames(cov) &lt;- sub(&#39;transcript_id&#39; , &#39;transcript&#39;, colnames(cov))
+i &lt;- 18
+all &lt;- full_join(x=cov, y=df[,c(1, i)], by=&quot;transcript&quot;)
+colnames(all) &lt;- c(&quot;transcript&quot;, &quot;rna_expression&quot;, &quot;coverage&quot;, &quot;beta&quot;, &quot;newcov&quot;)
+cov1000exp &lt;- all[order(-all$rna_expression),][c(1:1000),]
+cov1000nexp &lt;- all[order(all$rna_expression),][c(1:1000),]
+cov_meth &lt;- all[which(all$beta &gt;= 0.7),]
+cov_unmeth &lt;- all[which(all$beta &lt;= 0.3),]
+covmeth1000exp &lt;- cov_meth[order(-cov_meth$rna_expression),][c(1:1000),]
+covmeth1000nexp &lt;- cov_meth[order(cov_meth$rna_expression),][c(1:1000),]
+covunmeth1000exp &lt;- cov_unmeth[order(-cov_unmeth$rna_expression),][c(1:1000),]
+covunmeth1000nexp &lt;- cov_unmeth[order(cov_unmeth$rna_expression),][c(1:1000),]
+
+cov1000exp$group &lt;- &quot;top 1000 expressed genes&quot;
+cov1000nexp$group &lt;- &quot;top 1000 not expressed genes&quot;
+covmeth1000exp$group &lt;- &quot;top 1000 expressed, methylated genes&quot;
+covmeth1000nexp$group &lt;- &quot;top 1000 not expressed, methylated genes&quot;
+covunmeth1000exp$group &lt;- &quot;top 1000 expressed, unmethylated genes&quot;
+covunmeth1000nexp$group &lt;- &quot;top 1000 not expressed, unmethylated genes&quot;
+
+cov_all &lt;- rbind(cov1000exp, cov1000nexp,
+                 covmeth1000exp, covmeth1000nexp,
+                 covunmeth1000exp, covunmeth1000nexp)
+  
+cov_all$group &lt;- factor(cov_all$group, levels = c(&quot;top 1000 expressed genes&quot;, &quot;top 1000 not expressed genes&quot;, &quot;top 1000 expressed, methylated genes&quot;, &quot;top 1000 expressed, unmethylated genes&quot;, &quot;top 1000 not expressed, methylated genes&quot;, &quot;top 1000 not expressed, unmethylated genes&quot;))
+
+cov_all_max &lt;- max(cov_all$newcov)
+area &lt;- sub(&quot;tss_&quot;, &quot;&quot;, colnames(df)[i])
+alg_cov &lt;- ggplot(cov_all[which(cov_all$group %in% c(&quot;top 1000 expressed genes&quot;, &quot;top 1000 not expressed genes&quot;)),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        #axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        plot.title = element_text(hjust = 0.5,  size=16)) +
+  scale_fill_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_color_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c(&quot;High\nexpression&quot;, &quot;Low\nexpression&quot;)) +
+  ggtitle(&quot;All genes&quot;) +
+  ylab(paste0(&quot;Cumulative cfDNA coverage\naround transcription start sites&quot;))
+unmethg_cov &lt;- ggplot(cov_all[which(cov_all$group %in% c(&quot;top 1000 expressed, unmethylated genes&quot;, &quot;top 1000 not expressed, unmethylated genes&quot;)),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        plot.title = element_text(hjust = 0.5,  size=16)) +
+  scale_fill_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_color_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c(&quot;High\nexpression&quot;, &quot;Low\nexpression&quot;)) +
+  ggtitle(&quot;Unmethylated genes&quot;)
+methg_cov &lt;- ggplot(cov_all[which(cov_all$group %in% c(&quot;top 1000 expressed, methylated genes&quot;, &quot;top 1000 not expressed, methylated genes&quot;)),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        plot.title = element_text(hjust = 0.5, size=16)) +
+  scale_fill_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_color_manual(values = c(&quot;#77dd77&quot;, &quot;#00660a&quot;)) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c(&quot;High\nexpression&quot;, &quot;Low\nexpression&quot;)) +
+  ggtitle(&quot;Methylated genes&quot;)
+
+plot_1 &lt;- cowplot::plot_grid(alg_cov, unmethg_cov, methg_cov, nrow=1, rel_widths = c(1,1,1), align = &quot;vh&quot;, labels =  c(&quot;A&quot;, &quot;&quot;, &quot;&quot;), label_size = 20)</code></pre>
+<pre><code>Warning: Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
+<pre class="r"><code>ggsave(here(&quot;docs/figure/Supplementary_Fig_9A.jpg&quot;), plot = plot_1, device = &quot;jpeg&quot;,width = 15, height=12,units = &quot;in&quot;, dpi=600)</code></pre>
+</div>
+<div id="supplementary-figure-9b" class="section level2">
+<h2>Supplementary Figure 9B:</h2>
+<pre class="r"><code>f &lt;- readRDS(here(&quot;data/start_over_epic.rds&quot;))
+fgr &lt;- GRanges(paste0(f$chr, &quot;:&quot;, f$pos))
+fgr$cpg_id &lt;- f$Row.names
+annots &lt;- c(&#39;hg19_enhancers_fantom&#39;,
+            &#39;hg19_cpgs&#39;, 
+            &#39;hg19_genes_1to5kb&#39;,
+            &#39;hg19_genes_promoters&#39;, 
+            &#39;hg19_genes_5UTRs&#39;,
+            &#39;hg19_genes_exons&#39;,
+            &#39;hg19_genes_intronexonboundaries&#39;,
+            &#39;hg19_genes_introns&#39;,
+            &#39;hg19_genes_3UTRs&#39;,
+            &#39;hg19_genes_intergenic&#39;)
+annots &lt;- build_annotations(genome = &#39;hg19&#39;, annotations = annots)</code></pre>
+<pre><code>Building enhancers...</code></pre>
+<pre><code>&#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>Building promoters...</code></pre>
+<pre><code>Building 1to5kb upstream of TSS...</code></pre>
+<pre><code>Building intergenic...</code></pre>
+<pre><code>Building 5UTRs...</code></pre>
+<pre><code>Building 3UTRs...</code></pre>
+<pre><code>Building exons...</code></pre>
+<pre><code>Building introns...</code></pre>
+<pre><code>Building intron exon boundaries...</code></pre>
+<pre><code>snapshotDate(): 2022-10-31</code></pre>
+<pre><code>Building CpG islands...</code></pre>
+<pre><code>loading from cache</code></pre>
+<pre><code>Building CpG shores...</code></pre>
+<pre><code>Building CpG shelves...</code></pre>
+<pre><code>Building inter-CpG-islands...</code></pre>
+<pre class="r"><code>annotated &lt;- annotate_regions(regions = fgr, annotations = annots, ignore.strand = T) %&gt;% 
+  as_tibble()</code></pre>
+<pre><code>Annotating...</code></pre>
+<pre class="r"><code>annotated &lt;- annotated[-which(is.na(annotated$annot.gene_id)),]
+x &lt;- annotated[,c(6,15)] %&gt;%
+  group_by(cpg_id) %&gt;%
+  summarize(
+    symbol = paste(unique(annot.symbol), collapse = &quot;, &quot;))
+symbols &lt;- str_split(x$symbol, &quot;, &quot;)
+x2 &lt;- tibble(&quot;cpg_id&quot; = rep(x$cpg_id, unlist(lapply(symbols,length))),
+             &quot;symbol&quot; = unlist(symbols))
+ensembl = useEnsembl(biomart=&quot;ensembl&quot;)
+mart &lt;- useDataset(&quot;hsapiens_gene_ensembl&quot;, useMart(&quot;ensembl&quot;))
+searchDatasets(mart = ensembl, pattern = &quot;hsapiens&quot;)</code></pre>
+<pre><code>                 dataset              description    version
+80 hsapiens_gene_ensembl Human genes (GRCh38.p14) GRCh38.p14</code></pre>
+<pre class="r"><code>x3 &lt;- as.tibble(getBM(attributes = c(&#39;ensembl_gene_id&#39;, &#39;hgnc_symbol&#39;),
+      mart = mart))
+colnames(x3) &lt;- c(&quot;ensembl&quot;, &quot;symbol&quot;)
+x4 &lt;- full_join(x=x2, y=x3, by=&quot;symbol&quot;)</code></pre>
+<pre><code>Warning in full_join(x = x2, y = x3, by = &quot;symbol&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 4 of `x` matches multiple rows in `y`.
+ℹ Row 19296 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>tissue_key &lt;- read.table(here(&quot;data/tissue_key.tsv&quot;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+conv &lt;- read.table(here(&#39;data/labels.txt&#39;),as.is=T,header=T,sep=&quot;\t&quot;,quote=&quot;\&quot;&quot;)
+rna &lt;- read.table(here(&#39;data/RNAtable.tsv.gz&#39;),as.is=T,header=T)
+express &lt;- conv[which(conv$Category %in% c(&quot;Myeloid&quot;)),]$RName
+express_df &lt;- rna[c(&quot;GeneID&quot;, express)]
+express_df$mean &lt;- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df &lt;- express_df[order(-express_df$mean),]
+express_df &lt;- express_df[,c(1,8)]
+colnames(express_df) &lt;- c(&quot;ensembl&quot;, &quot;rna&quot;)
+x5 &lt;- full_join(x=x4, y=express_df, by=&quot;ensembl&quot;)
+start(fgr) &lt;- start(fgr) - 2
+end(fgr) &lt;- start(fgr) + 5
+seq &lt;- getSeq(Hsapiens, fgr)
+f$seq &lt;- as.character(seq)
+f_acg &lt;- f[which(substr(f$seq, 2,4) == &quot;ACG&quot;),]
+f_cgt &lt;- f[which(substr(f$seq, 3,5) == &quot;CGT&quot;),]
+f_tcg &lt;- f[which(substr(f$seq, 2,4) == &quot;TCG&quot;),]
+f_cga &lt;- f[which(substr(f$seq, 3,5) == &quot;CGA&quot;),]
+f_atcg &lt;- rbind(f_acg, f_tcg)
+f_cgat &lt;- rbind(f_cga, f_cga)
+f_atcg$ratio &lt;- f_atcg$start / f_atcg$over
+f_cgat$ratio &lt;- f_cgat$start / f_cgat$over
+f &lt;- rbind(f_atcg, f_cgat)
+#f$ratio &lt;- (f$start + f$end) / (2 * f$over)
+f$beta &lt;- rowMeans(f[,(4:11)])
+f &lt;- f[,c(1,16,17)]
+colnames(f) &lt;- c(&quot;cpg_id&quot;, &quot;ratio&quot;, &quot;beta&quot;)
+x6 &lt;- full_join(x=x5, y=f, by=&quot;cpg_id&quot;)</code></pre>
+<pre><code>Warning in full_join(x = x5, y = f, by = &quot;cpg_id&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 6 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>x6 &lt;- drop_na(x6)
+x6 &lt;- x6[which(!duplicated(x6)),]
+#saveRDS(x6, &quot;/users/mnoe/x6.rds&quot;)
+#x6 &lt;- readRDS(&quot;/Users/mnoe/Documents/x6.rds&quot;)
+x7 &lt;- x6[order(x6$beta),]
+x7$order &lt;- c(1:nrow(x7)) / nrow(x7)
+x7$order &lt;- round((x7$order + 0.05), digits=1)
+x7_sum &lt;- x7 %&gt;% 
+  group_by(order) %&gt;%
+  summarize(beta_sum = mean(beta),
+            ratio_sum = mean(ratio),
+            rna_sum = mean(rna))
+
+ggmeth_meth &lt;- ggplot(x7_sum, aes(x=order, y=beta_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = &quot;Methylation (beta-value)&quot;, limits = c(0,1)) +
+  scale_fill_gradient(low=&quot;#77C8DD&quot;, high=&quot;#004766&quot;)
+#ggmeth_meth
+
+ggmeth_ratio &lt;- ggplot(x7_sum, aes(x=order, y=ratio_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = &quot;Fraction of cfDNA fragments\nstarting or ending at CGs&quot;, limits = c(0,0.009)) +
+  scale_fill_gradient(low=&quot;#77dd77&quot;, high=&quot;#00660a&quot;)
+#ggmeth_ratio
+
+ggmeth_rna &lt;- ggplot(x7_sum, aes(x=order, y=rna_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20))) +
+  scale_y_continuous(name = &quot;Gene expression (TPM)&quot;, limits = c(0,150)) +
+  scale_fill_gradient(low=&quot;#77C8DD&quot;, high=&quot;#004766&quot;) +
+  xlab(&quot;order by methylation&quot;)
+#ggmeth_rna
+
+x8 &lt;- x6[order(x6$rna),]
+x8$order &lt;- c(1:nrow(x8)) / nrow(x8)
+x8$order &lt;- round((x8$order + 0.05), digits=1)
+x8_sum &lt;- x8 %&gt;% 
+  group_by(order) %&gt;%
+  summarize(beta_sum = mean(beta),
+            ratio_sum = mean(ratio),
+            rna_sum = mean(rna))
+
+ggrna_meth &lt;- ggplot(x8_sum, aes(x=order, y=beta_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = &quot;Methylation (beta-value)&quot;, limits = c(0,1)) +
+  scale_fill_gradient(low=&quot;#77C8DD&quot;, high=&quot;#004766&quot;)
+#ggrna_meth
+
+ggrna_ratio &lt;- ggplot(x8_sum, aes(x=order, y=ratio_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = &quot;Fraction of cfDNA fragments\nstarting or ending at CGs&quot;, limits = c(0,0.009)) +
+  scale_fill_gradient(low=&quot;#77dd77&quot;, high=&quot;#00660a&quot;)
+#ggrna_ratio
+
+ggrna_rna &lt;- ggplot(x8_sum, aes(x=order, y=rna_sum)) +
+  geom_bar(stat=&quot;identity&quot;, aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = &quot;none&quot;,
+        panel.spacing = unit(2, &quot;lines&quot;),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20))) +
+  scale_y_continuous(name = &quot;Gene expression (TPM)&quot;, limits = c(0,150)) +
+  scale_fill_gradient(low=&quot;#77C8DD&quot;, high=&quot;#004766&quot;) +
+  xlab(&quot;order by expression&quot;)
+#ggrna_rna
+
+plot_meth &lt;- plot_grid(ggmeth_ratio, ggmeth_meth, ggmeth_rna , ncol=1, nrow=3, rel_heights = c(1,1,1.2), align = &quot;v&quot;)</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre class="r"><code>plot_rna &lt;- plot_grid(ggrna_ratio, ggrna_meth, ggrna_rna, ncol=1, nrow=3, rel_heights = c(1,1,1.2), align = &quot;v&quot;)
+plot &lt;- plot_grid(plot_meth, plot_rna, ncol=2, rel_widths= c(1,1), align=&quot;h&quot;, labels=c(&quot;B&quot;,&quot;&quot;), label_size = 20)
+ggsave(here(&quot;docs/figure/Supplementary_Fig_9B.jpg&quot;), plot = plot, device = &quot;jpeg&quot;,width = 15, height=12,units = &quot;in&quot;, dpi=600)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.5.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] org.Hs.eg.db_3.16.0                    
+ [2] TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2
+ [3] GenomicFeatures_1.50.4                 
+ [4] AnnotationDbi_1.60.2                   
+ [5] Biobase_2.58.0                         
+ [6] here_1.0.1                             
+ [7] BSgenome.Hsapiens.UCSC.hg19_1.4.3      
+ [8] BSgenome_1.66.3                        
+ [9] rtracklayer_1.58.0                     
+[10] Biostrings_2.66.0                      
+[11] XVector_0.38.0                         
+[12] GenomicRanges_1.50.2                   
+[13] GenomeInfoDb_1.34.9                    
+[14] IRanges_2.32.0                         
+[15] S4Vectors_0.36.2                       
+[16] BiocGenerics_0.44.0                    
+[17] biomaRt_2.54.1                         
+[18] annotatr_1.24.0                        
+[19] cowplot_1.1.3                          
+[20] lubridate_1.9.3                        
+[21] forcats_1.0.0                          
+[22] stringr_1.5.1                          
+[23] dplyr_1.1.4                            
+[24] purrr_1.0.2                            
+[25] readr_2.1.5                            
+[26] tidyr_1.3.1                            
+[27] tibble_3.2.1                           
+[28] ggplot2_3.4.4                          
+[29] tidyverse_2.0.0                        
+[30] workflowr_1.7.1                        
+
+loaded via a namespace (and not attached):
+  [1] colorspace_2.1-0              rjson_0.2.21                 
+  [3] ellipsis_0.3.2                rprojroot_2.0.4              
+  [5] fs_1.6.3                      rstudioapi_0.15.0            
+  [7] farver_2.1.1                  bit64_4.0.5                  
+  [9] interactiveDisplayBase_1.36.0 fansi_1.0.6                  
+ [11] xml2_1.3.6                    codetools_0.2-19             
+ [13] cachem_1.0.8                  knitr_1.45                   
+ [15] jsonlite_1.8.8                Rsamtools_2.14.0             
+ [17] dbplyr_2.4.0                  png_0.1-8                    
+ [19] shiny_1.8.0                   BiocManager_1.30.22          
+ [21] compiler_4.2.3                httr_1.4.7                   
+ [23] Matrix_1.6-5                  fastmap_1.1.1                
+ [25] cli_3.6.2                     later_1.3.2                  
+ [27] htmltools_0.5.7               prettyunits_1.2.0            
+ [29] tools_4.2.3                   gtable_0.3.4                 
+ [31] glue_1.7.0                    GenomeInfoDbData_1.2.9       
+ [33] reshape2_1.4.4                rappdirs_0.3.3               
+ [35] Rcpp_1.0.12                   jquerylib_0.1.4              
+ [37] vctrs_0.6.5                   xfun_0.42                    
+ [39] ps_1.7.6                      timechange_0.3.0             
+ [41] mime_0.12                     lifecycle_1.0.4              
+ [43] restfulr_0.0.15               XML_3.99-0.16.1              
+ [45] AnnotationHub_3.6.0           getPass_0.2-4                
+ [47] zlibbioc_1.44.0               scales_1.3.0                 
+ [49] ragg_1.2.7                    hms_1.1.3                    
+ [51] promises_1.2.1                MatrixGenerics_1.10.0        
+ [53] parallel_4.2.3                SummarizedExperiment_1.28.0  
+ [55] yaml_2.3.8                    curl_5.2.0                   
+ [57] memoise_2.0.1                 sass_0.4.8                   
+ [59] stringi_1.8.3                 RSQLite_2.3.5                
+ [61] BiocVersion_3.16.0            BiocIO_1.8.0                 
+ [63] filelock_1.0.3                BiocParallel_1.32.6          
+ [65] systemfonts_1.0.5             rlang_1.1.3                  
+ [67] pkgconfig_2.0.3               bitops_1.0-7                 
+ [69] matrixStats_1.1.0             lattice_0.22-5               
+ [71] evaluate_0.23                 labeling_0.4.3               
+ [73] GenomicAlignments_1.34.1      bit_4.0.5                    
+ [75] processx_3.8.3                tidyselect_1.2.0             
+ [77] plyr_1.8.9                    magrittr_2.0.3               
+ [79] R6_2.5.1                      generics_0.1.3               
+ [81] DelayedArray_0.24.0           DBI_1.2.1                    
+ [83] pillar_1.9.0                  whisker_0.4.1                
+ [85] withr_3.0.0                   KEGGREST_1.38.0              
+ [87] RCurl_1.98-1.14               crayon_1.5.2                 
+ [89] utf8_1.2.4                    BiocFileCache_2.11.1         
+ [91] tzdb_0.4.0                    rmarkdown_2.25               
+ [93] progress_1.2.3                grid_4.2.3                   
+ [95] blob_1.2.4                    callr_3.7.3                  
+ [97] git2r_0.33.0                  digest_0.6.34                
+ [99] xtable_1.8-4                  regioneR_1.30.0              
+[101] httpuv_1.6.14                 textshaping_0.3.7            
+[103] munsell_0.5.0                 bslib_0.6.1                  </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

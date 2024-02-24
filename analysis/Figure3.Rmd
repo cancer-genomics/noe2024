@@ -16,10 +16,8 @@ These packages are necessary to process the data to make these figures
 
 ```{r}
 library("reshape2")
-library("ggplot2")
 library("cowplot")
 library("tidyverse")
-library("dplyr")
 library("GenomicRanges")
 library("here")
 ```
@@ -1057,30 +1055,14 @@ ggsave(here("docs/figure/Fig_3EF.jpg"), plot = small_size, device = "jpg",width 
 
 ```{r}
 t <- readRDS(here("data/mouse_frag.rds"))
-t <- t[which(t$top == 1000),]
-t[which(t$mut == "MT"),]$mut <- "IDH mutant"
-t[which(t$mut == "WT"),]$mut <- "IDH wild-type"
-t1 <- t[which(t$inplant == "flank"),] %>%
-  group_by(mut, top) %>%
-  summarise(
-            rna_min = (sum(rna_plus) / sum(all)) / rna_plus_length,
-            rna_plus = (sum(rna_min) / sum(all)) / rna_min_length,
-            met_min = sum(met_min) / sum(all),
-            met_plus = sum(met_plus) / sum(all),
-            met_is_min = (sum(met_is_min) / sum(all)) / met_is_min_length,
-            met_is_plus = (sum(met_is_plus) / sum(all)) / met_is_plus_length,
-            ann_is_min = sum(ann_cpg_is_min) / sum(all),
-            ann_is_plus = sum(ann_cpg_is_plus) / sum(all),
-            idh_all_min = sum(idh_all_min) / sum(all),
-            idh_all_plus = sum(idh_all_plus) / sum(all),
-            idh_all_is_min = sum(idh_all_is_plus) / sum(all),
-            idh_all_is_plus = sum(idh_all_is_min) / sum(all),
-            all = sum(all))
-t1l <- reshape2::melt(t1,id.vars = c("mut", "top"))
-t2 <- t[which(t$inplant == "flank"),] %>%
-  group_by(mut, top, id) %>%
-  summarise(
-            rna_min = (sum(rna_plus) / sum(all)) / rna_plus_length,
+t <- t[-which(t$id == "PGDX27350P"),] ### remove a file with problems
+t <- t[-which(t$id == "PGDX27354P"),]
+t <- t[-which(t$inplant == "brain"),]
+t[which(t$mut == "MT"),]$mut <- "mutant"
+t[which(t$mut == "WT"),]$mut <- "wild-type"
+t2 <- t %>%
+  group_by(mut,id) %>%
+  summarise(rna_min = (sum(rna_plus) / sum(all)) / rna_plus_length,
             rna_plus = (sum(rna_min) / sum(all)) / rna_min_length,
             met_min = (sum(met_min) / sum(all)) / met_min_length,
             met_plus = (sum(met_plus) / sum(all)) / met_plus_length,
@@ -1093,7 +1075,7 @@ t2 <- t[which(t$inplant == "flank"),] %>%
             idh_all_is_min = (sum(idh_all_is_plus) / sum(all)) / idh_all_is_plus_length,
             idh_all_is_plus = (sum(idh_all_is_min) / sum(all)) / idh_all_is_min_length,
             all = sum(all))
-t2l <- reshape2::melt(t2,id.vars = c("mut", "top", "id"))
+t2l <- reshape2::melt(t2,id.vars = c("mut", "id"))
 
 m <- max(t2l[which((t2l$variable %in% c('met_is_min', 'met_is_plus')) & (t2l$variable == "met_is_min")),]$value)
 t2l[which((t2l$variable %in% c('met_is_min', 'met_is_plus')) & (t2l$variable == "met_is_min")),]$value <- t2l[which((t2l$variable %in% c('met_is_min', 'met_is_plus')) & (t2l$variable == "met_is_min")),]$value / m
@@ -1119,23 +1101,25 @@ met_is_cases <- ggplot(t2l_sum, aes(y=value, x=factor(variable), fill=mut)) +
   theme_classic(base_size = 10) +
   theme(#axis.title.x = element_blank(),
         strip.background = element_blank(),
-        legend.title=element_blank(),
+        #legend.title=element_blank(),
         text = element_text(size=20),
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        #axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
         axis.title.x = element_text(margin = margin(t = 20, b = 0)),
-        axis.title.y = element_text(margin = margin(r = 20, l = 0))) +
-  ylab("Normalized cfDNA coverage") +
+        axis.title.y = element_text(margin = margin(r = 0, l = 0))) +
+  ylab("Normalized human-derived cfDNA coverage") +
   scale_fill_manual(values = c("red", "#004766")) + 
   scale_color_manual(values = c("red", "#004766")) +
   scale_y_continuous(labels = scales::percent, breaks = c(0,1)) +
-  scale_x_discrete(labels=c("rna_min" = "expressed\nin IDH mutant", 
-                            "rna_plus" = "not expressed\nin IDH mutant",
-                            "met_is_min" = "methylated\nin IDH mutant",
-                            "met_is_plus" = "unmethylation\nin IDH mutant")) +
-  xlab("Top 1000 differentially methylated / expressed locations")
-met_is_cases_label <- plot_grid(met_is_cases, labels=c("g"), nrow=1, label_size = 20)
-ggsave(here("docs/figure/Fig_3G.jpg"), plot = met_is_cases_label, device = "jpeg", width = 12 , height= 12, units = "in", dpi=300, scale = 0.82)
-
+  scale_x_discrete(labels=c("rna_min" = "High\nexpression\nIDH mutant", 
+                            "rna_plus" = "High\nexpression\nIDH WT",
+                            "met_is_min" = "High\nmethylation\nIDH WT",
+                            "met_is_plus" = "High\nmethylation\nIDH mutant")) +
+  xlab("Top 1000 differentially methylated or expressed locations\nin isogenic IDH1 mutant or wild-type tumors") + 
+  guides(fill=guide_legend(title="IDH status\nin isogenic\nxenografts"),
+         colour=guide_legend(title="IDH status\nin isogenic\nxenografts")) 
+  
+met_is_cases_label <- plot_grid(met_is_cases, labels=c("e"), nrow=1, label_size = 20)
+ggsave(here("docs/figure/Fig_3G.jpg"), plot = met_is_cases_label, device = "jpeg", width = 12 , height= 15, units = "in", dpi=300, scale = 0.82)
 
 
 all <- readRDS(here("data/mouse_all_frag.rds"))
@@ -1155,7 +1139,7 @@ ggplot(all, aes(x=size, y=size_amount_norm,group=paste0(case,'_',inplant))) +
 ```
 
 
-## Figure 3G: cfDNA fragment size distributions and cumulative representations
+## Figure 3I: cfDNA fragment size distributions and cumulative representations
 
 ```{r}
 f <- readRDS(here("data/fragments_somatic.rds"))
@@ -1335,7 +1319,7 @@ ggsave(here("docs/figure/Fig_3I.jpg"), plot = avv, width = 20, height=10, units 
 ```
 
 
-## Figure 3E (multivariate model)
+## Figure 3H (multivariate model)
 
 ```{r}
 df <- readRDS(here("data/multivariate_model_coverage_size.rds"))
@@ -1374,8 +1358,6 @@ ggsave(here("docs/figure/Fig_3H_multivar.jpg"), plot = fig3e_multivar, device = 
 ```
 
 
-
-
 ```{r}
 
 matrix <- readRDS(here("data/tss_cov_smallfragments.rds"))
@@ -1403,5 +1385,3 @@ saveRDS(included_genes[c(1:round(length(included_genes)/3))], here("data/top_thi
 
 t <- readRDS(here("data/motifs_cfdna_144_167.rds"))
 ```
-
-

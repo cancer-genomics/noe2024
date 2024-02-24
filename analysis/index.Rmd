@@ -29,9 +29,9 @@ The R-packages used to process the samples and to construct the figures are prov
 - Figure 3: [HTML](../docs/Figure3.html), [Code](../analysis/Figure3.Rmd)
   - A,B: [JPG](../docs/figure/Fig_3AB.jpg)
   - C,D: [JPG](../docs/figure/Fig_3CD.jpg)
-  - E,F: [HTML](../docs/Figure3E.html), [Code](../analysis/Figure3E.Rmd), [JPG](../docs/figure/Fig_3EF.jpg)
+  - E,F: [JPG](../docs/figure/Fig_3EF.jpg)
   - G: [JPG](../docs/figure/Fig_3G.jpg)
-  - H: [JPG](../docs/figure/Fig_3H_multivar.jpg)
+  - H: [HTML](../docs/Figure3H.html), [Code](../analysis/Figure3H.Rmd), figures in HTML 
   - I: [JPG](../docs/figure/Fig_3I.jpg) 
 - Figure 4: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
 
@@ -44,7 +44,9 @@ The R-packages used to process the samples and to construct the figures are prov
 - Supp. Fig. 6: [HTML](../docs/Supplementary_Figure6.html), [Code](../analysis/Supplementary_Figure6.Rmd), [JPG](../docs/figure/Supplementary_Fig_6.jpg)
 - Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd), figures in HTML
 - Supp. Fig. 8: [HTML](../docs/Supplementary_Figure8.html), [Code](../analysis/Supplementary_Figure8.Rmd), [JPG](../docs/figure/Supplementary_Fig_8.jpg)
-- Supp. Fig. 9: [HTML](), [Code](), [JPG]() Empty
+- Supp. Fig. 9: [HTML](../docs/Supplementary_Figure9.html), [Code](../analysis/Supplementary_Figure9.Rmd)
+  - A: [JPG](../docs/figure/Supplementary_Fig_9A.jpg) 
+  - B: [JPG](../docs/figure/Supplementary_Fig_9B.jpg)  
 - Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd), figures in HTML
 
 # Supplementary Tables

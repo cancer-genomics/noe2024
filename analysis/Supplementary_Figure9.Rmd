@@ -1,0 +1,373 @@
+---
+title: "Supplementary_Figure9.Rmd"
+author: "Michael Noe"
+date: "`r Sys.Date()`" 
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+## Pre-requisites
+
+These packages are necessary to make the plots that make up Supplementary Figure 9.
+
+```{r}
+library("tidyverse")
+library("cowplot")
+library("annotatr")
+library("biomaRt")
+library("GenomicRanges")
+library("BSgenome.Hsapiens.UCSC.hg19")
+library("here")
+```
+
+
+## Supplementary Figure 9A:
+
+```{r}
+df <- readRDS(here("data/TSS_grow.rds"))
+cov <- readRDS(here("data/expression_coverage.rds"))
+cov <- cov[which(cov$relative_position %in% c(-200:200)),]
+cov <- cov %>%
+  group_by(transcript_id, rna_expression) %>%
+  summarize(coverage = sum(coverage))
+
+f <- readRDS(here("data/start_over_epic.rds"))
+fgr <- GRanges(paste0(f$chr, ":", f$pos))
+fgr$cpg_id <- f$Row.names
+annots <- c(#'hg19_enhancers_fantom',
+            'hg19_cpgs', 
+            'hg19_genes_1to5kb',
+            'hg19_genes_promoters', 
+            'hg19_genes_5UTRs',
+            'hg19_genes_exons',
+            'hg19_genes_intronexonboundaries',
+            'hg19_genes_introns',
+            'hg19_genes_3UTRs',
+            'hg19_genes_intergenic')
+annots <- build_annotations(genome = 'hg19', annotations = annots)
+annotated <- annotate_regions(regions = fgr, annotations = annots, ignore.strand = T) %>% 
+  as_tibble()
+annotated <- annotated[-which(is.na(annotated$annot.gene_id)),]
+x <- annotated[,c(6,15)] %>%
+  group_by(cpg_id) %>%
+  summarize(
+    symbol = paste(unique(annot.symbol), collapse = ", "))
+symbols <- str_split(x$symbol, ", ")
+x2 <- tibble("cpg_id" = rep(x$cpg_id, unlist(lapply(symbols,length))),
+             "symbol" = unlist(symbols))
+
+ensembl = useEnsembl(biomart="ensembl")
+mart <- useDataset("hsapiens_gene_ensembl", useMart("ensembl"))
+searchDatasets(mart = mart, pattern = "hsapiens")
+x3 <- as.tibble(getBM(attributes = c('ensembl_gene_id', 'hgnc_symbol'),
+      mart = mart))
+colnames(x3) <- c("ensembl", "symbol")
+x4 <- full_join(x=x2, y=x3, by="symbol")
+tissue_key <- read.table(here("data/tissue_key.tsv"),as.is=T,header=T,sep="\t",quote="\"")
+conv <- read.table(here('data/labels.txt'),as.is=T,header=T,sep="\t",quote="\"")
+rna <- read.table(here('data/RNAtable.tsv.gz'),as.is=T,header=T)
+express <- conv[which(conv$Category %in% c("Myeloid")),]$RName
+express_df <- rna[c("GeneID", express)]
+express_df$mean <- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df <- express_df[order(-express_df$mean),]
+express_df <- express_df[,c(1,8)]
+colnames(express_df) <- c("ensembl", "rna")
+x5 <- full_join(x=x4, y=express_df, by="ensembl")
+start(fgr) <- start(fgr) - 2
+end(fgr) <- start(fgr) + 5
+seq <- getSeq(Hsapiens, fgr)
+f$seq <- as.character(seq)
+f_acg <- f[which(substr(f$seq, 2,4) == "ACG"),]
+f_cgt <- f[which(substr(f$seq, 3,5) == "CGT"),]
+f_tcg <- f[which(substr(f$seq, 2,4) == "TCG"),]
+f_cga <- f[which(substr(f$seq, 3,5) == "CGA"),]
+f_atcg <- rbind(f_acg, f_tcg)
+f_cgat <- rbind(f_cga, f_cga)
+f_atcg$ratio <- f_atcg$start / f_atcg$over
+f_cgat$ratio <- f_cgat$start / f_cgat$over
+f <- rbind(f_atcg, f_cgat)
+#f$ratio <- (f$start + f$end) / (2 * f$over)
+f$beta <- rowMeans(f[,(4:11)])
+f <- f[,c(1,16,17)]
+colnames(f) <- c("cpg_id", "ratio", "beta")
+x6 <- full_join(x=x5, y=f, by="cpg_id")
+x6 <- drop_na(x6)
+x6 <- x6[which(!duplicated(x6)),]
+
+x7 <- x6 %>%
+  group_by(ensembl) %>%
+  summarize(beta = mean(beta))
+
+cov$beta <- NA
+cov$beta <- x7[match(cov$transcript_id, x7$ensembl),]$beta
+colnames(cov) <- sub('transcript_id' , 'transcript', colnames(cov))
+i <- 18
+all <- full_join(x=cov, y=df[,c(1, i)], by="transcript")
+colnames(all) <- c("transcript", "rna_expression", "coverage", "beta", "newcov")
+cov1000exp <- all[order(-all$rna_expression),][c(1:1000),]
+cov1000nexp <- all[order(all$rna_expression),][c(1:1000),]
+cov_meth <- all[which(all$beta >= 0.7),]
+cov_unmeth <- all[which(all$beta <= 0.3),]
+covmeth1000exp <- cov_meth[order(-cov_meth$rna_expression),][c(1:1000),]
+covmeth1000nexp <- cov_meth[order(cov_meth$rna_expression),][c(1:1000),]
+covunmeth1000exp <- cov_unmeth[order(-cov_unmeth$rna_expression),][c(1:1000),]
+covunmeth1000nexp <- cov_unmeth[order(cov_unmeth$rna_expression),][c(1:1000),]
+
+cov1000exp$group <- "top 1000 expressed genes"
+cov1000nexp$group <- "top 1000 not expressed genes"
+covmeth1000exp$group <- "top 1000 expressed, methylated genes"
+covmeth1000nexp$group <- "top 1000 not expressed, methylated genes"
+covunmeth1000exp$group <- "top 1000 expressed, unmethylated genes"
+covunmeth1000nexp$group <- "top 1000 not expressed, unmethylated genes"
+
+cov_all <- rbind(cov1000exp, cov1000nexp,
+                 covmeth1000exp, covmeth1000nexp,
+                 covunmeth1000exp, covunmeth1000nexp)
+  
+cov_all$group <- factor(cov_all$group, levels = c("top 1000 expressed genes", "top 1000 not expressed genes", "top 1000 expressed, methylated genes", "top 1000 expressed, unmethylated genes", "top 1000 not expressed, methylated genes", "top 1000 not expressed, unmethylated genes"))
+
+cov_all_max <- max(cov_all$newcov)
+area <- sub("tss_", "", colnames(df)[i])
+alg_cov <- ggplot(cov_all[which(cov_all$group %in% c("top 1000 expressed genes", "top 1000 not expressed genes")),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        #axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        plot.title = element_text(hjust = 0.5,  size=16)) +
+  scale_fill_manual(values = c("#77dd77", "#00660a")) +
+  scale_color_manual(values = c("#77dd77", "#00660a")) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c("High\nexpression", "Low\nexpression")) +
+  ggtitle("All genes") +
+  ylab(paste0("Cumulative cfDNA coverage\naround transcription start sites"))
+unmethg_cov <- ggplot(cov_all[which(cov_all$group %in% c("top 1000 expressed, unmethylated genes", "top 1000 not expressed, unmethylated genes")),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        plot.title = element_text(hjust = 0.5,  size=16)) +
+  scale_fill_manual(values = c("#77dd77", "#00660a")) +
+  scale_color_manual(values = c("#77dd77", "#00660a")) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c("High\nexpression", "Low\nexpression")) +
+  ggtitle("Unmethylated genes")
+methg_cov <- ggplot(cov_all[which(cov_all$group %in% c("top 1000 expressed, methylated genes", "top 1000 not expressed, methylated genes")),], aes(y=newcov, x=group, fill=group)) +
+  geom_jitter(size=0.4, alpha=1, width = 0.1, aes(colour=group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.2, aes(alpha = 0.1)) +
+  theme_classic(base_size = 20) +
+  theme(axis.text.x = element_text(),
+        text = element_text(size=16),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        plot.title = element_text(hjust = 0.5, size=16)) +
+  scale_fill_manual(values = c("#77dd77", "#00660a")) +
+  scale_color_manual(values = c("#77dd77", "#00660a")) +
+  scale_y_continuous(limits = c(0,17500)) +
+  scale_x_discrete(labels = c("High\nexpression", "Low\nexpression")) +
+  ggtitle("Methylated genes")
+
+plot_1 <- cowplot::plot_grid(alg_cov, unmethg_cov, methg_cov, nrow=1, rel_widths = c(1,1,1), align = "vh", labels =  c("A", "", ""), label_size = 20)
+ggsave(here("docs/figure/Supplementary_Fig_9A.jpg"), plot = plot_1, device = "jpeg",width = 15, height=12,units = "in", dpi=600)
+```
+
+
+## Supplementary Figure 9B:
+
+```{r}
+f <- readRDS(here("data/start_over_epic.rds"))
+fgr <- GRanges(paste0(f$chr, ":", f$pos))
+fgr$cpg_id <- f$Row.names
+annots <- c('hg19_enhancers_fantom',
+            'hg19_cpgs', 
+            'hg19_genes_1to5kb',
+            'hg19_genes_promoters', 
+            'hg19_genes_5UTRs',
+            'hg19_genes_exons',
+            'hg19_genes_intronexonboundaries',
+            'hg19_genes_introns',
+            'hg19_genes_3UTRs',
+            'hg19_genes_intergenic')
+annots <- build_annotations(genome = 'hg19', annotations = annots)
+annotated <- annotate_regions(regions = fgr, annotations = annots, ignore.strand = T) %>% 
+  as_tibble()
+annotated <- annotated[-which(is.na(annotated$annot.gene_id)),]
+x <- annotated[,c(6,15)] %>%
+  group_by(cpg_id) %>%
+  summarize(
+    symbol = paste(unique(annot.symbol), collapse = ", "))
+symbols <- str_split(x$symbol, ", ")
+x2 <- tibble("cpg_id" = rep(x$cpg_id, unlist(lapply(symbols,length))),
+             "symbol" = unlist(symbols))
+ensembl = useEnsembl(biomart="ensembl")
+mart <- useDataset("hsapiens_gene_ensembl", useMart("ensembl"))
+searchDatasets(mart = ensembl, pattern = "hsapiens")
+x3 <- as.tibble(getBM(attributes = c('ensembl_gene_id', 'hgnc_symbol'),
+      mart = mart))
+colnames(x3) <- c("ensembl", "symbol")
+x4 <- full_join(x=x2, y=x3, by="symbol")
+tissue_key <- read.table(here("data/tissue_key.tsv"),as.is=T,header=T,sep="\t",quote="\"")
+conv <- read.table(here('data/labels.txt'),as.is=T,header=T,sep="\t",quote="\"")
+rna <- read.table(here('data/RNAtable.tsv.gz'),as.is=T,header=T)
+express <- conv[which(conv$Category %in% c("Myeloid")),]$RName
+express_df <- rna[c("GeneID", express)]
+express_df$mean <- rowMeans(express_df[,c(2:(length(express) + 1))], na.rm=T)
+express_df <- express_df[order(-express_df$mean),]
+express_df <- express_df[,c(1,8)]
+colnames(express_df) <- c("ensembl", "rna")
+x5 <- full_join(x=x4, y=express_df, by="ensembl")
+start(fgr) <- start(fgr) - 2
+end(fgr) <- start(fgr) + 5
+seq <- getSeq(Hsapiens, fgr)
+f$seq <- as.character(seq)
+f_acg <- f[which(substr(f$seq, 2,4) == "ACG"),]
+f_cgt <- f[which(substr(f$seq, 3,5) == "CGT"),]
+f_tcg <- f[which(substr(f$seq, 2,4) == "TCG"),]
+f_cga <- f[which(substr(f$seq, 3,5) == "CGA"),]
+f_atcg <- rbind(f_acg, f_tcg)
+f_cgat <- rbind(f_cga, f_cga)
+f_atcg$ratio <- f_atcg$start / f_atcg$over
+f_cgat$ratio <- f_cgat$start / f_cgat$over
+f <- rbind(f_atcg, f_cgat)
+#f$ratio <- (f$start + f$end) / (2 * f$over)
+f$beta <- rowMeans(f[,(4:11)])
+f <- f[,c(1,16,17)]
+colnames(f) <- c("cpg_id", "ratio", "beta")
+x6 <- full_join(x=x5, y=f, by="cpg_id")
+x6 <- drop_na(x6)
+x6 <- x6[which(!duplicated(x6)),]
+#saveRDS(x6, "/users/mnoe/x6.rds")
+#x6 <- readRDS("/Users/mnoe/Documents/x6.rds")
+x7 <- x6[order(x6$beta),]
+x7$order <- c(1:nrow(x7)) / nrow(x7)
+x7$order <- round((x7$order + 0.05), digits=1)
+x7_sum <- x7 %>% 
+  group_by(order) %>%
+  summarize(beta_sum = mean(beta),
+            ratio_sum = mean(ratio),
+            rna_sum = mean(rna))
+
+ggmeth_meth <- ggplot(x7_sum, aes(x=order, y=beta_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = "Methylation (beta-value)", limits = c(0,1)) +
+  scale_fill_gradient(low="#77C8DD", high="#004766")
+#ggmeth_meth
+
+ggmeth_ratio <- ggplot(x7_sum, aes(x=order, y=ratio_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = "Fraction of cfDNA fragments\nstarting or ending at CGs", limits = c(0,0.009)) +
+  scale_fill_gradient(low="#77dd77", high="#00660a")
+#ggmeth_ratio
+
+ggmeth_rna <- ggplot(x7_sum, aes(x=order, y=rna_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20))) +
+  scale_y_continuous(name = "Gene expression (TPM)", limits = c(0,150)) +
+  scale_fill_gradient(low="#77C8DD", high="#004766") +
+  xlab("order by methylation")
+#ggmeth_rna
+
+x8 <- x6[order(x6$rna),]
+x8$order <- c(1:nrow(x8)) / nrow(x8)
+x8$order <- round((x8$order + 0.05), digits=1)
+x8_sum <- x8 %>% 
+  group_by(order) %>%
+  summarize(beta_sum = mean(beta),
+            ratio_sum = mean(ratio),
+            rna_sum = mean(rna))
+
+ggrna_meth <- ggplot(x8_sum, aes(x=order, y=beta_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = "Methylation (beta-value)", limits = c(0,1)) +
+  scale_fill_gradient(low="#77C8DD", high="#004766")
+#ggrna_meth
+
+ggrna_ratio <- ggplot(x8_sum, aes(x=order, y=ratio_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_y_continuous(name = "Fraction of cfDNA fragments\nstarting or ending at CGs", limits = c(0,0.009)) +
+  scale_fill_gradient(low="#77dd77", high="#00660a")
+#ggrna_ratio
+
+ggrna_rna <- ggplot(x8_sum, aes(x=order, y=rna_sum)) +
+  geom_bar(stat="identity", aes(fill=order)) +
+  theme_classic(base_size = 20) +
+  theme(text = element_text(size=16),
+        axis.text.x = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background=element_rect(color = NA,  fill=NA),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        axis.title.y = element_text(margin = margin(r = 20, l = 20)),
+        axis.title.x = element_text(margin = margin(t = 20, b = 20))) +
+  scale_y_continuous(name = "Gene expression (TPM)", limits = c(0,150)) +
+  scale_fill_gradient(low="#77C8DD", high="#004766") +
+  xlab("order by expression")
+#ggrna_rna
+
+plot_meth <- plot_grid(ggmeth_ratio, ggmeth_meth, ggmeth_rna , ncol=1, nrow=3, rel_heights = c(1,1,1.2), align = "v")
+plot_rna <- plot_grid(ggrna_ratio, ggrna_meth, ggrna_rna, ncol=1, nrow=3, rel_heights = c(1,1,1.2), align = "v")
+plot <- plot_grid(plot_meth, plot_rna, ncol=2, rel_widths= c(1,1), align="h", labels=c("B",""), label_size = 20)
+ggsave(here("docs/figure/Supplementary_Fig_9B.jpg"), plot = plot, device = "jpeg",width = 15, height=12,units = "in", dpi=600)
+```
+
+
