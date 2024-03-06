@@ -407,13 +407,13 @@ apply_test <- function(x, func, ...) {
 }
 
 apply_fc <- function(x) {
-    len.samp <- 10e3
+    len.samp <- 1e3
     m <- get_ratio(x, "male")
     f <- get_ratio(x, "female")
-    mrep <- sample(m, len.samp, replace=TRUE)
-    frep <- sample(f, len.samp, replace=TRUE)
-    statistic <- median(frep/mrep)
-    conf.int <- quantile(frep/mrep, prob=c(0.025, 0.975))
+    mrep_median <- apply(replicate(len.samp, sample(m, length(m), replace=TRUE)),2,median)
+    frep_median <- apply(replicate(len.samp, sample(f, length(f), replace=TRUE)),2,median)
+    statistic <- median(frep_median/mrep_median)
+    conf.int <- quantile(frep_median/mrep_median, prob=c(0.025, 0.975))
     tibble(statistic = statistic, conf.low = conf.int[1], conf.high=conf.int[2], method = "Fold-change by sampling")
 }
 
@@ -431,6 +431,7 @@ stat_table <- sum2 %>%
               arrange(chromosome, motif) 
                      
 kable(stat_table)
+write.csv(stat_table, "docs/figure/Figure_2DE.csv", row.names=FALSE, quote=FALSE)
 
 ```
 
