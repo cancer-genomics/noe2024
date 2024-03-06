@@ -1,7 +1,7 @@
 ---
 title: "Pre_Supplementary_Figure4.Rmd"
 author: "Michael Noe"
-date: \today 
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false

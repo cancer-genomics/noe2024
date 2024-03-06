@@ -1,7 +1,7 @@
 ---
 title: "Pre_Figure2.Rmd"
 author: "Michael Noe"
-date: \today 
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
@@ -211,6 +211,13 @@ for (file in ls) {
     done <- c(done, basename(file))
   }
 }
+val_files <- readRDS("../data/selected_validation_files.rds")
+luc_files <- readRDS("../data/selected_lucas_files.rds")
+f$sex <- "NA"
+f[which(f$case %in% basename(val_files[which(val_files$sex == "male"),]$pgdx_id)),]$sex <- "male"
+f[which(f$case %in% basename(val_files[which(val_files$sex == "female"),]$pgdx_id)),]$sex <- "female"
+f[which(f$case %in% basename(luc_files[which(luc_files$sex == "male"),]$pgdx_id)),]$sex <- "male"
+f[which(f$case %in% basename(luc_files[which(luc_files$sex == "female"),]$pgdx_id)),]$sex <- "female"
 saveRDS(f, here("data/som_chrx.rds"))
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: "Pre_Figure3.Rmd"
 author: "Michael Noe"
-date: \today 
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
@@ -196,7 +196,7 @@ saveRDS(m_wps, here("data/cpg_wps_smallfragments.rds"))
 ```
 
 
-## Connect TSS with CPG
+## Connect TSS with CPG (for multivariate model)
 
 ```{r}
 he <- readRDS(here("results/healthy.rds"))

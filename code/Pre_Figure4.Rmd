@@ -1,7 +1,7 @@
 ---
 title: "Pre_Figure4.Rmd"
-author: "Akshaya Annapragada"
-date: \today 
+author: "Michael Noe, Akshaya Annapragada"
+date: "`r Sys.Date()`" 
 output:
   workflowr::wflow_html:
     toc: false
@@ -27,6 +27,53 @@ library("pROC")
 ```{r}
 outdir <- here("output", "Pre_Figure4.Rmd")
 dir.create(outdir)
+dir.create(here(outdir, "Carvalho"))
+dir.create(here(outdir, "Carvalho/12cycles"))
+```
+
+files to process:
+  *code/carvalho_12cycles.sh* -> outputs "Carvalho/12cycles"
+    Calculates for each motif containing a differentially methylated CG as described in the Shen et al. paper the ratio of fragment starting at the motif over fragments around this position, as well as the ratio starting on the position next to the initial position, as well as ratios of these two ratios.
+    
+
+## Combine output from carvalho_12cycles.sh
+
+```{r}
+loc <- here(outdir, "Carvalho/12cycles")
+files <- list.files(loc)
+all <- tibble()
+for (file in files) {
+  print(file)
+  temp <- readRDS(file.path(loc,file))
+  temp <- as_tibble(as.data.frame(temp))
+  colnames(temp) <- sub("group", "motif", colnames(temp))
+  temp$diff_sign <- sign(temp$diff)
+  sumtemp <- temp %>%
+    group_by(motif, diff_sign) %>%
+    summarise(start = sum(start_reads), 
+                  over = sum(over_reads),
+                  start_extra = sum(start_extra_reads),
+                  over_extra = sum(over_extra_reads))
+  sumtemp$case <- sub(".rds", "", file)
+  all <- rbind(all, sumtemp)
+}
+
+pat <- read.table(here("data/patient.csv"), sep = ",", header = T)
+sam <- read.table(here("data/sample.csv"), sep = ",", header = T)
+met <- read.table(here("data/sample_reference.csv"), sep = ",", header = T)
+dmc <- readxl::read_xlsx(here("data/Supplementary_Table_3.xlsx"))
+
+pgdx_raw <- unique(all$case)
+pgdx <- unique(all$case)
+pgdx <- sub("_X1", "", pgdx)
+pgdx <- sub("_S1", "", pgdx)
+pgdx <- sub("_S2", "", pgdx)
+pgdx <- sub("_Amended", "", pgdx)
+cg <- sam[match(pgdx, sam$wgs_pgdx_id),]$individual
+
+all$group_id <- cg[match(all$case, pgdx_raw)]
+all$group <- gsub('[[:digit:]]+', '', all$group_id)
+saveRDS(all, here("data/carvalho_motifs.rds"))
 ```
 
 

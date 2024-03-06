@@ -11,7 +11,7 @@
 
 <meta name="author" content="Michael Noe" />
 
-<meta name="date" content="2024-02-24" />
+<meta name="date" content="2024-03-05" />
 
 <title>Supplementary_Figure6.Rmd</title>
 
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Supplementary_Figure6.Rmd</h1>
 <h4 class="author">Michael Noe</h4>
-<h4 class="date">2024-02-24</h4>
+<h4 class="date">2024-03-05</h4>
 
 </div>
 
@@ -285,7 +285,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -296,8 +296,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -306,13 +306,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-24
+<strong>Last updated:</strong> 2024-03-05
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>noe2024/</code> <span
@@ -335,18 +335,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -437,15 +440,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treedc39d3fb10aa7b5335c6182588b4ef4a906fb458targetblankdc39d3fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024tree9d3f606bb5ef1c1a9c3c587cddd0f2250b76198ftargetblank9d3f606a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/cancer-genomics/noe2024/tree/dc39d3fb10aa7b5335c6182588b4ef4a906fb458" target="_blank">dc39d3f</a>
+<a href="https://github.com/cancer-genomics/noe2024/tree/9d3f606bb5ef1c1a9c3c587cddd0f2250b76198f" target="_blank">9d3f606</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024treedc39d3fb10aa7b5335c6182588b4ef4a906fb458targetblankdc39d3fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomcancergenomicsnoe2024tree9d3f606bb5ef1c1a9c3c587cddd0f2250b76198ftargetblank9d3f606a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -455,7 +458,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/cancer-genomics/noe2024/tree/dc39d3fb10aa7b5335c6182588b4ef4a906fb458" target="_blank">dc39d3f</a>.
+<a href="https://github.com/cancer-genomics/noe2024/tree/9d3f606bb5ef1c1a9c3c587cddd0f2250b76198f" target="_blank">9d3f606</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -475,14 +478,37 @@ Ignored files:
     Ignored:    data/results/
 
 Untracked files:
-    Untracked:  analysis/Supplementary_Figure9.Rmd
-    Untracked:  data/TSS_grow.rds
-    Untracked:  data/expression_coverage.rds
-    Untracked:  data/start_over_epic.rds
+    Untracked:  analysis/Figure3EF.Rmd
+    Untracked:  analysis/Supplementary_Figure11.Rmd
+    Untracked:  analysis/Supplementary_Figure12.Rmd
+    Untracked:  analysis/Supplementary_Figure13.Rmd
+    Untracked:  analysis/Supplementary_Figure14.Rmd
+    Untracked:  analysis/Supplementary_Figure15.Rmd
+    Untracked:  data/Loyfer_50_ratios.rds
+    Untracked:  data/Supplementary_Table_3.xlsx
+    Untracked:  data/patient.csv
+    Untracked:  data/sample.csv
+    Untracked:  data/sample_reference.csv
 
 Unstaged changes:
     Modified:   analysis/Figure3.Rmd
+    Deleted:    analysis/Figure3H.Rmd
+    Modified:   analysis/Figure4.Rmd
+    Modified:   analysis/Supplementary_Figure10.Rmd
+    Modified:   analysis/Supplementary_Figure4.Rmd
+    Modified:   analysis/Supplementary_Figure5.Rmd
+    Modified:   analysis/Supplementary_Figure6.Rmd
+    Modified:   analysis/Supplementary_Figure7.Rmd
+    Modified:   analysis/Supplementary_Figure8.Rmd
+    Modified:   analysis/Supplementary_Figure9.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   code/Pre_Figure1.Rmd
+    Modified:   code/Pre_Figure2.Rmd
+    Modified:   code/Pre_Figure3.rmd
+    Modified:   code/Pre_Figure4.Rmd
+    Modified:   code/Pre_Supplementary_Figure3.rmd
+    Modified:   code/Pre_Supplementary_Figure4.rmd
+    Modified:   code/Pre_Supplementary_Figure8.Rmd
 
 </code></pre>
 <p>
@@ -530,6 +556,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/cancer-genomics/noe2024/9d3f606bb5ef1c1a9c3c587cddd0f2250b76198f/docs/Supplementary_Figure6.html" target="_blank">9d3f606</a>
+</td>
+<td>
+Shashikant Koul
+</td>
+<td>
+2024-02-24
+</td>
+<td>
+Add Supp Fig 9, reorder Fig 3 figures
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -573,13 +616,13 @@ Add supplementary figures
 <h2>Pre-requisites</h2>
 <p>These packages are necessary to make the plots that make up
 Supplementary Figure 6.</p>
-<pre class="r"><code>library(&quot;ggplot2&quot;)
-library(&quot;tidyverse&quot;)</code></pre>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ lubridate 1.9.3     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -591,360 +634,67 @@ Attaching package: &#39;cowplot&#39;
 The following object is masked from &#39;package:lubridate&#39;:
 
     stamp</code></pre>
-<pre class="r"><code>library(&quot;gridExtra&quot;)</code></pre>
-<pre><code>
-Attaching package: &#39;gridExtra&#39;
-
-The following object is masked from &#39;package:dplyr&#39;:
-
-    combine</code></pre>
-<pre class="r"><code>library(&quot;ggpubr&quot;)</code></pre>
-<pre><code>
-Attaching package: &#39;ggpubr&#39;
-
-The following object is masked from &#39;package:cowplot&#39;:
-
-    get_legend</code></pre>
 <pre class="r"><code>library(&quot;here&quot;)</code></pre>
 <pre><code>here() starts at /Users/skoul/Documents/Projects/cfepi_wflow/noe2024</code></pre>
 </div>
-<div id="supplementary-figure-6" class="section level2">
-<h2>Supplementary Figure 6</h2>
-<pre class="r"><code>sum &lt;- readRDS(here(&quot;data/som_chrx.rds&quot;))
-sum$group &lt;- sub(&quot;open sea&quot;, &quot;Open sea&quot;, sum$group)
-sum$group &lt;- sub(&quot;islands&quot;, &quot;Islands&quot;, sum$group)
-sum$group &lt;- sub(&quot;shores&quot;, &quot;Shores&quot;, sum$group)
-sum$group &lt;- sub(&quot;shelves&quot;, &quot;Shelves&quot;, sum$group)
-sum$group &lt;- factor(sum$group, levels=c(&quot;Islands&quot;, &quot;Shores&quot;, &quot;Shelves&quot;, &quot;Open sea&quot;))
-sum[which(nchar(sum$motif) == 4),]$motif &lt;- sub(&quot;CCG&quot;, &quot; | CCG&quot;, sum[which(nchar(sum$motif) == 4),]$motif)
-sum[which(nchar(sum$motif) == 3),]$motif &lt;- sub(&quot;CG&quot;, &quot; | CG&quot;, sum[which(nchar(sum$motif) == 3),]$motif)
-sum$motif &lt;- factor(sum$motif, levels=c(&quot;C | CCG&quot;, &quot;G | CCG&quot;, &quot;A | CCG&quot;, &quot;T | CCG&quot;, &quot;C | CG&quot;, &quot;G | CG&quot;, &quot;A | CG&quot;, &quot;T | CG&quot;))
-sum$sex &lt;- NA
-sum[which(sum$rel_chrx &lt;= 0.04),]$sex &lt;- &quot;male&quot;
-sum[which(sum$rel_chrx &gt;= 0.04),]$sex &lt;- &quot;female&quot;
-sum$sex &lt;- factor(sum$sex, levels = c(&quot;male&quot;, &quot;female&quot;))
-
-plot1_shores_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Shores&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  ylab(&quot;Fraction of cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
+<div
+id="supplementary-figure-6-an-updated-version-of-supplementary-figure-5-based-on-loyfer-data."
+class="section level2">
+<h2>Supplementary Figure 6: an updated version of Supplementary Figure
+5, based on Loyfer data.</h2>
+<pre class="r"><code>t &lt;- readRDS(here(&quot;data/Loyfer_50_ratios.rds&quot;))
+t[which(nchar(t$seq) == 3),]$seq &lt;- paste0(substr(t[which(nchar(t$seq) == 3),]$seq, 1, 1), &quot; | &quot;, substr(t[which(nchar(t$seq) == 3),]$seq, 2, 3))
+t[which(nchar(t$seq) == 4),]$seq &lt;- paste0(substr(t[which(nchar(t$seq) == 4),]$seq, 1, 1), &quot; | &quot;, substr(t[which(nchar(t$seq) == 4),]$seq, 2, 4))
+t$seq &lt;- factor(t$seq, levels = c(&quot;C | CG&quot;, &quot;G | CG&quot;, &quot;A | CG&quot;, &quot;T | CG&quot;,
+                                  &quot;C | CCG&quot;, &quot;G | CCG&quot;, &quot;A | CCG&quot;, &quot;T | CCG&quot;))
+#t$beta &lt;- round(t$beta, digits = 1)
+t$char &lt;- nchar(as.character(t$seq))
+t &lt;- t %&gt;%
+  group_by(beta, group, char) %&gt;%
+  summarise(start = sum(start), over = sum(over))</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;beta&#39;, &#39;group&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre class="r"><code>t$ratio &lt;- t$start / t$over
+t_add &lt;- t %&gt;%
+  group_by(char, group) %&gt;%
+  summarise(beta = 1, start = 0, over = 1, ratio = 0)</code></pre>
+<pre><code>`summarise()` has grouped output by &#39;char&#39;. You can override using the
+`.groups` argument.</code></pre>
+<pre class="r"><code>t &lt;- rbind(t, t_add)
+t$group2 &lt;- &quot;NA&quot;
+t[which(t$char == 6),]$group2 &lt;- &quot;A/T/C/G | CG&quot;
+t[which(t$char == 7),]$group2 &lt;- &quot;A/T/C/G | CCG&quot;
+t$group2 &lt;- factor(t$group2, levels = c(&quot;A/T/C/G | CG&quot;, &quot;A/T/C/G | CCG&quot;))
+t$group &lt;- sub(&quot;hg19_cpg_&quot;, &quot;&quot;, t$group)
+t$group &lt;- sub(&quot;inter&quot;, &quot;Open sea&quot;, t$group)
+t$group &lt;- sub(&quot;islands&quot;, &quot;Islands&quot;, t$group)
+t$group &lt;- sub(&quot;shores&quot;, &quot;Shores&quot;, t$group)
+t$group &lt;- sub(&quot;shelves&quot;, &quot;Shelves&quot;, t$group)
+t$group &lt;- factor(t$group, levels = c(&quot;Islands&quot;, &quot;Shores&quot;, &quot;Shelves&quot;, &quot;Open sea&quot;))
+plot &lt;- ggplot(t, aes(x=factor(beta), y=ratio, fill=beta)) +
+  geom_bar(stat=&quot;identity&quot;, position = &quot;dodge&quot;) +
+  facet_grid(group2~group) +
   theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        #axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-
-plot2_shores_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Shores&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
+  #xlab(&quot;Methylation (beta-value)&quot;) +
+  #ylab(expression(atop(&quot;Fraction of cfDNA fragments&quot;, paste(&quot;starting or ending at CGs&quot;)))) +
   ylab(&quot;Fraction of cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
+  scale_y_continuous(labels = scales::percent, limits = c(0,0.0075),
+                     breaks = c(0.0075,0.005,0.0025,0)) +
+  scale_x_discrete(labels=c(&quot;0&quot;, &quot;1&quot;),
+                   breaks = c(0, 1)) +
   theme(text = element_text(size=16),
-        #axis.title.y = element_blank(),
+        axis.text.x = element_text(angle = 0, hjust=0.5),
+        #axis.text.x = element_blank(),
+        #axis.title.y = element_text(margin = margin(r = 5)),
         axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
+        strip.background=element_rect(color = NA),
+        panel.spacing=unit(2, &quot;lines&quot;),
+        strip.placement = &quot;outside&quot;,
         legend.position = &quot;none&quot;,
-        axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
+        axis.title.y = element_text(margin = margin(r = 20, l = 20))) +
+  scale_fill_gradient(low=&quot;#77C8DD&quot;, high=&quot;#004766&quot;)
 
-plot1_shores_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Shores&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  #ylab(&quot;Fraction of cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.y.left = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-
-plot2_shores_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Shores&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        axis.text.y.left = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot1_shelves_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Shelves&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)) ,], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot2_shelves_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Shelves&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot1_shelves_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Shelves&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)) ,], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        axis.text.y.left = element_blank(),
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot2_shelves_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Shelves&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        axis.text.y.left = element_blank(),
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot1_inter_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Open sea&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)) ,], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot2_inter_chrx &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Open sea&quot;) &amp; (sum$chromosome == &quot;chrX&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot1_inter_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) &amp; (sum$group == &quot;Open sea&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)) ,], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     limits = c(0,0.01),
-                     breaks=c(0.01,0.0075,0.005,0.0025,0)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CCGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        axis.text.y.left = element_blank(),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-plot2_inter_auto &lt;- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) &amp; (sum$group == &quot;Open sea&quot;) &amp; (sum$chromosome == &quot;somatic&quot;)),], aes(x = sex, y=ratio, fill=sex)) +
-  geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
-  geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
-  scale_y_continuous(labels = scales::percent,
-                     breaks = c(0.0125,0.01,0.0075,0.005,0.0025,0),
-                     limits = c(0,0.0125)) +
-  #ylab(&quot;Fraction of chrX cfDNA fragments\nstarting or ending at CGs&quot;) + 
-  facet_grid(~motif) +
-  theme_classic(base_size = 20) +
-  theme(text = element_text(size=16),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x.bottom = element_blank(),
-        strip.background=element_rect(color = NA,  fill=NA),
-        axis.text.y.left = element_blank(),
-        legend.position = &quot;none&quot;,
-        #axis.title.y = element_text(margin = margin(r = 20, l = 20))
-        ) +
-  scale_fill_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  scale_color_manual(values = c(&quot;#99CCFF&quot;, &quot;#FF99BB&quot;)) +
-  stat_compare_means(method = &quot;t.test&quot;, size = 3, aes(label = paste0(&quot;p = &quot;, after_stat(p.format))))
-
-title_chrx_left &lt;- ggdraw() + 
-  draw_label(
-    &quot;Chromosome X&quot;,
-    size = 13,
-    hjust = -0.15,
-    vjust = 2
-  )
-title_chrx &lt;- ggdraw() + 
-  draw_label(
-    &quot;Chromosome X&quot;,
-    size = 13,
-    hjust = 0.25,
-    vjust = 2
-  )
-title_auto &lt;- ggdraw() + 
-  draw_label(
-    &quot;Autosomes&quot;,
-    size = 13,
-    hjust = 0.4,
-    vjust = 2
-  ) 
-plot_shores_chrx &lt;- cowplot::plot_grid(title_chrx_left, plot2_shores_chrx, plot1_shores_chrx, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_shores_auto &lt;- cowplot::plot_grid(title_auto, plot2_shores_auto, plot1_shores_auto, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_shores &lt;- cowplot::plot_grid(plot_shores_chrx, plot_shores_auto, ncol=2, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_widths = c(1.2,0.85)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-title_shores &lt;- ggdraw() + 
-  draw_label(
-    &quot;Shores&quot;,
-    size = 16,
-    hjust = -0.7,
-    vjust = 0
-  ) 
-plot_shores &lt;- cowplot::plot_grid(title_shores, plot_shores, nrow=2, rel_heights = c(0.05,1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-
-plot_shelves_chrx &lt;- cowplot::plot_grid(title_chrx, plot2_shelves_chrx, plot1_shelves_chrx, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_shelves_auto &lt;- cowplot::plot_grid(title_auto, plot2_shelves_auto, plot1_shelves_auto, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_shelves &lt;- cowplot::plot_grid(plot_shelves_chrx, plot_shelves_auto, ncol=2, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_widths = c(1.2,1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-title_shelves &lt;- ggdraw() + 
-  draw_label(
-    &quot;Shelves&quot;,
-    size = 16,
-    hjust = 0,
-    vjust = 0
-  ) 
-plot_shelves &lt;- cowplot::plot_grid(title_shelves, plot_shelves, nrow=2, rel_heights = c(0.05,1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-
-
-plot_inter_chrx &lt;- cowplot::plot_grid(title_chrx, plot2_inter_chrx, plot1_inter_chrx, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_inter_auto &lt;- cowplot::plot_grid(title_auto, plot2_inter_auto, plot1_inter_auto, ncol=1, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_heights = c(0.1, 1.1, 1.1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-plot_inter &lt;- cowplot::plot_grid(plot_inter_chrx, plot_inter_auto, ncol=2, align=&quot;hv&quot;, axis = &quot;bt&quot;, rel_widths = c(1.2,1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-title_inter &lt;- ggdraw() + 
-  draw_label(
-    &quot;Open sea&quot;,
-    size = 16,
-    hjust = 0,
-    vjust = 0
-  ) 
-plot_inter &lt;- cowplot::plot_grid(title_inter, plot_inter, nrow=2, rel_heights = c(0.05,1)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-
-plot &lt;-  cowplot::plot_grid(plot_shores, plot_shelves, plot_inter, nrow=1, align=&quot;hv&quot;, rel_widths  = c(1.2, 1.06, 1.06)) + theme(plot.background = element_rect(fill = &quot;white&quot;, colour = NA))
-
-ggsave(here(&quot;docs/figure/Supplementary_Fig_6.jpg&quot;), plot = plot, device = &quot;jpeg&quot;,width = 25, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
+ggsave(here(&quot;docs/figure/Supplementary_Fig_6.jpg&quot;), plot = plot, device = &quot;jpeg&quot;,width = 20, height=12,units = &quot;in&quot;, dpi=300)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -969,28 +719,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] here_1.0.1      ggpubr_0.6.0    gridExtra_2.3   cowplot_1.1.3  
- [5] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    
- [9] purrr_1.0.2     readr_2.1.5     tidyr_1.3.1     tibble_3.2.1   
-[13] tidyverse_2.0.0 ggplot2_3.4.4   workflowr_1.7.1
+ [1] here_1.0.1      cowplot_1.1.3   lubridate_1.9.3 forcats_1.0.0  
+ [5] stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2     readr_2.1.5    
+ [9] tidyr_1.3.1     tibble_3.2.1    ggplot2_3.4.4   tidyverse_2.0.0
+[13] workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.12       getPass_0.2-4     ps_1.7.6          rprojroot_2.0.4  
- [5] digest_0.6.34     utf8_1.2.4        R6_2.5.1          backports_1.4.1  
- [9] evaluate_0.23     httr_1.4.7        pillar_1.9.0      rlang_1.1.3      
-[13] rstudioapi_0.15.0 whisker_0.4.1     car_3.1-2         callr_3.7.3      
-[17] jquerylib_0.1.4   rmarkdown_2.25    textshaping_0.3.7 munsell_0.5.0    
-[21] broom_1.0.5       compiler_4.2.3    httpuv_1.6.14     xfun_0.42        
-[25] systemfonts_1.0.5 pkgconfig_2.0.3   htmltools_0.5.7   tidyselect_1.2.0 
-[29] fansi_1.0.6       tzdb_0.4.0        withr_3.0.0       later_1.3.2      
-[33] grid_4.2.3        jsonlite_1.8.8    gtable_0.3.4      lifecycle_1.0.4  
-[37] git2r_0.33.0      magrittr_2.0.3    scales_1.3.0      cli_3.6.2        
-[41] stringi_1.8.3     cachem_1.0.8      carData_3.0-5     farver_2.1.1     
-[45] ggsignif_0.6.4    fs_1.6.3          promises_1.2.1    bslib_0.6.1      
-[49] ragg_1.2.7        generics_0.1.3    vctrs_0.6.5       tools_4.2.3      
-[53] glue_1.7.0        hms_1.1.3         processx_3.8.3    abind_1.4-5      
-[57] fastmap_1.1.1     yaml_2.3.8        timechange_0.3.0  colorspace_2.1-0 
-[61] rstatix_0.7.2     knitr_1.45        sass_0.4.8       </code></pre>
+ [1] tidyselect_1.2.0  xfun_0.42         bslib_0.6.1       colorspace_2.1-0 
+ [5] vctrs_0.6.5       generics_0.1.3    htmltools_0.5.7   yaml_2.3.8       
+ [9] utf8_1.2.4        rlang_1.1.3       jquerylib_0.1.4   later_1.3.2      
+[13] pillar_1.9.0      glue_1.7.0        withr_3.0.0       lifecycle_1.0.4  
+[17] munsell_0.5.0     gtable_0.3.4      ragg_1.2.7        evaluate_0.23    
+[21] knitr_1.45        tzdb_0.4.0        callr_3.7.3       fastmap_1.1.1    
+[25] httpuv_1.6.14     ps_1.7.6          fansi_1.0.6       Rcpp_1.0.12      
+[29] promises_1.2.1    scales_1.3.0      cachem_1.0.8      jsonlite_1.8.8   
+[33] systemfonts_1.0.5 farver_2.1.1      fs_1.6.3          textshaping_0.3.7
+[37] hms_1.1.3         digest_0.6.34     stringi_1.8.3     processx_3.8.3   
+[41] getPass_0.2-4     rprojroot_2.0.4   grid_4.2.3        cli_3.6.2        
+[45] tools_4.2.3       magrittr_2.0.3    sass_0.4.8        whisker_0.4.1    
+[49] pkgconfig_2.0.3   timechange_0.3.0  rmarkdown_2.25    httr_1.4.7       
+[53] rstudioapi_0.15.0 R6_2.5.1          git2r_0.33.0      compiler_4.2.3   </code></pre>
 </div>
 </div>
 

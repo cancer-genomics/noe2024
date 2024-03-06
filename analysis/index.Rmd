@@ -18,7 +18,7 @@ Circulating cell-free DNA (cfDNA) is emerging as a diagnostic avenue for cancer 
 # Introduction
 The analyses in this repository use data from previous studies (Christiano et al., Nature, 2019 and Mathios et al., Nature Communications, 2021). The data for the samples analyzed in these studies was deposited at the European Genome-Phenome Archive (EGA). The GitHub-repositories for these studies explain how the data was analysed until a GenomicRanges (GRanges) object was made with the fragment start- and end-positions.
 
-For the analyses in this repository, we start with the GRanges files, which contain cell-free DNA fragment information.
+For the analyses in this repository, we start with the GRanges files, which contain cell-free DNA fragment information. The code that was used to create the data needed to rebuild the analysis is saved in `code`.
 
 # Requirements
 The R-packages used to process the samples and to construct the figures are provided [here](../docs/SessionInfo.html). These are available on Bioconductor or CRAN.
@@ -29,10 +29,9 @@ The R-packages used to process the samples and to construct the figures are prov
 - Figure 3: [HTML](../docs/Figure3.html), [Code](../analysis/Figure3.Rmd)
   - A,B: [JPG](../docs/figure/Fig_3AB.jpg)
   - C,D: [JPG](../docs/figure/Fig_3CD.jpg)
-  - E,F: [JPG](../docs/figure/Fig_3EF.jpg)
+  - E,F: [HTML](../docs/Figure3EF.html), [Code](../analysis/Figure3EF.Rmd), figures in HTML **[old version, need to update]** 
   - G: [JPG](../docs/figure/Fig_3G.jpg)
-  - H: [HTML](../docs/Figure3H.html), [Code](../analysis/Figure3H.Rmd), figures in HTML 
-  - I: [JPG](../docs/figure/Fig_3I.jpg) 
+  - H: [JPG](../docs/figure/Fig_3H.jpg)
 - Figure 4: [HTML](../docs/Figure4.html), [Code](../analysis/Figure4.Rmd), [JPG](../docs/figure/Fig_4.jpg)
 
 # Supplementary Figures
@@ -42,12 +41,15 @@ The R-packages used to process the samples and to construct the figures are prov
 - Supp. Fig. 4: [HTML](../docs/Supplementary_Figure4.html), [Code](../analysis/Supplementary_Figure4.Rmd), [JPG](../docs/figure/Supplementary_Fig_4.jpg)
 - Supp. Fig. 5: [HTML](../docs/Supplementary_Figure5.html), [Code](../analysis/Supplementary_Figure5.Rmd), [JPG](../docs/figure/Supplementary_Fig_5.jpg)
 - Supp. Fig. 6: [HTML](../docs/Supplementary_Figure6.html), [Code](../analysis/Supplementary_Figure6.Rmd), [JPG](../docs/figure/Supplementary_Fig_6.jpg)
-- Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd), figures in HTML
+- Supp. Fig. 7: [HTML](../docs/Supplementary_Figure7.html), [Code](../analysis/Supplementary_Figure7.Rmd), [JPG](../docs/figure/Supplementary_Fig_7.jpg)
 - Supp. Fig. 8: [HTML](../docs/Supplementary_Figure8.html), [Code](../analysis/Supplementary_Figure8.Rmd), [JPG](../docs/figure/Supplementary_Fig_8.jpg)
-- Supp. Fig. 9: [HTML](../docs/Supplementary_Figure9.html), [Code](../analysis/Supplementary_Figure9.Rmd)
-  - A: [JPG](../docs/figure/Supplementary_Fig_9A.jpg) 
-  - B: [JPG](../docs/figure/Supplementary_Fig_9B.jpg)  
-- Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd), figures in HTML
+- Supp. Fig. 9: [HTML](../docs/Supplementary_Figure9.html), [Code](../analysis/Supplementary_Figure9.Rmd), figures in HTML **[old version, need to update]**
+- Supp. Fig. 10: [HTML](../docs/Supplementary_Figure10.html), [Code](../analysis/Supplementary_Figure10.Rmd), [JPG](../docs/figure/Supplementary_Fig_10.jpg) **[old version, need to update]**
+- Supp. Fig. 11: [HTML](../docs/Supplementary_Figure11.html), [Code](../analysis/Supplementary_Figure11.Rmd), figures in HTML
+- Supp. Fig. 12: [HTML](../docs/Supplementary_Figure12.html), [Code](../analysis/Supplementary_Figure12.Rmd), [JPG](../docs/figure/Supplementary_Fig_12.jpg)
+- Supp. Fig. 13: [HTML](../docs/Supplementary_Figure13.html), [Code](../analysis/Supplementary_Figure13.Rmd), [JPG](../docs/figure/Supplementary_Fig_13AB.jpg)
+- Supp. Fig. 14: **Empty, newly added** 
+- Supp. Fig. 15: [HTML](../docs/Supplementary_Figure15.html), [Code](../analysis/Supplementary_Figure15.Rmd), figures in HTML
 
 # Supplementary Tables
 - Supp. Table 1: Refer to supplementary data in Christiano et al., Nature, 2019 and Mathios et al., Nature Communications, 2021 
@@ -56,7 +58,7 @@ The R-packages used to process the samples and to construct the figures are prov
 - Supp. Table 4: [Code](../code/SuppTable4.Rmd) Need GRanges to run.
 - Supp. Table 5: [Code](../code/SuppTable5.Rmd) Need Rds files from the previous step to run.
 - Supp. Table 6: [Code](../code/SuppTable6.Rmd) Need chrX fragments data to run.
-- Supp. Table 7: [Code]() Empty
-- Supp. Table 8: [Code]() Empty
-- Supp. Table 9: [Code]() Empty
+- Supp. Table 7: [Code]() **Empty**
+- Supp. Table 8: [Code]() **Empty**
+- Supp. Table 9: [Code]() **Empty**
 

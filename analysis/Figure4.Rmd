@@ -108,7 +108,7 @@ plot1 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(n
                             "CGPLLU" = "lung cancer", 
                             "CGPLBR" = "breast cancer")) +
   scale_y_continuous(labels = scales::percent)
-#ggsave(here("docs/figures/carvalho_comparison_12cycles_ratio.jpg"), plot = plot1, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave("/Users/mnoe/Documents/carvalho_comparison_12cycles_ratio.jpg", plot = plot1, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 plot2 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(new$motif)) == 6) & (new$label == "healthy unmethylated - pancreatic cancer methylated")) ,], aes(x = group, y=ratio)) +
   geom_boxplot(outlier.shape = NA, aes(fill=-log(pvalue, 10))) +
@@ -128,7 +128,7 @@ plot2 <- ggplot(data=new[which((new$method == "regular") & (nchar(as.character(n
                             "CGPLLU" = "lung cancer", 
                             "CGPLBR" = "breast cancer")) +
   scale_y_continuous(labels = scales::percent)
-#ggsave(here("docs/figures/carvalho_comparison_12cycles_extra.jpg"), plot = plot2, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+#ggsave(here("docs/figure/carvalho_comparison_12cycles_extra.jpg"), plot = plot2, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 
 
 y.grob <- textGrob("Fraction of cfDNA fragments starting or ending at motif", gp=gpar(fontsize=16), rot=90)
@@ -148,33 +148,35 @@ ggsave(here("docs/figure/Fig_4A.jpg"), plot = plot, device = "jpeg",width = 13.3
 ## Figure 4B: 
 
 ```{r}
-
 data <- read.csv(here("data/data_akshaya/All_Scores.csv"))
 delfi_roc<-pROC::roc(data$type,data$score.delfi,ci=TRUE,levels=c("healthy","cancer"))
-meth_roc<-pROC::roc(data$type,data$score.meth,ci=TRUE,levels=c("healthy","cancer"))
+#meth_roc<-pROC::roc(data$type,data$score.meth,ci=TRUE,levels=c("healthy","cancer"))
+#meth_reg_roc<-pROC::roc(data$type,data$score.meth_reg,ci=TRUE,levels=c("healthy","cancer"))
+meth_reg_roc<-pROC::roc(data$type,data$score.meth,ci=TRUE,levels=c("healthy","cancer"))
 ens_roc<-pROC::roc(data$type,data$ens_preds,ci=TRUE,levels=c("healthy","cancer"))
 
 
-delfi_type<-paste0("DELFI: ",sprintf("%.2f", round(delfi_roc$auc[1],digits = 2))," (",round(delfi_roc$ci[1],2),"-",round(delfi_roc$ci[3],2),")")
-meth_type<-paste0("Methylation: ",round(meth_roc$auc[1],2)," (",round(meth_roc$ci[1],2),"-",round(meth_roc$ci[3],2),")")
+delfi_type<-paste0("DELFI: ",round(delfi_roc$auc[1],2)," (",round(delfi_roc$ci[1],2),"-",round(delfi_roc$ci[3],2),")")
+#meth_type<-paste0("Methylation (with ratios): ",sprintf('%.2f', meth_roc$auc[1])," (",round(meth_roc$ci[1],2),"-",round(meth_roc$ci[3],2),")")
+meth_reg_type<-paste0("Methylation: ",round(meth_reg_roc$auc[1],2)," (",round(meth_reg_roc$ci[1],2),"-",round(meth_reg_roc$ci[3],2),")")
 ens_type<-paste0("Ensemble: ",round(ens_roc$auc[1],2)," (",round(ens_roc$ci[1],2),"-",round(ens_roc$ci[3],2),")")
 
 
 res<-tibble(type=delfi_type,sens=delfi_roc$sensitivities,spec=delfi_roc$specificities)
-res1<-tibble(type=meth_type,sens=meth_roc$sensitivities,spec=meth_roc$specificities)
-res2<-tibble(type=ens_type,sens=ens_roc$sensitivities,spec=ens_roc$specificities)
+#res1<-tibble(type=meth_type,sens=meth_roc$sensitivities,spec=meth_roc$specificities)
+res2<-tibble(type=meth_reg_type,sens=meth_reg_roc$sensitivities,spec=meth_reg_roc$specificities)
+res3<-tibble(type=ens_type,sens=ens_roc$sensitivities,spec=ens_roc$specificities)
 
-res<-rbind(res,res1,res2)
-res$type<-factor(res$type,levels=c(meth_type,delfi_type,ens_type))
-
-#levels(res$type)=c(meth_type,delfi_type,ens_type)
-
+#res<-rbind(res,res1,res2,res3)
+res<-rbind(res,res2,res3)
+#res$type<-factor(res$type,levels=c(meth_type,meth_reg_type,delfi_type,ens_type))
+res$type<-factor(res$type,levels=c(meth_reg_type,delfi_type,ens_type))
 
 B <- res %>%
     ggplot(aes(spec, sens, group=type,color=type)) +
     geom_vline(xintercept=0.80,
                color="gray80", linewidth=0.5, linetype="dashed") +
-    geom_line(aes(color=type), linewidth=1.1) +
+    geom_path(aes(color=type), linewidth=1.1) +
     scale_x_reverse(expand=c(0, 0.01),
                     breaks=c(0, 0.25, 0.5, 0.80, 1),
                     labels=as.character(
@@ -183,7 +185,7 @@ B <- res %>%
                        breaks=c(0, 0.25, 0.5, 0.75, 1),
                        labels=as.character(
                            c("0", ".25", ".50", ".75", "1.0"))) +
-    scale_color_manual(values=c("#77C8DD", "#77dd77", "#d377a0")) +
+    scale_color_manual(values=c("#77C8DD", "#337E99", "#77dd77", "#dd8677")) +
     theme_classic(base_size=20) +
     theme(panel.grid=element_blank(),
           legend.position=c(0.6, 0.2),

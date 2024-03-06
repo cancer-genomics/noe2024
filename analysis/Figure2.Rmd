@@ -23,6 +23,8 @@ library("data.table")
 library("GenomicRanges")
 library("grid")
 library("ggpubr")
+library("tidymodels")
+library("knitr")
 library("here")
 ```
 
@@ -326,6 +328,7 @@ plot2D2 <- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 7) & (sum$gr
   scale_fill_manual(values = c("#99CCFF", "#FF99BB")) +
   scale_color_manual(values = c("#99CCFF", "#FF99BB"))  + 
   stat_compare_means(method = "t.test", size = 3, aes(label = paste0("p ", after_stat(p.format))))
+
 plot2D1 <- ggplot(data=sum[which((nchar(as.character(sum$motif)) == 6) & (sum$group == "islands") & (sum$chromosome == "chrX")),], aes(x = sex, y=ratio, fill=sex)) +
   geom_jitter(size=0.4, alpha=1, aes(colour=sex)) +
   geom_boxplot(outlier.shape = NA, aes(alpha = 0.1)) +
@@ -391,6 +394,46 @@ plot2E1 <- ggplot(data=sum2[which((nchar(as.character(sum2$motif)) == 6) & (sum2
   stat_compare_means(size = 3, method = "t.test", aes(label = paste0("p = ", after_stat(p.format))))
 
 ```
+```{r stat_table}
+
+get_ratio <- function(x, sex_cat) {
+    return(filter(x, sex == sex_cat) %>% pull(ratio))
+}
+
+apply_test <- function(x, func, ...) {
+    m <- get_ratio(x, "male") 
+    f <- get_ratio(x, "female")
+    return(tidy(func(f,m, ...)))    
+}
+
+apply_fc <- function(x) {
+    len.samp <- 10e3
+    m <- get_ratio(x, "male")
+    f <- get_ratio(x, "female")
+    mrep <- sample(m, len.samp, replace=TRUE)
+    frep <- sample(f, len.samp, replace=TRUE)
+    statistic <- median(frep/mrep)
+    conf.int <- quantile(frep/mrep, prob=c(0.025, 0.975))
+    tibble(statistic = statistic, conf.low = conf.int[1], conf.high=conf.int[2], method = "Fold-change by sampling")
+}
+
+stat_table <- sum2 %>%
+              filter(group == "islands") %>%
+              nest(data = -c(chromosome, motif)) %>%
+              mutate(ttest = lapply(data, apply_test, t.test),
+                     wilcox = lapply(data, apply_test, wilcox.test, conf.int=TRUE),
+                     ks = lapply(data, apply_test, ks.test), 
+                     fc = lapply(data, apply_fc)) %>%
+              pivot_longer(cols = c(ttest, wilcox, ks, fc), names_to="test", values_to="test_results") %>%
+              select(-data) %>%
+              unnest(test_results) %>%
+              mutate(p.value = as.character(signif(p.value, 5))) %>%
+              arrange(chromosome, motif) 
+                     
+kable(stat_table)
+
+```
+
 
 
 ## Figure 2: combine Figure 2A, Figure 2B and 2C, Figure 2D and 2E
