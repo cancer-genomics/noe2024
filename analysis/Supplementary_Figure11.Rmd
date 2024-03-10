@@ -155,7 +155,7 @@ compare_gsea_plots <- function(path, sets, all_ranks, ylims){
 ```
 
 ### Generate GSEA Enrichment plots
-```{r}
+```{r, fig.height=12, fig.width=12}
 # Read in analysis data
 # GSEA results for each modality
 comp_table <- read.table(here('data/giraffe/gsea_table.csv'), sep=',', header=T)
@@ -177,105 +177,4 @@ i <- 1
 ymax <- max(comp_table[i, c(3, 6, 9, 12)])
 ymin <- min(comp_table[i, c(3, 6, 9, 12)])
 compare_gsea_plots(comp_table$Gene.Set[i], sets, all_ranks, c(ymin-.1, ymax))
-```
-
-### Create GSEA Heatmap
-```{r, fig.height=10}
-tab <- fread(here('data/giraffe/gsea_table.csv')) %>%
-    filter(RNA.Expression.P.val < .1 & Methylation.P.val < .1 &
-        TSS.Coverage.P.val < .1 & CpG.Coverage.P.val < .1) %>%
-    select(Gene.Set, 'WBC RNA expression'='RNA.Expression.Enrichment.Score', 
-        'WBC DNA Methylation'='Methylation.Enrichment.Score',
-        'cfDNA TSS coverage'='TSS.Coverage.Enrichment.Score',
-        'cfDNA CpG coverage'='CpG.Coverage.Enrichment.Score') %>%
-    data.frame() %>%
-    mutate(Gene.Set=str_to_title(gsub('_', ' ', Gene.Set))) %>%
-    mutate(Gene.Set=gsub('Hallmark.|Kegg.', '', Gene.Set)) %>%
-    column_to_rownames('Gene.Set') %>%
-    arrange(cfDNA.CpG.coverage) %>%
-    data.matrix()
-colnames(tab) <- gsub('.', ' ', colnames(tab), fixed=T)
-tab <- tab[!rownames(tab) %in% "Kras Signaling Up", ]
-
-rename <- c(
-    'Fatty Acid Metabolism'='Fatty Acid Met',
-    'Oxidative Phosphorylation'='Ox Phos',
-    'Kras Signaling Dn'='Kras Sig Dn',
-    'Calcium Signaling Pathway'='Calcium Signaling',
-    'Neuroactive Ligand Receptor Interaction'='Neuro LR Interaction'
-)
-mid <- match(names(rename), rownames(tab))
-rownames(tab)[mid] <- unname(rename)
-tab <- tab[order(tab[, 1], decreasing=T), ]
-
-Heatmap(tab, cluster_rows=F, cluster_columns=F, 
-    rect_gp=gpar(col='white', lwd=2),
-    column_title_gp=gpar(fontsize=16, fontface='bold'),
-    name='GSEA Enrichment Score',
-    row_names_side='left',
-    height=nrow(tab) * unit(0.3, 'inches'), width=ncol(tab) * unit(0.3, 'inches'))
-```
-
-### Run linear model fitting RNA and methylation to coverage.
-```{r, fig.height=4}
-# Read in table methylation, expression, and coverage
-tab <- readRDS(here('data/giraffe/table.rds')) %>%
-  column_to_rownames('transcript') %>%
-  mutate(rna_expression=log10(rna_expression + 1), coverage=log10(coverage + 1)) %>%
-  mutate(rna_expression=scale(rna_expression), beta=scale(beta)) %>%
-  filter(!is.na(beta))
-
-# Fit linear model
-model <- lm(coverage ~ beta * rna_expression, tab)
-
-# Get confidence intervals for coefficients
-ci_rna <- confint(model, 'rna_expression', level=0.95)
-ci_beta <- confint(model, 'beta', level=0.95)
-df <- data.frame(Variable=c('RNA', 'Methylation'), 
-  min_ci=c(ci_rna[1], ci_beta[1]),
-  max_ci=c(ci_rna[2], ci_beta[2]),
-  mean=c(model$coefficients['rna_expression'], model$coefficients['beta']))
-
-# Plot CIs.
-ggplot(df, aes(y=Variable, color=Variable)) +
-  geom_point(aes(x=mean), size=2) +
-  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
-  geom_vline(xintercept=0, linetype='dashed') +
-  theme_classic() +
-  theme(legend.position='none') +
-  ylab('') +
-  xlab('Regression Coefficient') +
-  xlim(-0.2, 0.05)
-```
-
-### Repeat linear model fitting to fragment size.
-```{r, fig.height=4}
-# Read in table methylation, expression, and sizes
-tab <- readRDS(here('data/giraffe/methylation_expression_size.rds')) %>%
-  column_to_rownames('transcript') %>%
-  mutate(rna_expression=log10(rna_expression + 1)) %>%
-  mutate(rna_expression=scale(rna_expression), beta=scale(beta)) %>%
-  filter(!is.na(beta))
-
-# Fit linear model
-model <- lm(size ~ beta * rna_expression, tab)
-
-# Get confidence intervals for coefficients
-ci_rna <- confint(model, 'rna_expression', level=0.95)
-ci_beta <- confint(model, 'beta', level=0.95)
-df <- data.frame(Variable=c('RNA', 'Methylation'), 
-  min_ci=c(ci_rna[1], ci_beta[1]),
-  max_ci=c(ci_rna[2], ci_beta[2]),
-  mean=c(model$coefficients['rna_expression'], model$coefficients['beta']))
-
-# Plot CIs
-ggplot(df, aes(y=Variable, color=Variable)) +
-  geom_point(aes(x=mean), size=2) +
-  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
-  geom_vline(xintercept=0, linetype='dashed') +
-  theme_classic() +
-  theme(legend.position='none') +
-  ylab('') +
-  xlab('Regression Coefficient') +
-  xlim(-0.3, 0.2)
 ```

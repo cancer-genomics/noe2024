@@ -8,7 +8,7 @@ library(here)
 ```
 
 ### Generate plots
-```{r}
+```{r, fig.height=4}
 # Read in data
 beta_dat <- readRDS(here('data/giraffe/beta_dat.RDS'))
 rna_dat <- readRDS(here('data/giraffe/rna_dat.RDS'))
@@ -36,9 +36,7 @@ ggboxplot(rna_dat, x='Type', y='Expressed.Genes', fill='Type',
         add='jitter') +
     xlab('') +
     ylab('Expressed Genes (count)') +
-    theme(legend.position='none') +
-    stat_compare_means(comparisons=comps) +
-    stat_summary(fun.data=stats_fxn, geom='text', fun.args=lab_height)
+    theme(legend.position='none')
 
 scale <- max(beta_dat$Methylated.Sites) - min(beta_dat$Methylated.Sites)
 lab_height <- min(beta_dat$Methylated.Sites) - scale*.05
@@ -46,7 +44,5 @@ ggboxplot(beta_dat, x='Type', y='Methylated.Sites', fill='Type',
         add='jitter') +
     xlab('') +
     ylab('Methylated Sites (count)') +
-    theme(legend.position='none') +
-    stat_compare_means(comparisons=comps) +
-    stat_summary(fun.data=stats_fxn, geom='text', fun.args=lab_height)
+    theme(legend.position='none')
 ```

@@ -6,6 +6,7 @@ library(ggplot2)
 library(ggpubr)
 library(data.table)
 library(ComplexHeatmap)
+library(sjPlot)
 library(here)
 ```
 
@@ -154,31 +155,6 @@ compare_gsea_plots <- function(path, sets, all_ranks, ylims){
 }
 ```
 
-### Generate GSEA Enrichment plots
-```{r}
-# Read in analysis data
-# GSEA results for each modality
-comp_table <- read.table(here('data/giraffe/gsea_table.csv'), sep=',', header=T)
-
-# Gene ranks calculated by modality
-all_ranks <- readRDS(here('data/giraffe/ranks.RDS'))
-
-# Read in gene sets
-sets <- c(
-    gmtPathways(here('data/giraffe/gene_sets/c2.cp.kegg.v7.5.1.symbols.gmt')),
-    gmtPathways(here('data/giraffe/gene_sets/h.all.v7.5.1.symbols.gmt'))
-)
-len <- sapply(sets, length)
-sets <- sets[len > 150]
-
-# Plot target gene set
-comp_table <- arrange(comp_table, CpG.Coverage.P.val)
-i <- 1
-ymax <- max(comp_table[i, c(3, 6, 9, 12)])
-ymin <- min(comp_table[i, c(3, 6, 9, 12)])
-compare_gsea_plots(comp_table$Gene.Set[i], sets, all_ranks, c(ymin-.1, ymax))
-```
-
 ### Create GSEA Heatmap
 ```{r, fig.height=10}
 tab <- fread(here('data/giraffe/gsea_table.csv')) %>%
@@ -216,66 +192,38 @@ Heatmap(tab, cluster_rows=F, cluster_columns=F,
     height=nrow(tab) * unit(0.3, 'inches'), width=ncol(tab) * unit(0.3, 'inches'))
 ```
 
-### Run linear model fitting RNA and methylation to coverage.
-```{r, fig.height=4}
-# Read in table methylation, expression, and coverage
-tab <- readRDS(here('data/giraffe/table.rds')) %>%
-  column_to_rownames('transcript') %>%
-  mutate(rna_expression=log10(rna_expression + 1), coverage=log10(coverage + 1)) %>%
-  mutate(rna_expression=scale(rna_expression), beta=scale(beta)) %>%
-  filter(!is.na(beta))
+### Run linear model fitting RNA, methylation, and WPS to coverage and size.
+```{r, fig.height=1.75, fig.width=4}
+tab <- readRDS(here('data/giraffe/tss_cpg_connect_filled.rds')) %>%
+    column_to_rownames('trans') %>%
+    mutate(Coverage = log10(cov + 1)) %>%
+    mutate(RNA=scale(log10(rna + 1))) %>%
+    mutate(WPS=scale(wps)) %>%
+    mutate(Beta=beta) %>%
+    mutate(Size=size) %>%
+    filter(!is.na(WPS) & !is.na(Beta) & !is.na(RNA) & Size > 0) %>%
+    mutate(Methylated=Beta > 0.5) %>%
+    mutate(WPS=wps)
+trans <- scales::trans_new('Signed.Sqrt', 
+    function(x) sign(x) * sqrt(abs(x)), 
+    function(x) sign(x) * (abs(x)^2),
+    breaks=function(x) ticks)
 
-# Fit linear model
-model <- lm(coverage ~ beta * rna_expression, tab)
+model <- lm(Coverage ~ poly(WPS, 3) + RNA*Methylated, tab)
+ticks <- c(-16, -9, -4, -1, 0, 1, 4, 9, 16)
+plot_model(model) +
+    scale_x_discrete(labels=c('RNA * Meth', 'Meth', 'RNA', 'WPS\u00b3', 'WPS\u00b2', 'WPS')) +
+    theme_classic() +
+    geom_hline(yintercept=0, color='grey', linewidth=0.5) +
+    scale_y_continuous(trans=trans, breaks=ticks) +
+    ylab('Coefficient')
 
-# Get confidence intervals for coefficients
-ci_rna <- confint(model, 'rna_expression', level=0.95)
-ci_beta <- confint(model, 'beta', level=0.95)
-df <- data.frame(Variable=c('RNA', 'Methylation'), 
-  min_ci=c(ci_rna[1], ci_beta[1]),
-  max_ci=c(ci_rna[2], ci_beta[2]),
-  mean=c(model$coefficients['rna_expression'], model$coefficients['beta']))
-
-# Plot CIs.
-ggplot(df, aes(y=Variable, color=Variable)) +
-  geom_point(aes(x=mean), size=2) +
-  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
-  geom_vline(xintercept=0, linetype='dashed') +
-  theme_classic() +
-  theme(legend.position='none') +
-  ylab('') +
-  xlab('Regression Coefficient') +
-  xlim(-0.2, 0.05)
-```
-
-### Repeat linear model fitting to fragment size.
-```{r, fig.height=4}
-# Read in table methylation, expression, and sizes
-tab <- readRDS(here('data/giraffe/methylation_expression_size.rds')) %>%
-  column_to_rownames('transcript') %>%
-  mutate(rna_expression=log10(rna_expression + 1)) %>%
-  mutate(rna_expression=scale(rna_expression), beta=scale(beta)) %>%
-  filter(!is.na(beta))
-
-# Fit linear model
-model <- lm(size ~ beta * rna_expression, tab)
-
-# Get confidence intervals for coefficients
-ci_rna <- confint(model, 'rna_expression', level=0.95)
-ci_beta <- confint(model, 'beta', level=0.95)
-df <- data.frame(Variable=c('RNA', 'Methylation'), 
-  min_ci=c(ci_rna[1], ci_beta[1]),
-  max_ci=c(ci_rna[2], ci_beta[2]),
-  mean=c(model$coefficients['rna_expression'], model$coefficients['beta']))
-
-# Plot CIs
-ggplot(df, aes(y=Variable, color=Variable)) +
-  geom_point(aes(x=mean), size=2) +
-  geom_errorbar(aes(xmin=min_ci, xmax=max_ci, width=0.4)) +
-  geom_vline(xintercept=0, linetype='dashed') +
-  theme_classic() +
-  theme(legend.position='none') +
-  ylab('') +
-  xlab('Regression Coefficient') +
-  xlim(-0.3, 0.2)
+model <- lm(Size ~ poly(WPS, 3) + RNA*Methylated, tab)
+ticks <- c(-36, -16, -4, 0, 4, 16, 36)
+plot_model(model) +
+    scale_x_discrete(labels=c('RNA * Meth', 'Meth', 'RNA', 'WPS\u00b3', 'WPS\u00b2', 'WPS')) +
+    theme_classic() +
+    geom_hline(yintercept=0, color='grey', linewidth=0.5) +
+    scale_y_continuous(trans=trans, breaks=ticks) +
+    ylab('Coefficient')
 ```
