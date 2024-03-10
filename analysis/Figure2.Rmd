@@ -25,6 +25,9 @@ library("grid")
 library("ggpubr")
 library("tidymodels")
 library("knitr")
+library("parallel")
+library("foreach")
+library("doRNG")
 library("here")
 ```
 
@@ -197,11 +200,69 @@ all10bars <- t
 all10bars$subgroup <- round(all10bars$beta, digits = 1)
 all10bars$group <- factor(all10bars$group, levels=c("C | CG", "G | CG", "A | CG", "T | CG"))
 
+# Compute summary stats for the paper
 all10bars %>%
   group_by(group, subgroup) %>%
   summarise(ratio = sum(start_cg) / sum(start_cg_over)) %>%
   group_by(group) %>%
   summarise(min = min(ratio), max = max(ratio), ratio = max(ratio) / min(ratio))
+
+len.samp <- 1e3
+
+# Resample from each listed group keeping rows intact
+resample <- function(x, ...) {
+    dots <- list(...)
+    xpop <- nest(x, data=-unlist(dots))
+    xsmp <- bind_cols(select(xpop, unlist(dots)), 
+            tibble(data = lapply(xpop$data, function(x) x[sample.int(nrow(x), nrow(x), replace=TRUE),]))) 
+    return(unnest(xsmp, data))                         
+}
+
+# Compute the "ratio"
+compute_ratio <- function(x, ...) {
+    options(warn=-1)
+    dots <- list(...)
+    numer <- colnames(x)[str_detect(colnames(x), "start_.*cg$")] 
+    denom <- colnames(x)[str_detect(colnames(x), "start_.*cg_over")]
+    ratio_fc <- x %>%
+        group_by_(.dots = unlist(dots)) %>%
+        summarize(ratio = sum(eval(parse(text=numer)))/sum(eval(parse(text=denom))), .groups="drop") %>%
+        group_by_(.dots = unlist(dots)[1]) %>%
+        summarize(min = min(ratio), max = max(ratio), ratio = max(ratio)/min(ratio), .groups="drop")
+    ratio_vec <- ratio_fc$ratio
+    names(ratio_vec) <- ratio_fc$group 
+    return(ratio_vec)
+}
+
+# Extremely slow and falls out of memory with data.frame or list of data.frame output!!! Poor mem mgmt of R?
+#rep_all10bars <- replicate(len.samp, compute_ratio(resample(all10bars, "group", "subgroup"), "group", "subgroup")) 
+
+# Try parallel
+my.cluster <- makeCluster(spec=10, type = "FORK")
+doParallel::registerDoParallel(cl = my.cluster)
+
+set.seed(1)
+if(!file.exists(here("data/Figure_2B_stats.rds"))) {
+    all10bars_rep <- foreach(repnum=seq_len(len.samp), combine = list) %dorng% {
+        all10bars_samp <- resample(all10bars, "group", "subgroup")
+        all10bars_ratio <- compute_ratio(all10bars_samp, "group", "subgroup")
+        all10bars_ratio 
+    }
+    saveRDS(all10bars_rep, here("data/Figure_2B_stats.rds"))
+} else {
+    all10bars_rep <- readRDS(here("data/Figure_2B_stats.rds"))
+}
+
+stopCluster(cl = my.cluster)
+
+# For each motif, compute the quantiles of interest
+all10bars_rep %>%
+    bind_rows() %>%
+    apply(., 2, function(x) { 
+              y <- quantile(x, p = c(0.5, 0.025, 0.975))
+              names(y) <- c("median", "conf.low", "conf.high")
+              round(y,2)
+            })
 
 plot2b <- all10bars %>%
   group_by(group, subgroup) %>%
@@ -265,6 +326,33 @@ all10bars %>%
   group_by(group) %>%
   summarise(min = min(ratio), max = max(ratio), ratio = max(ratio) / min(ratio))
 
+# Try parallel
+my.cluster <- makeCluster(spec=10, type = "FORK")
+doParallel::registerDoParallel(cl = my.cluster)
+
+set.seed(1)
+if(!file.exists(here("data/Figure_2C_stats.rds"))) {
+    all10bars_rep <- foreach(repnum=seq_len(len.samp), combine = list) %dorng% {
+        all10bars_samp <- resample(all10bars, "group", "subgroup")
+        all10bars_ratio <- compute_ratio(all10bars_samp, "group", "subgroup")
+        all10bars_ratio 
+    }
+    saveRDS(all10bars_rep, here("data/Figure_2C_stats.rds"))
+} else {
+    all10bars_rep <- readRDS(here("data/Figure_2C_stats.rds"))
+}
+
+stopCluster(cl = my.cluster)
+
+# For each motif, compute the quantiles of interest
+all10bars_rep %>%
+    bind_rows() %>%
+    apply(., 2, function(x) { 
+              y <- quantile(x, p = c(0.5, 0.025, 0.975))
+              names(y) <- c("median", "conf.low", "conf.high")
+              round(y,2)
+            })
+
 plot2c <- all10bars %>%
   group_by(group, subgroup) %>%
   summarise(ratio = sum(start_ncg) / sum(start_ncg_over)) %>%
@@ -274,7 +362,7 @@ plot2c <- all10bars %>%
   theme_classic(base_size = 20) +
   #xlab("Methylation (beta-value)") +
   #ylab(expression(atop("Fraction of cfDNA fragments", paste("starting or ending at CGs")))) +
-  ylab("Fraction of cfDNA fragments\nstarting or ending at CGs") + 
+  ylab("Fraction of cfDNA fragments\nstarting or ending at CCGs") + 
   scale_y_continuous(labels = scales::percent, limits = c(0,0.0125),
                      breaks = c(0.0125, 0.01,0.0075,0.005,0.0025,0)) +
   scale_x_discrete(labels=c("0", "1"),
@@ -410,16 +498,26 @@ apply_fc <- function(x) {
     len.samp <- 1e3
     m <- get_ratio(x, "male")
     f <- get_ratio(x, "female")
+
+    # compute median on resample 1000 times
     mrep_median <- apply(replicate(len.samp, sample(m, length(m), replace=TRUE)),2,median)
     frep_median <- apply(replicate(len.samp, sample(f, length(f), replace=TRUE)),2,median)
-    statistic <- median(frep_median/mrep_median)
-    conf.int <- quantile(frep_median/mrep_median, prob=c(0.025, 0.975))
-    tibble(statistic = statistic, conf.low = conf.int[1], conf.high=conf.int[2], method = "Fold-change by sampling")
+
+    # compute statistics
+    fc <- frep_median/mrep_median
+    statistic <- median(fc)
+    conf.int <- quantile(fc, prob=c(0.025, 0.975))
+    if(statistic >= 1) p.value <- mean(fc < 1) else p.value <- mean(fc >= 1)
+
+    # return stat data
+    tibble(statistic = statistic, conf.low = conf.int[1], conf.high=conf.int[2], p.value = p.value, method = "Fold-change by sampling", .fc_rep = list(fc))
 }
 
+set.seed(1)
 stat_table <- sum2 %>%
               filter(group == "islands") %>%
-              nest(data = -c(chromosome, motif)) %>%
+              mutate(motif_width = nchar(as.character(motif))) %>%
+              nest(data = -c(chromosome, motif, motif_width)) %>%
               mutate(ttest = lapply(data, apply_test, t.test),
                      wilcox = lapply(data, apply_test, wilcox.test, conf.int=TRUE),
                      ks = lapply(data, apply_test, ks.test), 
@@ -430,11 +528,18 @@ stat_table <- sum2 %>%
               mutate(p.value = as.character(signif(p.value, 5))) %>%
               arrange(chromosome, motif) 
                      
-kable(stat_table)
-write.csv(stat_table, "docs/figure/Figure_2DE.csv", row.names=FALSE, quote=FALSE)
+kable(stat_table %>% select(-.fc_rep))
+write.csv(stat_table %>% select(-.fc_rep), here("docs/figure/Figure_2DE.csv"), row.names=FALSE, quote=FALSE)
+
+# Manuscript text stats
+stat_table %>%
+    filter(test == "fc") %>%
+    group_by(chromosome, motif_width) %>%
+    summarize(statistic = median(unlist(.fc_rep)),
+              conf.low = quantile(unlist(.fc_rep), p=0.025),
+              conf.high = quantile(unlist(.fc_rep), p=0.975))
 
 ```
-
 
 
 ## Figure 2: combine Figure 2A, Figure 2B and 2C, Figure 2D and 2E

@@ -88,3 +88,12 @@ plot2bc_50 <- plot_grid(plot2b, plot2c, ncol = 1, align="v", axis="bt", rel_heig
 #plot2BC <- plot_grid(plot2b, plot2c, ncol = 1, align="v", axis="bt", rel_heights = c(5, 5), labels = c("b", "c"), label_size = 20)
 ggsave(here("docs/figure/Supplementary_Fig_4.jpg"), plot = plot2bc_50, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
 ```
+
+```{r}
+
+t %>%
+    group_by(seq) %>%
+    summarize(min = min(ratio[ratio > 0]), max = max(ratio), ratio = max(ratio)/min(ratio[ratio > 0]))
+
+```
+

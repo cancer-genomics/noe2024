@@ -12,7 +12,7 @@ editor_options:
 
 ## Pre-requisites
 
-These packages are necessary to make the plots that make up Supplementary Figure 4.
+These packages are necessary to make the plots that make up Supplementary Figure 5.
 
 ```{r}
 library("tidyverse")
@@ -58,8 +58,12 @@ plot <- ggplot(t, aes(x=beta, y=ratio)) +
   xlab("Methylation (beta-value)") +
   ylab("Fraction of cfDNA fragments starting or ending at motif")
 ggsave(here("docs/figure/Supplementary_Fig_5.jpg"), plot = plot, device = "jpeg",width = 20, height=12,units = "in", dpi=300)
+```
+
+```{r}
 
 t[which(t$motif == "A/T/C/G | CG"),] %>%
   group_by(group) %>%
   summarise(min = min(ratio), max = max(ratio), ratio = max(ratio)/min(ratio))
+
 ```

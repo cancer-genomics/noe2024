@@ -3,34 +3,55 @@ title: "SessionInfo"
 output: html_document
 ---
 
+
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
 ```{r packages}
+suppressMessages(library("BSgenome"))
+suppressMessages(library("BSgenome.Hsapiens.UCSC.hg19"))
+suppressMessages(library("ComplexHeatmap"))
 suppressMessages(library("GenomicRanges"))
+suppressMessages(library("IlluminaHumanMethylationEPICanno.ilm10b2.hg19"))
 suppressMessages(library("RColorBrewer"))
+suppressMessages(library("SummarizedExperiment"))
 suppressMessages(library("annotatr"))
+suppressMessages(library("biomaRt"))
 suppressMessages(library("caret"))
 suppressMessages(library("cowplot"))
 suppressMessages(library("data.table"))
 suppressMessages(library("devtools"))
+suppressMessages(library("doRNG"))
 suppressMessages(library("dplyr"))
+suppressMessages(library("fgsea"))
+suppressMessages(library("foreach"))
 suppressMessages(library("ggplot2"))
 suppressMessages(library("ggplotify"))
 suppressMessages(library("ggpubr"))
 suppressMessages(library("grid"))
 suppressMessages(library("gridExtra"))
 suppressMessages(library("here"))
+suppressMessages(library("knitr"))
+suppressMessages(library("lemon"))
+suppressMessages(library("minfi"))
 suppressMessages(library("pROC"))
+suppressMessages(library("parallel"))
 suppressMessages(library("plyr"))
+suppressMessages(library("pracma"))
 suppressMessages(library("readxl"))
 suppressMessages(library("recipes"))
 suppressMessages(library("reshape2"))
+suppressMessages(library("rtracklayer"))
+suppressMessages(library("sjPlot"))
 suppressMessages(library("splitTools"))
+suppressMessages(library("stringr"))
+suppressMessages(library("textshape"))
+suppressMessages(library("tidymodels"))
 suppressMessages(library("tidyverse"))
 ```
+
 
 ```{r info, echo=FALSE}
 devtools::session_info()

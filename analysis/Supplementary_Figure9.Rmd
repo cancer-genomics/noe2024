@@ -4,6 +4,7 @@ library(SummarizedExperiment)
 library(ggplot2)
 library(ggpubr)
 library(GenomicRanges)
+library(textshape)
 library(here)
 ```
 
@@ -16,7 +17,7 @@ tab <- readRDS(here('data/giraffe/tss_cpg_connect_filled.rds')) %>%
   mutate(WPS=wps) %>%
   mutate(Beta=beta) %>%
   mutate(Size=size) %>%
-  filter(!is.na(WPS) & !is.na(Beta) & !is.na(RNA) & Size > 0) %>%
+  dplyr::filter(!is.na(WPS) & !is.na(Beta) & !is.na(RNA) & Size > 0) %>%
   mutate(Methylated=Beta > 0.5) %>%
   mutate(WPS=wps)
 
