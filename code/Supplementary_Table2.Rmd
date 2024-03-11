@@ -1,0 +1,70 @@
+---
+title: "Supplementary_Table2.Rmd"
+author: "Michael Noe"
+date: "2/4/2022"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r packages}
+library("tidyverse")
+library("here")
+```
+
+```{r}
+total <- readRDS(here("data/end_motifs_cfdna_individual.rds"))
+enri <- readRDS(here("data/end_motifs_cfdna_individual_200over_5perc.rds"))
+shea <- readRDS(here("data/end_motifs_sheared_individual.rds"))
+theo <- readRDS(here("data/theoretical_frequencies_hg19.rds"))
+theo$motif <- paste0(substr(theo$motif,1,1), " | ", substr(theo$motif,2,3))
+test <- total %>%
+  group_by(Var1, group) %>%
+  summarise(mean = mean(FreqRatio))
+
+test$Var1 <-  paste0(substr(test$Var1,1,1), " | ", substr(test$Var1,2,3))
+total$Var1 <- paste0(substr(total$Var1,1,1), " | ", substr(total$Var1,2,3))
+enri$Var1 <- paste0(substr(enri$Var1,1,1), " | ", substr(enri$Var1,2,3))
+shea$Var1 <- paste0(substr(shea$Var1,1,1), " | ", substr(shea$Var1,2,3))
+total$totheo <- 0
+test$totheo <- 0
+enri$totheo <- 0
+shea$totheo <- 0
+
+for (i in as.character(unique(total$Var1))) {
+  total[which(total$Var1 == i),]$totheo <- total[which(total$Var1 == i),]$FreqRatio / theo[which(theo$motif == i),]$freq
+  test[which(test$Var1 == i),]$totheo <- test[which(test$Var1 == i),]$mean / theo[which(theo$motif == i),]$freq
+  enri[which(enri$Var1 == i),]$totheo <- enri[which(enri$Var1 == i),]$FreqRatio / theo[which(theo$motif == i),]$freq
+  shea[which(shea$Var1 == i),]$totheo <- shea[which(shea$Var1 == i),]$FreqRatio / theo[which(theo$motif == i),]$freq
+}
+
+enri$group <- "cfDNA at recurrent sequences"
+shea$group <- "sonicated DNA"
+shea <- shea[,c(1,2,3,6,4,5)]
+colnames(enri) <- c("Var1", "Freq", "id", "group", "FreqRatio", "totheo")
+test2 <- test[which(test$group == "normal_cfdna"),]
+test2 <- test2[order(-test2$totheo),]
+
+total[which(total$group == "normal_cfdna"), ]$group <- "cfDNA"
+total <- rbind(total, enri, shea)
+total$Var1 <- factor(total$Var1, levels = as.character(test2$Var1))
+total$group <- factor(total$group, levels = c("cfDNA at recurrent sequences", "cfDNA", "sonicated DNA"))
+
+### Make Supplementary Table S2
+ntotal <- total %>%
+  group_by(Var1, group) %>%
+  summarise(meanFreqRatio = mean(FreqRatio), meanFreqRatioNorm = mean(totheo))
+ntotal_df <- data.frame("Motif" = unique(ntotal$Var1),
+                        "sheared DNA" = round(ntotal[which(ntotal$group == "sonicated DNA"),]$meanFreqRatio, digits = 4),
+                        "cfDNA" = round(ntotal[which(ntotal$group == "cfDNA"),]$meanFreqRatio, digits = 4),
+                        "cfDNA at recurrent sequences" = round(ntotal[which(ntotal$group == "cfDNA at recurrent sequences"),]$meanFreqRatio, digits = 4),
+                        "frequency of motifs in the genome" = round(theo[match(unique(ntotal$Var1), theo$motif),]$freq, digits = 4),
+                        "sheared DNA, normalized" = round(ntotal[which(ntotal$group == "sonicated DNA"),]$meanFreqRatioNorm, digits = 4),
+                        "cfDNA, normalized" = round(ntotal[which(ntotal$group == "cfDNA"),]$meanFreqRatioNorm, digits = 4),
+                        "cfDNA at recurrent sequences, normalized" = round(ntotal[which(ntotal$group == "cfDNA at recurrent sequences"),]$meanFreqRatioNorm, digits = 4))
+
+dir.create(here("output", "supplementary_tables"), showWarnings=FALSE)
+write_csv(ntotal_df, here("output", "supplementary_tables", "tab2.csv"))
+```

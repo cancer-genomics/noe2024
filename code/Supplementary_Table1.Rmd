@@ -1,0 +1,33 @@
+---
+title: "Supplementary_Table1.Rmd"
+author: "Michael Noe"
+date: "`r Sys.Date()`" 
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+This only contains a subset of patients listed in the table. Refer to original sources for all data.
+
+```{r packages}
+library("tidyverse")
+library("GenomicRanges")
+library("BSgenome.Hsapiens.UCSC.hg19")
+library("here")
+```
+
+```{r}
+# Location of sample GRanges
+val_files <- readRDS(here("data", "selected_validation_files.rds"))
+luc_files <- readRDS(here("data", "selected_lucas_files.rds"))
+
+val <- val_files[which(val_files$patient_type == "healthy"),]
+luc_h <- luc_files[which(luc_files$patient_type == 2),]
+h <- rbind(val, luc_h)
+dir.create(here("output", "supplementary_tables"), showWarnings=FALSE)
+write.csv(h, here("output", "supplementary_tables", "tab1.csv"))
+
+```

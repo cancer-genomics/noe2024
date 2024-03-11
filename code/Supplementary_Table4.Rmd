@@ -1,0 +1,139 @@
+---
+title: "Supplementary_Table4.Rmd"
+author: "Michael Noe"
+date: "2/4/2022"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r packages}
+library("tidyverse")
+library("GenomicRanges")
+library("BSgenome.Hsapiens.UCSC.hg19")
+library("here")
+```
+
+```{r}
+df <- readRDS(here("data", "Moss_et_al-NatComm-2018", "results", "healthy.rds"))
+gr <- GRanges(paste0(df$chr, ":", df$pos-2, "-", df$pos + 3))
+seq <- as.character(getSeq(Hsapiens, gr))
+
+# Location of sample GRanges
+val_files <- readRDS(here("data", "selected_validation_files.rds"))
+luc_files <- readRDS(here("data", "selected_lucas_files.rds"))
+val <- val_files[which(val_files$patient_type == "healthy"),]$pgdx_id
+luc_h <- luc_files[which(luc_files$patient_type == 2),]$pgdx_id
+h <- c(val, luc_h)
+c <- luc_files[which(luc_files$patient_type == 3),]$pgdx_id
+
+gr3 <- GRanges(paste0(df$chr, ":", df$pos, "-", df$pos + 1))
+gr4 <- GRanges(paste0(df$chr, ":", df$pos - 1, "-", df$pos + 2))
+
+gr3_start <- gr3
+start(gr3_start) <- start(gr3) - 50
+end(gr3_start) <- start(gr3) + 50
+
+gr3_end <- gr3
+start(gr3_end) <- end(gr3) - 50
+end(gr3_end) <- end(gr3) + 50
+
+gr4_start <- gr4
+start(gr4_start) <- start(gr4) - 50
+end(gr4_start) <- start(gr4) + 50
+
+gr4_end <- gr4
+start(gr4_end) <- end(gr4) - 50
+end(gr4_end) <- end(gr4) + 50
+
+warning("Can not proceed without access to GRanges!")
+for (case in seq_along(h)) {
+
+    file <- h[case]
+    temp <- readRDS(file)
+    gr$probes <- df$Row.names
+    gr$seq <- seq
+    gr$beta <- rowMeans(df[,c(4:11)])
+    gr$start_3motif <- 0
+    gr$end_3motif <- 0
+    gr$start_3motif_over <- 0
+    gr$end_3motif_over <- 0
+    gr$start_4motif <- 0
+    gr$end_4motif <- 0
+    gr$start_4motif_over <- 0
+    gr$end_4motif_over <- 0
+
+    over <- table(subjectHits(findOverlaps(temp, gr3, type="start")))
+    gr[as.numeric(as.character(names(over)))]$start_3motif <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr3, type="end")))
+    gr[as.numeric(as.character(names(over)))]$end_3motif <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr3_start)))
+    gr[as.numeric(as.character(names(over)))]$start_3motif_over <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr3_end)))
+    gr[as.numeric(as.character(names(over)))]$end_3motif_over <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr4, type="start")))
+    gr[as.numeric(as.character(names(over)))]$start_4motif <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr4, type="end")))
+    gr[as.numeric(as.character(names(over)))]$end_4motif <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr4_start)))
+    gr[as.numeric(as.character(names(over)))]$start_4motif_over <- as.numeric(over)
+
+    over <- table(subjectHits(findOverlaps(temp, gr4_end)))
+    gr[as.numeric(as.character(names(over)))]$end_4motif_over <- as.numeric(over)
+
+    saveRDS(gr, here("data", "Moss_et_al-NatComm-2018", "results", basename(file)))
+
+}
+
+ls <- list.files(here("data", "Moss_et_al-NatComm-2018", "results"), full.names = T)
+ls <- ls[-match("healthy.rds", basename(ls))]
+
+# Combine results except healthy into one data frame 
+t <- tibble()
+for (file in ls) {
+  print(paste0(match(file, ls), " / ", length(ls)))
+  temp <- readRDS(file)
+  ttemp <- as.tibble(temp)[,c(9:16)]
+  if (nrow(t) == 0) {
+    t <- ttemp
+  } else {
+    t <- as.tibble(t + ttemp)
+  }
+}
+
+t$loc <- paste0(seqnames(temp), ":", start(temp)+2, "-", start(temp) +3)
+t$chr <- as.character(seqnames(temp))
+t$pos <- as.numeric(start(temp))
+t$probe <- temp$probes
+t$seq_table <- temp$seq
+t$beta <- temp$beta
+t$seq_gen <- as.character(getSeq(Hsapiens, GRanges(t$loc)))
+table(t$seq_gen == substr(t$seq_table, 3,4))
+t$preceding_base <- substr(t$seq_table, 2, 2)
+t$postceding_base <- as.character(complement(DNAStringSet(substr(t$seq_table, 5, 5))))
+t$start_ratio3 <- t$start_3motif / t$start_3motif_over
+t$end_ratio3 <- t$end_3motif / t$end_3motif_over
+t <- t[which((t$chr %in% paste0("chr", c(1:22))) & (t$seq_gen == "CG")),]
+t <- t[,c(12,9,14,16,17,18,19,10,11)]
+t[,6] <- round(t[,6], digits = 4)
+t[,7] <- round(t[,7], digits = 4)
+t[,3] <- round(t[,3], digits = 4)
+t <- t[order(t$pos),]
+t$chr <- as.numeric(sub("chr", "", t$chr))
+t <- t[order(t$chr),]
+t <- t[-which(is.na(t$start_ratio3)),]
+t <- t[-which(is.na(t$end_ratio3)),]
+
+dir.create(here("output", "supplementary_tables"), showWarnings=FALSE)
+write_csv(t[,c(1:7)], here("output", "supplementary_tables", "tab4.csv")) 
+```
+
+

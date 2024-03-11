@@ -1,0 +1,128 @@
+---
+title: "Supplementary_Table6.Rmd"
+author: "Michael Noe"
+date: "2/4/2022"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r packages}
+library("tidyverse")
+library("GenomicRanges")
+library("BSgenome.Hsapiens.UCSC.hg19")
+library("here")
+```
+
+```{r}
+s <- tibble()
+# Need chrX data!
+ls <- list.files(here("data", "xfragments"), full.names = T)
+for (file in ls) {
+  print(file)
+  temp <- readRDS(file)
+  stemp <- tibble("case" = basename(file),
+                  "all" = temp$total,
+                  "chrx" = temp$chrx)
+  s <- rbind(s,stemp)
+}
+s$sex <- "NA"
+s[which((s$chrx / s$all) < 0.039),]$sex <- "male"
+s[which((s$chrx / s$all) > 0.039),]$sex <- "female"
+
+m <- tibble()
+for (case in s[which(s$sex == "male"),]$case) {
+  print(paste0(match(case, s[which(s$sex == "male"),]$case), " / ", length(s[which(s$sex == "male"),]$case)))
+  temp <- readRDS(here("data", "Moss_et_al-NatComm-2018", "results", case))
+  temp <- temp[which(seqnames(temp) == "chrX")]
+  ttemp <- as.tibble(temp)[,c(9:16)]
+  if (nrow(m) == 0) {
+    m <- ttemp
+  } else {
+    m <- as.tibble(m + ttemp)
+  }
+}
+
+f <- tibble()
+for (case in s[which(s$sex == "female"),]$case) {
+  print(paste0(match(case, s[which(s$sex == "female"),]$case), " / ", length(s[which(s$sex == "female"),]$case)))
+  temp <- readRDS(here("data", "Moss_et_al-NatComm-2018", "results", case))
+  temp <- temp[which(seqnames(temp) == "chrX")]
+  ttemp <- as.tibble(temp)[,c(9:16)]
+  if (nrow(f) == 0) {
+    f <- ttemp
+  } else {
+    f <- as.tibble(f + ttemp)
+  }
+}
+
+m$loc <- paste0(seqnames(temp), ":", start(temp)+2, "-", start(temp) +3)
+m$chr <- as.character(seqnames(temp))
+m$pos <- as.numeric(start(temp))
+m$probe <- temp$probes
+m$seq_table <- temp$seq
+m$beta <- temp$beta
+m$seq_gen <- as.character(getSeq(Hsapiens, GRanges(m$loc)))
+m <- m[order(f$pos),]
+table(m$seq_gen == substr(m$seq_table, 3,4))
+m$sex <- "male"
+
+f$loc <- paste0(seqnames(temp), ":", start(temp)+2, "-", start(temp) +3)
+f$chr <- as.character(seqnames(temp))
+f$pos <- as.numeric(start(temp))
+f$probe <- temp$probes
+f$seq_table <- temp$seq
+f$beta <- temp$beta
+f$seq_gen <- as.character(getSeq(Hsapiens, GRanges(f$loc)))
+f <- f[order(f$pos),]
+table(f$seq_gen == substr(f$seq_table, 3,4))
+f$sex <- "female"
+
+t <- rbind(m, f)
+t <- t[which(substr(t$seq_table, 3,4) == "CG"),]
+all <- tibble()
+te <- t
+te$motif <- substr(te$seq_table, 2, 4)
+te$ratio <- round(te$start_3motif / te$start_3motif_over, digits = 4)
+te$strand <- "+"
+te <- te[,c(12,9,19,17,14,18,16,11)]
+te$motif <- paste0(substr(te$motif, 1,1), " | ", substr(te$motif, 2,3))
+all <- rbind(all, te)
+
+te <- t
+te$motif <- as.character(reverseComplement(DNAStringSet(substr(te$seq_table, 3, 5))))
+te$ratio <- round(te$end_3motif / te$end_3motif_over, digits = 4)
+te$strand <- "-"
+te <- te[,c(12,9,19,17,14,18,16,11)]
+te$motif <- paste0(substr(te$motif, 1,1), " | ", substr(te$motif, 2,3))
+all <- rbind(all, te)
+
+te <- t
+te$motif <- substr(te$seq_table, 1, 4)
+te <- te[which(te$motif %in% c("ACCG", "CCCG", "GCCG", "TCCG")),]
+te$ratio <- round(te$start_4motif / te$start_4motif_over, digits = 4)
+te$strand <- "+"
+te <- te[,c(12,9,19,17,14,18,16,11)]
+te$motif <- paste0(substr(te$motif, 1,1), " | ", substr(te$motif, 2,4))
+all <- rbind(all, te)
+
+te <- t
+te$motif <- as.character(reverseComplement(DNAStringSet(substr(te$seq_table, 3, 6))))
+te <- te[which(te$motif %in% c("ACCG", "CCCG", "GCCG", "TCCG")),]
+te$ratio <- round(te$end_4motif / te$end_4motif_over, digits = 4)
+te$strand <- "-"
+te <- te[,c(12,9,19,17,14,18,16,11)]
+te$motif <- paste0(substr(te$motif, 1,1), " | ", substr(te$motif, 2,4))
+all <- rbind(all, te)
+all <- all[order(all$pos),]
+
+all[,5] <- round(all[,5], digits=4)
+all <- all[-which(is.na(all$ratio)),]
+
+dir.create(here("output", "supplementary_tables"), showWarnings=FALSE)
+write_csv(all[,c(1,2,3,4,7,5,6)], here("output", "supplementary_tables", "tab6.csv"))
+```
+
+
