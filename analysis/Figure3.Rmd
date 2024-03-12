@@ -19,6 +19,7 @@ library("reshape2")
 library("cowplot")
 library("tidyverse")
 library("GenomicRanges")
+library("gtools")
 library("here")
 ```
 
@@ -744,25 +745,19 @@ t2l_sum_max <- t2l_sum %>%
 t2l_sum$max <- t2l_sum_max[match(paste0(t2l_sum$top, t2l_sum$variable), paste0(t2l_sum_max$top, t2l_sum_max$variable)),]$max
 t2l_sum$norm_value <- t2l_sum$value / t2l_sum$max
 
-set.seed(1234)
-labels <- rep(c(0, 1), each=3)
-observed <- paste(labels, collapse="")
-tmp <- replicate(10000, sample(labels, size=6, replace=FALSE))
-chars <- apply(tmp, 2, paste, collapse="")
-perms <- unique(chars)
-keep <- tmp[, chars %in% perms & !duplicated(chars)]
+perms  <- permutations(2,6,c(0,1),repeats=TRUE)
+keep <- perms[which(rowSums(perms) == 3),] 
 
 #permutation using medians
 all <- tibble()
-set.seed(1234)
-for (j in c(1:10000)) {
+for (j in c(1:nrow(keep))) {
   print(j)
   P <- j
   for (i in c(500, 1000, 2000, 3000, 4000, 5000)) {
     t2l_sum_temp <- t2l_sum[which(t2l_sum$top == i),]
     for (q in unique(t2l_sum_temp$variable)) {
-      t2l_sum_temp_temp <-  t2l_sum_temp[which( t2l_sum_temp$variable == q),]
-      pindex <- keep[, sample(c(1:20), size = 1, replace = T)] + 1
+      t2l_sum_temp_temp <-  t2l_sum_temp[which(t2l_sum_temp$variable == q),]
+      pindex <- keep[j,] + 1
       permutation <- c("mutant", "wild-type")[pindex]
       t2l_sum_temp_temp$mut <- permutation
       #t2l_sum_temp_temp[which(t2l_sum_temp_temp$mut == "mutant"),]$value <- sample(t2l_sum_temp_temp[which(t2l_sum_temp_temp$mut == "mutant"),]$value, size = 3, replace = T)
@@ -798,14 +793,14 @@ saveRDS(all_sum_median,here("data/mouse_permutations_median.rds"))
 
 #permutation using means
 all <- tibble()
-for (j in c(1:10000)) {
+for (j in c(1:nrow(keep))) {
   print(j)
   P <- j
   for (i in c(500, 1000, 2000, 3000, 4000, 5000)) {
     t2l_sum_temp <- t2l_sum[which(t2l_sum$top == i),]
     for (q in unique(t2l_sum_temp$variable)) {
       t2l_sum_temp_temp <-  t2l_sum_temp[which( t2l_sum_temp$variable == q),]
-      pindex <- keep[, sample(c(1:20), size = 1, replace = T)] + 1
+      pindex <- keep[j,] + 1
       permutation <- c("mutant", "wild-type")[pindex]
       t2l_sum_temp_temp$mut <- permutation
       #t2l_sum_temp_temp[which(t2l_sum_temp_temp$mut == "mutant"),]$value <- sample(t2l_sum_temp_temp[which(t2l_sum_temp_temp$mut == "mutant"),]$value, size = 3, replace = T)
